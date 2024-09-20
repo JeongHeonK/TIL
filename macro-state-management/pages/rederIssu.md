@@ -1,4 +1,4 @@
-# memo는 context의 재렌더링을 막지 못한다.
+## memo는 context의 재렌더링을 막지 못한다.
 
 ```jsx
 const ColorComponent = () => {

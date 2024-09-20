@@ -1,4 +1,4 @@
-# useReducer로 useState 구현 및 반대 구현
+## useReducer로 useState 구현 및 반대 구현
 
 ```tsx
 import { useState, useReducer } from "react";
