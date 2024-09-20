@@ -6,3 +6,4 @@
 - [데이터 중심 접근 방식 & 컴포넌트 중심 접근 방식](./pages/approachMethod.md)
 - [리렌더링 최적화](./pages/renderingOptimization.md)
 - [zustand](./pages/zustand.md)
+- [zustand와 redux의 차이점](./pages/redux&zustand.md)
