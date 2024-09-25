@@ -1,15 +1,15 @@
 ## TextInput
 
 - `<TextInput>` 사용 시, 사용할 수 있는 속성들
-  - keyboardType: phone 키보드 유형 선택
+  - keyboardType: phone 키보드 유형 선택 (문자, 숫자패드 등.)
   - onChangeText: onChange -> 여기서 사용됨.
-  - secureTextEntry: type="password" 형식과 같음
+  - secureTextEntry: type="password" 형식과 같음. 입력값 가려짐.
   - 자동채움 설정
     - importantForAutofill="yes"
     - autoComplete="password"
     - textContentType="password"
-  - `onSubmitEditing={() => passwordRef.current?.focus()}` 다음 이동 ref로 연결해야함.
-  - `onSubmitEditing={() => handleSubmit()}` 엔터 눌렷을시 제출 동작
+  - `onSubmitEditing={() => passwordRef.current?.focus()}` 다음 이동 ref로 연결 후 focus() 사용 시 다음 input으로 이동.
+  - `onSubmitEditing={() => handleSubmit()}` 엔터 눌렸을 시, 제출 동작
 
 ### `StyleSheet.compose()`
 
