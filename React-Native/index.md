@@ -7,3 +7,9 @@ React-native 정리
 - [Modal 생성](./pages/modal.md)
 - [TextInput attr](./pages/pagenation2.md)
 - [axios 요청](./pages/axios.md)
+
+---
+
+expo route
+
+- [routing](./pages/expo-routing.md)
