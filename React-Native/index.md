@@ -7,6 +7,9 @@ React-native 정리
 - [Modal 생성](./pages/modal.md)
 - [TextInput attr](./pages/pagenation2.md)
 - [axios 요청](./pages/axios.md)
+- [데이터 저장](./pages/storage.md)
+- [memo 주의](./pages/memo.md)
+- [Redux](./pages/redux.md)
 
 ---
 
