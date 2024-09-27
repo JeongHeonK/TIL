@@ -66,7 +66,7 @@ const response = await instance.delete("/baseURL을 제외한 추가 정보");
 
 ---
 
-### ENV
+### .env
 
 - RN에서 .env 파일 불러올 경우, `Config.변수명` 사용
 - `const Config from 'react-native-config';` 로 불러와야함.
