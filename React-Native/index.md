@@ -16,6 +16,7 @@
 - [TextInput attr](./pages/pagenation2.md)
 - [axios 요청](./pages/axios.md)
 - [데이터 저장](./pages/storage.md)
+- [Socket.id](./pages/socket.md)
 
 ---
 
