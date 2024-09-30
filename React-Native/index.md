@@ -1,4 +1,12 @@
-React-native 정리
+### React
+
+- [memo 주의](./pages/memo.md)
+- [Redux](./pages/redux.md)
+- [useEffect와 useLayoutEffect](./pages/useLayout.md)
+
+---
+
+### React-native 정리
 
 - [기본 컴포넌트](./pages/basic-components.md)
 - [React-Navigation](./pages/react-navigation.md)
@@ -8,11 +16,9 @@ React-native 정리
 - [TextInput attr](./pages/pagenation2.md)
 - [axios 요청](./pages/axios.md)
 - [데이터 저장](./pages/storage.md)
-- [memo 주의](./pages/memo.md)
-- [Redux](./pages/redux.md)
 
 ---
 
-expo route
+### expo route
 
 - [routing](./pages/expo-routing.md)
