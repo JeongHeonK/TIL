@@ -17,6 +17,8 @@
 - [axios 요청](./pages/axios.md)
 - [데이터 저장](./pages/storage.md)
 - [Socket.id](./pages/socket.md)
+- [앱 종료 후 재접속 시 데이터 유지](./pages/dataKeeping.md)
+- [FlatList vs ScrollView](./pages/flatList.md)
 
 ---
 
