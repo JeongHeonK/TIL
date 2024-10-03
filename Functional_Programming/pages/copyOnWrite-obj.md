@@ -40,3 +40,29 @@ function objectDelete(object, key) {
   return newObj;
 }
 ```
+
+copy on write 전환
+
+```js
+function setQuantityByName(cart, name, quantity) {
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].name === name) {
+      cart[i].quantity = quantity;
+    }
+  }
+}
+
+function setQuantityByName(cart, name, quantity) {
+  const cart_copy = [...cart];
+  for (let i = 0; i < cart_copy.length; i++) {
+    if (cart_copy[i].name === name) {
+      const newCart = { ...cart_copy[i], quantity };
+
+      cart_copy[i] = newCart;
+      break;
+    }
+  }
+
+  return cart_copy;
+}
+```
