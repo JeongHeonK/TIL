@@ -6,3 +6,4 @@
 - [Copy-On-Write 연습 - 배열](./pages/copyOnWrite.md)
 - [Copy-On-Write 연습 - 객체](./pages/copyOnWrite-obj.md)
 - [불변성](./pages/immutable.md)
+- [계층형 설계](./pages/stratifiedDesign.md)
