@@ -30,3 +30,49 @@
 2. 추상화 벽
 3. 작은 인터페이스
 4. 편리한 계층
+
+---
+
+### 연습 문제
+
+```js
+function setPriceByName(cart, name, price) {
+  const cartCopy = cart.slice();
+  for (let i = 0; i < cartCopy.length; i++) {
+    if (cartCopy[i].name === name) {
+      cartCopy[i] = setPrice(cartCopy[i], price);
+    }
+  }
+
+  return cartCopy;
+}
+
+function indexOfItem(cart, name) {
+  for (let i = 0; i < cart.length; i++) {
+    if (arrayGet(cart, i) === name) return i;
+  }
+  return null;
+}
+
+function arraySet(array, idx, value) {
+  const copy = array.slice();
+  copy[idx] = value;
+
+  return copy;
+}
+
+function arrayGet(cart, i) {
+  const copy = [...cart];
+  return copy[i];
+}
+
+function setPriceByName(cart, name, price) {
+  const idx = indexOfItem(cart, name);
+  if (idx) {
+    const item = arrayGet(cart, idx);
+    cart = arraySet(cart, idx, setPrice(item, price));
+  }
+
+  return cart;
+}
+```
