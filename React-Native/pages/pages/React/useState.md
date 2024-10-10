@@ -1,42 +1,65 @@
 ## useState
 
-복습 <br />
-useReducer로 useState구현
+### hook 객체
+
+- `mountWorkInProgressHook()` 실행시 hook내부에서 값 할당
 
 ```ts
-import { useReducer } from 'react';
+function mountWorkInProgressHook(): Hook {
+  const hook: Hook = {
+    memoizedState: null, // 마지막에 얻은 state 값
 
-type SetStateAction<S> = S | ((prevState: S) => S);
+    baseState: null,
+    queue: null, // update 객체를 linked list로 구현한 queue에 저장
+    baseUpdate: null,
 
-const getInitialState = <T>(initialState: T | () => T): T => {
-  if (typeof initialState === "function") {
-    return (initialState as () => T)();
-  }
-  return initialState;
-};
+    next: null, // linked list
+  };
 
-const reducer = <U>(state: U, action: SetStateAction<U>): U => {
-  if (typeof action === "function") return (action as (prev: U) => U)(state);
-  return action;
-};
-
-const useState = <S>(initialState: S | (() => S)): [S, (action: SetStateAction<S>) => void] => {
-  const [state, dispatch] = useReducer(reducer, getInitialState(initialState));
-
-  return [state, dispatch];
-};
+  // ...생략
+}
 ```
 
----
+- hook.memoizedState 마지막에 얻은 state 값
+- hook.next 다음 hook을 가리키는 pointer(linked list)
+- hook.queue hook을 호출할 때마다 update 객체를 linked list로 구현한 queue에 저장
 
-### useState
+### workInProgressHook
 
-- reactHooks 라이브러리 <- `resolveDispatcher()` <- `ReactCurrentDispatcher.current()` <- `ReactSharedInternals`
+- workInProgressHook === null ? 첫번째 hook 아니면 다음 hook 추가
+- fiber.memoizedState에 firstWorkInProgressHook 할당
 
-- react 코어는 react element에 대한 정보만 알고 있음
-- react element는 fiber로 확장해야 hook을 포함하게 됨.
-- reconciler가 확장함
+### mountState
 
-#### react 코어는 hook을 사용하기 위해 외부에서 주입받음
+- initialState가 함수면 초기값 할당
+- hook.memoizedState에 initialState할당
 
-> 의존성을 끊기 위해서 -> mobile까지 확장가능
+### queue
+
+- queue.last에서 가장 마지막 update값을 가리킴
+
+## setState의 state 업데이트 방벙
+
+### dispatchAction 함수
+
+- update 객체 생성
+  - expirationTime
+  - action
+  - next: null
+  - eagerReducer, eagerState : 렌더링 최적화
+- 생성된 update 객체를 queue에 저장
+- 불필요한 렌더링이 발생하지 않도록 최적화
+- update를 적용하기 위해 Work를 scheduler에 예약
+
+## idle phase와 render phase 구별
+
+```ts
+let currentlyRenderingFiber: Fiber | null = null;
+// work in progress 였으나 구분하기 위해 이름 다르게 지음.
+
+if (
+  fiber === currentlyRenderingFiber ||
+  (alternate !== null && alternate === currentlyRenderingFiber)
+) {
+}
+```
