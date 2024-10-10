@@ -4,4 +4,4 @@
 - [마이크로 상태 관리](./macro-state-management/index.md)
 - [React-Native](./React-Native/pages/index.md)
 - [TS](./tsc/index.md)
-- [Functional_Programming](./Functional_Programmin/index.md)
+- [Functional_Programming](./Functional_Programming/index.md)
