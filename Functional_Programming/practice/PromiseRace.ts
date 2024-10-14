@@ -16,7 +16,7 @@ export async function main() {
  * Promise.all 모든 promise 종료 시 사용
  */
 
-interface File {
+export interface File {
   name: string;
   body: string;
   size: number;
@@ -35,6 +35,24 @@ export async function main2() {
 
   if (result === "network slow") {
     console.log("네트워크 환경 확인해주세요.");
+  }
+
+  return result;
+}
+
+// 응용
+// 오래 걸리는 경우 바로 로딩창을 발생 시킬 수 있음.
+
+export async function main3() {
+  const file = getFile("file1.png");
+
+  const result = await Promise.race([file, delay(2000, "network slow")]);
+
+  if (result === "network slow") {
+    console.log("loading..");
+    console.log(await file);
+  } else {
+    console.log("즉시 실행", result);
   }
 
   return result;
