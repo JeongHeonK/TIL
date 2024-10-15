@@ -63,3 +63,10 @@ if (
 ) {
 }
 ```
+
+### didScheduleRenderPhase
+
+렌더 페이즈가 시작됨.
+
+- `renderOfReRenders`를 사용해서 렌저링 제한
+- `const RE_RENDER_LIMIT = 25`
