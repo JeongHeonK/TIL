@@ -58,3 +58,22 @@ export async function main() {
 
   console.log([...gen()]);
 }
+
+function* take(length, iterable) {
+  const iterator = iterable[Symbol.iterator]();
+  while (--length) {
+    const { done } = iterator.next();
+    if (done) break;
+    yield iterator.next().value;
+  }
+}
+
+function* chunk(size, iterable) {
+  const iterator = iterable[Symbol.iterator]();
+  while (true) {
+    const arr = [...take(size, iterator)];
+    if (arr.length) yield [...take(size, iterable)];
+    if (arr.length < size) break;
+    yield "hi";
+  }
+}
