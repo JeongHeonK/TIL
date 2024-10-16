@@ -14,3 +14,6 @@
 ## 실습
 
 - [Promise.race](./practice/PromiseRace.ts)
+- [Promise.All](./practice/PromiseAll.ts)
+- [명령형 함수 리펙토링](./practice/imperativeCodeRefactoring.ts)
+- [generator 추가 정리](./practice/generator.md)
