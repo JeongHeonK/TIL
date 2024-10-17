@@ -68,10 +68,16 @@ function* take(length, iterable) {
   }
 }
 
-function* chunk(size, iterable) {
+function* chunk<T>(size: number, iterable: Iterable<T>) {
   const iterator = iterable[Symbol.iterator]();
   while (true) {
-    const arr = [...take(size, iterator)];
+    const arr = [
+      ...take(size, {
+        [Symbol.iterator]() {
+          return iterator;
+        },
+      }),
+    ];
     if (arr.length) yield [...take(size, iterable)];
     if (arr.length < size) break;
     yield "hi";
