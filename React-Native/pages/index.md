@@ -7,6 +7,13 @@
 
 ---
 
+### React Design Pattern
+
+- [design pattern 이란?](./pages/React/design-pattern/start.md)
+- [Screen Splitter](./pages/React/design-pattern/screenSplitter.md)
+
+---
+
 ### React 까보기
 
 RN 기반으로 작업하면 결국 react 깊게 알아야 해서 정리🫠🫠
