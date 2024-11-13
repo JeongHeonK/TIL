@@ -1,3 +1,4 @@
+```tsx
 import { ReactNode } from "react";
 import styled from "styled-components";
 
@@ -29,3 +30,41 @@ const Container = styled.div`
 const Panel = styled.div<{ flex: number }>`
   flex: ${({ flex }) => flex};
 `;
+```
+
+사용
+
+```tsx
+import { SplitScreen } from "./Components/split-screen";
+
+function App() {
+  return (
+    <SplitScreen leftWidth={1} rightWidth={3}>
+      <Left title="left" />
+      <Right title="right" />
+    </SplitScreen>
+  );
+}
+
+export default App;
+
+type Prop = {
+  title: string;
+};
+
+const Left = ({ title }: Prop) => {
+  return (
+    <div>
+      <h2>{title}</h2>
+    </div>
+  );
+};
+
+const Right = ({ title }: Prop) => {
+  return (
+    <div>
+      <h2>{title}</h2>
+    </div>
+  );
+};
+```

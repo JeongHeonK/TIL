@@ -1,23 +1,32 @@
 import { SplitScreen } from "./Components/split-screen";
 
 function App() {
-  return <SplitScreen Left={Left} Right={Right} />;
+  return (
+    <SplitScreen leftWidth={1} rightWidth={3}>
+      <Left title="left" />
+      <Right title="right" />
+    </SplitScreen>
+  );
 }
 
 export default App;
 
-const Left = () => {
+type Prop = {
+  title: string;
+};
+
+const Left = ({ title }: Prop) => {
   return (
     <div>
-      <h2>left</h2>
+      <h2>{title}</h2>
     </div>
   );
 };
 
-const Right = () => {
+const Right = ({ title }: Prop) => {
   return (
     <div>
-      <h2>Right</h2>
+      <h2>{title}</h2>
     </div>
   );
 };
