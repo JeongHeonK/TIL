@@ -7,6 +7,13 @@
 
 ---
 
+### React Design Pattern
+
+- [design pattern 이란?](./pages/React/design-pattern/start.md)
+- [Screen Splitter](./pages/React/design-pattern/screenSplitter.md)
+
+---
+
 ### React 까보기
 
 RN 기반으로 작업하면 결국 react 깊게 알아야 해서 정리🫠🫠
@@ -16,6 +23,7 @@ RN 기반으로 작업하면 결국 react 깊게 알아야 해서 정리🫠🫠
 - [오픈소스 확인](./pages/React/open-source.md)
 - [renderWithHook](./pages/React/renderWithHooks.md)
 - [useState](./pages/React/useState.md)
+- [reconciler](./pages/React/reconciler.md)
 
 ---
 
@@ -32,6 +40,10 @@ RN 기반으로 작업하면 결국 react 깊게 알아야 해서 정리🫠🫠
 - [Text 속성들](./pages/React-Native/TextInput.md)
 - [앱 종료 후 재접속 시 데이터 유지](./pages/React-Native/dataKeeping.md)
 - [FlatList vs ScrollView](./pages/React-Native/flatList.md)
+
+### RN-Docs 번역
+
+- [들어가며](./pages/React-Native/doc/start.md)
 
 ---
 
