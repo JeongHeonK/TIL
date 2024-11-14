@@ -1,3 +1,5 @@
+### ScreenSplitter
+
 ```tsx
 import { ComponentType } from "react";
 import styled from "styled-components";

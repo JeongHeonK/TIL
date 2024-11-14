@@ -1,32 +1,22 @@
-import { SplitScreen } from "./Components/split-screen";
+import { LargeListItems } from "./Components/LargeListItems";
+import { RegularList } from "./Components/RegularList";
+import { SmallListItems } from "./Components/SmallListItems";
 
 function App() {
   return (
-    <SplitScreen leftWidth={1} rightWidth={3}>
-      <Left title="left" />
-      <Right title="right" />
-    </SplitScreen>
+    <>
+      <RegularList
+        items={someArray}
+        sourceName={keyName}
+        ItemComponent={SmallListItems}
+      />
+      <RegularList
+        items={someArray}
+        sourceName={keyName}
+        ItemComponent={LargeListItems}
+      />
+    </>
   );
 }
 
 export default App;
-
-type Prop = {
-  title: string;
-};
-
-const Left = ({ title }: Prop) => {
-  return (
-    <div>
-      <h2>{title}</h2>
-    </div>
-  );
-};
-
-const Right = ({ title }: Prop) => {
-  return (
-    <div>
-      <h2>{title}</h2>
-    </div>
-  );
-};
