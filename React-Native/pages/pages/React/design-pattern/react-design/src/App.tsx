@@ -1,32 +1,21 @@
-import { SplitScreen } from "./Components/split-screen";
+import { LargeListItems } from "./Components/LargeListItems";
+import { Modal } from "./Components/Modal";
 
 function App() {
   return (
-    <SplitScreen leftWidth={1} rightWidth={3}>
-      <Left title="left" />
-      <Right title="right" />
-    </SplitScreen>
+    <main style={{ width: "100%" }}>
+      <Modal>
+        <LargeListItems
+          author={{
+            name: "hey",
+            age: 30,
+            country: "ko",
+            books: ["못팜", "안팜"],
+          }}
+        />
+      </Modal>
+    </main>
   );
 }
 
 export default App;
-
-type Prop = {
-  title: string;
-};
-
-const Left = ({ title }: Prop) => {
-  return (
-    <div>
-      <h2>{title}</h2>
-    </div>
-  );
-};
-
-const Right = ({ title }: Prop) => {
-  return (
-    <div>
-      <h2>{title}</h2>
-    </div>
-  );
-};
