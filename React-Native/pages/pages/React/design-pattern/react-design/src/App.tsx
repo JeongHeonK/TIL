@@ -1,19 +1,14 @@
-import { LargeListItems } from "./Components/LargeListItems";
-import { Modal } from "./Components/Modal";
+import { CurrentUserLoader } from "./Components/CurrentUserLoader";
+import { UserInfo } from "./Components/Server/user-info";
 
 function App() {
   return (
     <main style={{ width: "100%" }}>
-      <Modal>
-        <LargeListItems
-          author={{
-            name: "hey",
-            age: 30,
-            country: "ko",
-            books: ["못팜", "안팜"],
-          }}
+      <CurrentUserLoader>
+        <UserInfo
+          user={{ name: "hey", age: 30, country: "ja", books: ["oh", "hey"] }}
         />
-      </Modal>
+      </CurrentUserLoader>
     </main>
   );
 }
