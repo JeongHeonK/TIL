@@ -44,6 +44,7 @@ RN 기반으로 작업하면 결국 react 깊게 알아야 해서 정리🫠🫠
 ### RN-Docs 번역
 
 - [들어가며](./pages/React-Native/doc/start.md)
+- [Performance Optimization](./pages/React-Native/doc/PerformanceOptimization.md)
 
 ---
 

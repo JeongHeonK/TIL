@@ -141,3 +141,231 @@ Codegen이 네이티브 코드를 생성하는 과정은 다음과 같습니다:
 - Codegen을 사용하면 직접 “네이티브 코드”를 작성할 필요 없이 “타입이 지정된 JavaScript 코드”만 작성하여 컴포넌트나 모듈의 인터페이스를 정의하면 됩니다. Codegen이 나머지 작업을 처리해 줍니다.
 
 - Codegen의 장점: 네이티브 모듈과 컴포넌트를 생성하고 유지 관리하는 데 필요한 작업량이 줄어듭니다.
+
+---
+
+### JSI(JavaScript Interface)
+
+JSI (JavaScript Interface)은 React Native의 새로운 아키텍처에서 핵심적인 역할을 합니다. 다음과 같은 컴포넌트들이 모두 이 새로운 아키텍처와 JSI를 사용합니다:
+
+1. Hermes Engine: 기기에서 JavaScript 코드를 실행하는 JavaScript 엔진.
+2. Turbo Module: JSI와 네이티브 코드를 사용하여 Native Module을 구현.
+3. Fabric: 네이티브 UI 렌더러이자 새로운 렌더 엔진.
+
+이제 JSI를 먼저 이해하고, 이후에 새로운 아키텍처의 다른 부분들을 알아보겠습니다.
+
+**JSI (JavaScript Interface)**는 C++로 작성되었으며, 이전 아키텍처의 브릿지를 대체하여 JavaScript 객체 및 함수에 대한 직접적인 네이티브 인터페이스를 제공합니다. 이 접근 방식은 여러 가지 이점을 제공합니다:
+
+- 동시성: JavaScript가 다양한 스레드에서 실행되는 함수를 호출할 수 있습니다.
+- 동기 실행: 원래 비동기로 실행될 필요가 없는 함수는 동기적으로 실행될 수 있습니다.
+- 낮은 오버헤드: 데이터 직렬화 및 역직렬화 과정이 필요 없어지면서, 추가적인 성능 부담이 감소합니다.
+- 코드 공유: C++ 도입으로 플랫폼 간에 독립적인 코드 개발이 가능해지며, 코드 공유가 수월해졌습니다.
+- 타입 안전성: JavaScript가 C++ 객체의 메서드를 정확하게 호출할 수 있도록, Flow 또는 TypeScript로 타입이 지정된 JavaScript 사양을 기반으로 한 코드가 추가되었습니다.
+- 경량성: JSI는 C++로 작성된 경량의 범용 JavaScript 인터페이스로, JavaScript 엔진이 네이티브 영역의 메서드를 직접 호출할 수 있도록 합니다.
+- JS 엔진과의 분리: 이전 아키텍처는 JSC (JavaScriptCore) 엔진만을 사용하도록 브릿지가 설계되었으나, 새로운 아키텍처는 JSI를 통해 Chakra, v8, Hermes 등 다양한 JavaScript 엔진을 사용할 수 있게 지원합니다.
+
+### How can JavaScript call native methods with JSI?
+
+JSI를 통해 JavaScript가 네이티브 메서드를 호출하는 방법은 다음과 같습니다:
+
+JSI에서는 네이티브 메서드들이 C++ 객체를 통해 JavaScript에 노출됩니다. 이렇게 되면 JavaScript 코드가 이 객체들을 참조할 수 있고, 따라서 직접적으로 호출할 수 있습니다. 이는 웹에서 JavaScript 코드가 DOM 요소를 참조하고, 해당 요소의 메서드를 호출할 수 있는 방식과 유사합니다.
+
+예를 들어, 다음 코드를 작성할 때:
+
+```js
+const container = document.createElement("div");
+```
+
+여기서 container는 DOM 요소에 대한 참조를 가지고 있는 JavaScript 변수입니다. container 변수에 대해 어떤 메서드를 호출하면, 그 메서드는 실제 DOM 요소에 적용됩니다. 마찬가지로, JSI에서도 JavaScript 코드가 네이티브 모듈에 대한 참조를 가지며, 이 참조를 통해 네이티브 메서드를 직접 호출할 수 있습니다.
+
+요약하면, JSI는 다른 JavaScript 엔진을 사용할 수 있게 해주며, 스레드 간 완벽한 상호 운용성을 제공합니다.
+
+JSI의 주요 장점 중 하나는 C++로 작성되었다는 점입니다. 이로 인해 React Native는 스마트 TV, 스마트 워치, 기타 다양한 장치를 대상으로 할 수 있습니다.
+
+---
+
+### How JSI synchronous made it great!
+
+일반적으로 JavaScript는 비동기적 실행이 기본이라, 작업이 완료될 때까지 기다릴 필요가 없어 비동기 방식이 더 성능이 좋습니다. 그러나 JSI는 모든 작업을 동기로 처리하는 것이 아니라, 필요한 경우에만 동기적 실행 옵션을 제공합니다. 여전히 대부분의 경우 비동기 호출이 선호되지만, 다음과 같은 특정 상황에서는 동기 호출이 더 유리하거나 필요할 수 있습니다.
+
+- **_네이티브 모듈 초기화_**: 일부 네이티브 모듈은 사용되기 전에 초기화가 필요하며, 이를 비동기로 수행하면 지연 또는 충돌이 발생할 수 있습니다. JSI를 사용하면 앱 시작 시 네이티브 모듈을 동기적으로 초기화할 수 있어 이러한 문제를 방지할 수 있습니다.
+- **_상수에 접근_**: 일부 네이티브 모듈은 JavaScript 코드에서 사용되는 상수(예: 기기 정보 또는 플랫폼별 값)를 제공합니다. JSI를 통해 JavaScript가 이러한 상수에 동기적으로 접근할 수 있어 브릿지 메시지를 기다릴 필요가 없습니다.
+- **_동기 네이티브 메서드 호출_**: 클립보드 접근, 현재 위치 가져오기 등 JavaScript 코드에 즉각적으로 값을 반환해야 하는 일부 네이티브 메서드는 JSI를 통해 동기적으로 호출할 수 있어 콜백이나 프로미스를 사용할 필요가 없습니다.
+
+이처럼 JSI는 필요할 때 동기적 실행을 가능하게 하여 React Native 앱의 유연성과 성능을 높입니다.
+
+---
+
+### Hermes Engine
+
+Hermes는 React Native 앱이 기기에서 실행될 때 JavaScript 코드를 처리하는 엔진으로, 여러 장점이 있습니다:
+
+1. 앱 크기 개선: Hermes는 앱의 파일 크기를 줄여, 설치 용량을 절감합니다.
+2. 메모리 사용 최적화: 앱 실행 시 필요한 메모리를 줄입니다.
+3. 시작 시간 단축: 앱이 더 빠르게 시작되도록 도와줍니다.
+
+Hermes의 작동 방식
+
+- 바이트코드 생성: 개발자가 앱을 프로덕션에 배포하기 전, React Native 프로젝트의 “바이트코드”를 생성합니다. 이는 JavaScript 코드와 "네이티브 코드"를 포함하며, 네이티브 코드는 Codegen에 의해 생성됩니다.
+- 바이트코드 로딩: 사용자가 기기에서 앱을 실행하면, Hermes는 이 바이트코드 파일을 로드합니다. 이 파일은 단순하고 효율적인 형태의 코드로, Hermes가 별도의 해석이나 컴파일 없이 바로 실행할 수 있습니다.
+- 앱 로직 처리: Hermes는 앱의 논리와 데이터, 이벤트(예: API에서 데이터 가져오기, 상태 업데이트, 사용자 입력에 응답)를 처리합니다.
+- JSI를 통한 네이티브 코드와의 통신: Hermes는 JavaScript Interface(JSI)라는 기능을 통해 네이티브 함수와 객체에 직접 접근하여 네이티브 코드와 통신합니다. 이는 브릿지 없이도 직접 접근이 가능하게 해줍니다.
+- Fabric을 통한 UI 업데이트: Hermes는 React Native의 새로운 렌더링 시스템인 Fabric을 사용해 앱의 사용자 인터페이스를 업데이트합니다.
+
+Fabric에 대한 더 자세한 내용은 후에 다루겠습니다.
+
+---
+
+### Is Hermes a good choice?
+
+Hermes는 React Native 0.64에서 JavaScript 컴파일 엔진 옵션으로 도입된 이후, React Native 개발자 커뮤니티의 큰 지지를 받고 있습니다. 특히, Hermes는 높은 성능을 제공하여 애플리케이션 성능을 크게 개선합니다.
+
+Hermes는 React Native 애플리케이션에만 유리한 것이 아니라, 번들 크기와 로드 시간을 줄이는 데도 탁월합니다. 또한, 개발 중 애플리케이션의 성능 메트릭을 시각화할 수 있는 GUI를 제공하여, 개발자가 배포 후 애플리케이션의 성능을 예측할 수 있도록 돕습니다.
+
+### How Hermes improves React Native performance
+
+Hermes를 React Native 애플리케이션의 JavaScript 엔진으로 사용할 때 얻을 수 있는 주요 이점은 다음과 같습니다:
+
+- **사전 컴파일(Pre-compilation)**: Hermes는 앱의 소스 코드를 앱 실행 전에 바이트코드로 사전 컴파일합니다. 이를 통해 앱이 실행될 때 다시 컴파일할 필요가 없어 로딩 속도가 빨라집니다.
+- **더 빠른 TTI (Time to Interactive)**: Hermes는 TTI를 줄여주어 앱이 사용자와 상호작용할 준비가 되는 시간을 단축합니다. 이는 사용자 경험을 한층 더 부드럽고 원활하게 만듭니다.
+- **작은 앱 번들 크기**: Hermes로 컴파일된 애플리케이션의 크기는 다른 JavaScript 엔진을 사용할 때보다 작습니다. 이로 인해 앱 다운로드와 설치가 빠르고 용량을 절약할 수 있습니다.
+
+---
+
+### Turbo Modules
+
+Turbo Modules는 기존의 브릿지 기반 네이티브 모듈 시스템을 대체한 새로운 네이티브 모듈 시스템입니다. 이전 네이티브 모듈 시스템은 JSON 데이터 직렬화 방식을 사용하여 성능이 낮았던 반면, Turbo Modules는 JSI(JavaScript Interface) 기술을 활용하여 성능을 개선했습니다. JSI는 C++로 작성되어 다양한 플랫폼에서 활용할 수 있습니다.
+
+#### Turbo Modules의 주요 개선점
+
+- **지연 로딩(Lazy Loading)**: 새로운 아키텍처에서 Turbo Modules는 네이티브 모듈을 지연 로딩합니다. 예를 들어, Bluetooth, 지리 위치 정보, 파일 저장 등의 모듈이 앱 시작 시 모두 초기화되지 않고, 사용자가 필요로 할 때에만 로드됩니다. 이는 앱 시작 시간을 크게 줄이는 데 기여합니다.
+- **직접 참조**: JavaScript 코드가 Turbo Modules를 통해 네이티브 모듈에 대한 참조를 직접 가질 수 있게 되어, 필요한 모듈만 로드되고, 불필요한 리소스 소비가 줄어듭니다.
+- **다중 플랫폼 지원**: Turbo Modules는 JSI를 통해 JavaScript가 네이티브 모듈과 상호작용하므로, 여러 플랫폼으로의 이식 작업이 크게 줄어듭니다. JSI가 C++로 작성되어 Android, iOS, Windows, macOS 등 여러 플랫폼에서 동일한 C++ 로직을 공유할 수 있으며, Java나 Objective-C와 같은 네이티브 언어와도 바인딩을 통해 상호작용할 수 있습니다. 이는 모든 플랫폼에서 동일한 모듈 로직을 공유하고 각 플랫폼에 맞게 바인딩만 작성하면 되도록 합니다.
+
+> "JSI는 C++를 통해 모든 플랫폼에 단일 인터페이스를 제공하는 문을 엽니다."
+
+---
+
+### Fabric (New Rendering Engine)
+
+Fabric는 React Native에서 UI를 렌더링하는 역할을 하는 새로운 UIManager로, 이전의 브릿지 기반 통신 대신 JavaScript와 네이티브 측이 직접 소통할 수 있는 기능을 제공합니다. Fabric은 JSI를 사용하여 Hermes 및 네이티브 코드와 직접적으로 연결되므로, 데이터 전달 성능이 크게 향상됩니다.
+
+#### Fabric의 주요 기능
+
+- **호스트 플랫폼과의 상호운용성 개선**: Fabric은 React Native와 호스트 플랫폼(안드로이드나 iOS 같은 네이티브 측 플랫폼) 간의 상호운용성을 높이고, JavaScript와 네이티브 스레드 간의 통신을 개선하는 데 중점을 둡니다.
+- **동기적 UI 렌더링**: Fabric은 C++ 코어를 통해 다양한 호스트 플랫폼(Android, iOS, MacOS, TvOS 등)을 지원하며, React Native가 UI 요소를 동기적으로 렌더링할 수 있도록 합니다. 이전의 레거시 아키텍처에서는 레이아웃이 비동기적으로 처리되어 레이아웃 "점프" 문제(갑작스러운 레이아웃 변경)가 발생할 수 있었지만, Fabric에서는 이러한 문제가 줄어듭니다.
+- **호스트 뷰와의 상호운용성 향상**: 호스트 뷰는 네이티브 측에서 UI 요소의 트리 구조로 표현된 형태로, Fabric은 React Native와 이러한 호스트 뷰 간의 원활한 소통을 가능하게 합니다.
+- **데이터 페칭 개선**: Fabric은 React 18에서 새로 추가된 Concurrent Features와 React Suspense와 같은 기능을 통합하여, 데이터 페칭이 더 쉬워졌고, UI가 복잡한 상태 전환 중에도 응답성을 유지할 수 있게 되었습니다. 이는 애플리케이션의 사용자 경험을 더욱 부드럽게 만들어 줍니다.
+
+---
+
+### The Fabric render pipeline (three phases)
+
+Fabric 렌더러는 React Native의 새로운 렌더링 시스템으로, 기존 렌더 시스템의 개념적 진화를 바탕으로 C++에서 더 많은 렌더 로직을 통합하고, 호스트 플랫폼(예: Android 또는 iOS)과의 상호운용성을 개선하며 새로운 기능을 제공합니다.
+
+#### Fabric 렌더링 파이프라인의 3단계
+
+1. Render 단계 <br />
+   Render 단계는 React에서 컴포넌트 트리를 탐색하고, 각 컴포넌트의 변경 사항을 계산합니다. 이 단계에서는 UI 업데이트의 준비 작업이 수행되며, "가상 DOM"과 유사하게 작업이 메모리에서 처리됩니다.
+2. Commit 단계<br />
+   Commit 단계에서는 변경된 UI 트리를 실제 네이티브 UI 트리에 반영할 준비를 합니다. React는 변경 사항을 네이티브 측에 전달하고, 상태와 레이아웃에 대한 커밋 작업이 수행됩니다. 이 과정에서 UI 요소의 상태가 결정되고, 실제 화면에 반영할 준비가 됩니다.
+3. Mount 단계<br />
+   Mount 단계에서는 새로운 UI가 실제 네이티브 화면에 마운트됩니다. 네이티브 요소가 생성되고 화면에 표시되며, 사용자가 볼 수 있는 최종 UI가 렌더링됩니다. 이 단계에서는 Fabric이 JSI를 통해 네이티브 측과 상호작용하면서 빠르고 원활한 화면 전환을 제공합니다.
+
+#### Render 단계
+
+Render 단계에서는 React가 코드를 실행하여 React 요소 트리(React element tree)를 생성합니다. React 요소(React Element)는 화면에 표시될 UI를 설명하는 일반적인 JavaScript 객체입니다.
+
+이 요소 트리는 C++에서 **React Shadow Tree**를 렌더링하는 데 사용됩니다. Fabric 렌더러는 이 단계에서 Shadow Tree를 만들고, 여기에는 렌더링될 각 컴포넌트를 나타내는 **React Shadow Tree**들이 포함됩니다.
+
+```jsx
+const App = () => {
+  return (
+    <View>
+      <Text>Hello World</Text>
+    </View>
+  );
+};
+```
+
+위의 코드에서, Render 단계 동안 View와 Text 요소에 대해 각각 Shadow Node가 생성됩니다. 이 Shadow Node는 동기적으로 생성되며, React의 호스트 컴포넌트에만 해당됩니다. View와 같은 기본 호스트 컴포넌트는 Shadow Node로 변환되지만, 합성 컴포넌트(사용자 정의 컴포넌트)에는 적용되지 않습니다.
+
+예를 들어, `<View>` 요소는 Shadow Node로 변환될 때 `<ViewShadowNode>` 객체로 변환됩니다. Fabric 렌더러는 부모-자식 관계를 자동으로 반영하여 React 요소 노드 간의 관계를 그대로 유지합니다. 이러한 과정을 통해 **React Shadow Tree**가 구성됩니다.
+
+#### Render 단계 요약
+
+- React는 화면에 나타날 React 요소 트리를 생성합니다.
+- Fabric 렌더러는 이 요소 트리를 바탕으로 Shadow Tree를 구성하며, 여기에는 각 요소의 Shadow Node가 포함됩니다.
+- Shadow Tree가 완성되면, 렌더러는 다음 단계인 Commit 단계로 넘어가도록 트리거합니다.
+
+#### Commit 단계
+
+Commit 단계에서는 React Native의 Yoga 레이아웃 엔진이 중요한 역할을 합니다. Yoga는 크로스 플랫폼 레이아웃 엔진으로, 두 가지 주요 작업을 수행합니다:
+
+1. 레이아웃 계산(Layout Calculation)<br />
+   이 단계에서, Yoga는 React Shadow Node의 크기와 위치를 계산합니다. React는 Shadow Node를 사용하여 UI 요소의 계층을 나타내며, Yoga는 각 노드의 레이아웃을 계산하여 화면에 어떻게 배치할지를 결정합니다.
+
+- Yoga는 각 React shadow node의 크기와 위치를 결정하는데, 이는 앱에서 UI 요소가 어떻게 렌더링될지를 정의하는 중요한 과정입니다.
+- Yoga는 다양한 플랫폼(Android, iOS 등)에서 일관된 레이아웃을 계산할 수 있도록 설계되었습니다.
+
+2. 트리 승격(Tree Promotion)<br />
+   트리 승격은 새로 계산된 React Shadow Tree를 최종 React Element Tree로 승격시키는 작업입니다. 이는 최신 상태의 React 요소 트리를 네이티브 측에 마운트하기 위한 준비를 의미합니다.
+
+- 트리 승격은 React Shadow Tree를 "승격시켜" 화면에 렌더링될 최종 트리로 만든다고 볼 수 있습니다.
+- 이 승격된 트리는 Commit 단계 후 Mount 단계에서 실제 네이티브 UI로 변환됩니다.
+
+#### Commit 단계 요약
+
+- 레이아웃 계산: Yoga가 각 React Shadow Node의 크기와 위치를 계산합니다.
+- 트리 승격: 계산된 React Shadow Tree가 최신 상태로 승격되어 네이티브 UI로 마운트될 준비가 됩니다.
+
+#### Mount 단계
+
+Mount 단계는 React Shadow Tree가 실제 **호스트 뷰 트리(Host View Tree)**로 변환되는 단계입니다. 이 과정에서는 화면에 렌더링된 픽셀이 포함된 최종 UI가 만들어지며, Fabric 렌더러가 핵심 역할을 합니다.
+
+#### 주요 작업
+
+1. React Shadow Tree -> Host View Tree 변환<br />
+   React Shadow Tree는 레이아웃 계산에서 생성된 데이터를 포함하고 있습니다. 이 데이터는 UI 요소들의 크기, 위치 및 레이아웃에 대한 정보입니다. Mount 단계에서는 이 React Shadow Tree가 실제 장치에서 렌더링할 수 있는 **호스트 뷰 트리(Host View Tree)**로 변환됩니다.
+
+- React Shadow Node는 각 요소에 대한 정보를 담고 있고, Mount 단계에서는 각 React Shadow Node가 네이티브 뷰로 변환됩니다.
+- 이 변환된 호스트 뷰 트리는 네이티브 플랫폼(Android, iOS 등)에서 렌더링됩니다.
+
+2. 호스트 뷰 생성 및 화면에 마운트<br />
+   Fabric 렌더러는 각 React Shadow Node에 대해 호스트 뷰를 생성하고, 이를 화면에 마운트합니다. 즉, 호스트 뷰 트리는 최종적으로 디바이스 화면에 표시될 UI 요소를 의미합니다.
+
+- 이 과정에서 호스트 뷰는 실제 네이티브 화면의 픽셀로 변환되어, 사용자가 볼 수 있는 UI가 렌더링됩니다.
+
+#### Mount 단계 요약
+
+- React Shadow Tree는 호스트 뷰 트리로 변환되며, 이는 화면에 표시될 실제 UI입니다.
+- Fabric 렌더러는 각 React Shadow Node에 대해 호스트 뷰를 생성하고 이를 화면에 마운트합니다.
+- 이 과정은 최종적으로 화면에 렌더링된 UI를 사용자에게 제공합니다.
+
+---
+
+### React Native의 새로운 아키텍처 최종 흐름
+
+1. JavaScript 코드<br />
+   프로세스는 JavaScript 코드로 시작됩니다. 이 코드는 Hermes라는 JavaScript 엔진에 의해 처리됩니다. Hermes는 React Native 앱에 최적화되어 있어 성능, 메모리 사용, 시작 시간을 개선하는 데 도움을 줍니다.
+2. JSI (JavaScript Interface)<br />
+   JSI는 JavaScript 코드와 네이티브 코드 간의 연결을 제공합니다. 예전의 브리지 방식은 JSON 직렬화 덕분에 성능이 느렸지만, JSI는 네이티브 모듈과 기능에 직접 접근할 수 있게 해줘 성능을 개선하고 오버헤드를 줄입니다.
+3. Turbo Modules<br />
+   Turbo Modules는 네이티브 모듈의 지연 로딩을 가능하게 합니다. 즉, 앱이 시작할 때 모든 모듈을 초기화하지 않고 필요한 모듈만 로드합니다. 이는 더 빠른 시작 성능과 적은 메모리 사용을 가능하게 합니다.
+4. Fabric Renderer<br />
+   Fabric Renderer는 UI 렌더링을 담당합니다. React 요소들을 쉐도우 트리로 변환하고 Yoga를 사용해 레이아웃을 계산합니다. 그 후, 이 레이아웃은 네이티브 호스트 플랫폼(Android, iOS 등)에서 화면에 마운트됩니다. 이 과정은 빠르고 부드러운 화면 렌더링을 보장합니다.
+5. 네이티브 모듈 및 네이티브 코드<br />
+   레이아웃 계산과 쉐도우 트리가 커밋된 후, 네이티브 모듈(Turbo Modules 및 JSI 사용)은 네이티브 플랫폼과 상호작용하여 최종 UI를 렌더링하고 장치의 특정 기능(센서, API 등)을 처리합니다.
+6. 렌더링 및 마운팅<br />
+   마운팅 단계는 React 요소들이 장치 화면에 올바르게 표시되도록 보장하는 단계입니다. 지금까지 처리된 모든 것이 렌더링되어 사용자에게 표시됩니다. 이 과정은 Fabric과 Turbo Modules의 작업 덕분에 이루어집니다.
+
+#### 요약:
+
+- JS 코드는 Hermes에 의해 처리됩니다.
+- JSI는 JavaScript와 네이티브 코드 간의 직접 통신을 가능하게 합니다.
+- Turbo Modules는 지연 로딩을 통해 성능을 향상시킵니다.
+- Fabric Renderer는 UI 렌더링을 효율적으로 처리하여 앱 UI를 빠르고 부드럽게 만듭니다.
+- 네이티브 모듈은 장치 기능에 접근합니다.
+- 마운팅은 최종 UI를 화면에 표시하는 단계입니다.
+
+---
