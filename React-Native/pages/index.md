@@ -9,8 +9,17 @@
 
 ### React Design Pattern
 
+#### Layout Component
+
 - [design pattern 이란?](./pages/React/design-pattern/start.md)
 - [Screen Splitter](./pages/React/design-pattern/screenSplitter.md)
+- [Screen Splitter Enhancement](./pages/React/design-pattern/screenSplitterEnhancement.md)
+- [List](./pages/React/design-pattern/List.md)
+- [Modal](./pages/React/design-pattern/Modal.md)
+
+#### Layout Component
+
+- [Loader Component for CurrentUser Data](./pages/React/design-pattern/Container.md)
 
 ---
 
