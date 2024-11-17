@@ -5,3 +5,4 @@
 - [React-Native](./React-Native/pages/index.md)
 - [TS](./tsc/index.md)
 - [Functional_Programming](./Functional_Programming/index.md)
+- [Critical_Rendering_Path](./Critical_Rendering_Path.md)
