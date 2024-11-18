@@ -1,14 +1,14 @@
-import { CurrentUserLoader } from "./Components/CurrentUserLoader";
 import { UserInfo } from "./Components/Server/user-info";
+import { UserLoader } from "./Components/UserLoader";
 
 function App() {
   return (
     <main style={{ width: "100%" }}>
-      <CurrentUserLoader>
+      <UserLoader userId="dummyId">
         <UserInfo
           user={{ name: "hey", age: 30, country: "ja", books: ["oh", "hey"] }}
         />
-      </CurrentUserLoader>
+      </UserLoader>
     </main>
   );
 }
