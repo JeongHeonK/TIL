@@ -1,14 +1,14 @@
 import { UserInfo } from "./Components/Server/user-info";
-import { UserLoader } from "./Components/UserLoader";
+import { ResourceLoader } from "./Components/SourceLoader";
 
 function App() {
   return (
     <main style={{ width: "100%" }}>
-      <UserLoader userId="dummyId">
+      <ResourceLoader resourcePath="dummyId" resourceName="user">
         <UserInfo
           user={{ name: "hey", age: 30, country: "ja", books: ["oh", "hey"] }}
         />
-      </UserLoader>
+      </ResourceLoader>
     </main>
   );
 }
