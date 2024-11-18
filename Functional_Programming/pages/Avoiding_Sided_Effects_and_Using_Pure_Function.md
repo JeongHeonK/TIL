@@ -148,14 +148,14 @@ const recordData = <T>(arr: T, prop: string) => {
 // Pure Functions
 
 const getScore = <T>(arr: T, name: string) => {
-  let score: number;
+  let targetObj;
 
   if (Array.isArray(arr)) {
-    score = arr.find(
+    targetObj = arr.find(
       (user, index) => user[index].name.toLowerCase() === name.toLowerCase()
     );
 
-    return [name, score];
+    return [name, targetObj.score];
   }
 };
 
@@ -163,11 +163,11 @@ const getTries = <T>(arr: T, name: string) => {
   let tries: number;
 
   if (Array.isArray(arr)) {
-    tries = arr.find(
+    targetObj = arr.find(
       (user, index) => user[index].name.toLowerCase() === name.toLowerCase()
     );
 
-    return [name, tries];
+    return [name, targetObj.tries];
   }
 };
 
