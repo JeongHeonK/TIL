@@ -17,3 +17,9 @@
 - [Promise.All](./practice/PromiseAll.ts)
 - [명령형 함수 리펙토링](./practice/imperativeCodeRefactoring.ts)
 - [generator 추가 정리](./practice/generator.md)
+
+---
+
+## Functional Programming in JavaScript: A Practical Approach
+
+- [Avoiding Sided Effects and Using Pure Function](./pages/Avoiding_Sided_Effects_and_Using_Pure_Function.md)
