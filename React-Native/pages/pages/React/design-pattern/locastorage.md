@@ -1,3 +1,8 @@
+### localStorage
+
+- 기존 컴포넌트 재사용해서 localStorage 연결하기
+
+```tsx
 import { Props, UserInfo } from "./Components/Server/user-info";
 import { DataSourceWithRender } from "./Components/DataSourceWithRender";
 import axios from "axios";
@@ -34,3 +39,4 @@ function App() {
 }
 
 export default App;
+```
