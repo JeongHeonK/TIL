@@ -1,4 +1,4 @@
-type Props = {
+export type Props = {
   user: { name: string; age: number; country: string; books: string[] };
 };
 

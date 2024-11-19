@@ -8,6 +8,10 @@ type Users = typeof users;
 
 // Mutable Functions
 
+const cloneObj = <T>(obj: T) => {
+  return JSON.parse(JSON.stringify(obj));
+};
+
 const recordData = <T>(arr: T, prop: string) => {
   if (Array.isArray(arr) && typeof arr[0] === "string") {
     users.forEach((val, index, array) => {
@@ -70,6 +74,6 @@ const updateTries = <T>(arr: T) => {
   return null;
 };
 
-let newScore = updateScore(getScore(users, "henry"), 30);
+let newScore = updateScore(getScore(cloneObj(users), "henry"), 30);
 recordData(newScore, "score");
-recordData(updateTries(getTries(users, "henry")), "tries");
+recordData(updateTries(getTries(cloneObj(users), "henry")), "tries");

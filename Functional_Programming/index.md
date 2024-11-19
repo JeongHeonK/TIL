@@ -23,3 +23,4 @@
 ## Functional Programming in JavaScript: A Practical Approach
 
 - [Avoiding Sided Effects and Using Pure Function](./pages/Avoiding_Sided_Effects_and_Using_Pure_Function.md)
+- [Avoiding Shared State and Mutations](./pages/Avoiding_Shared_State_and_Mutations.md)

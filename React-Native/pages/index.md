@@ -18,6 +18,8 @@
 - [UserDataLoader](./pages/React/design-pattern/UserDataLoader.md)
 - [ResourceLoader](./pages/React/design-pattern/ResourceLoader.md)
 - [DataSourceLoader](./pages/React/design-pattern/DataSourceLoader.md)
+- [DataSourceWithRender](./pages/React/design-pattern/DataSourceWithRender.md)
+- [localStorage](./pages/React/design-pattern/locastorage.md)
 
 #### Layout Component
 

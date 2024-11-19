@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from "react";
 
-type GetData = <T>(url: string) => Promise<T>;
+type GetData = (<T>(url: string) => Promise<T>) | (() => string | null);
 
 type Props = {
   getData: GetData;
