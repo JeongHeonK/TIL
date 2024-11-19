@@ -1,5 +1,5 @@
-import { UserInfo } from "./Components/Server/user-info";
-import { DataSourceLoader } from "./Components/DataSourceLoader";
+import { Props, UserInfo } from "./Components/Server/user-info";
+import { DataSourceWithRender } from "./Components/DataSourceWithRender";
 import axios from "axios";
 
 const getDataFromServer = async (url: string) => {
@@ -11,14 +11,10 @@ const getDataFromServer = async (url: string) => {
 function App() {
   return (
     <main style={{ width: "100%" }}>
-      <DataSourceLoader
+      <DataSourceWithRender
         getData={() => getDataFromServer("someUrl")}
-        resourceName="user"
-      >
-        <UserInfo
-          user={{ name: "hey", age: 30, country: "ja", books: ["oh", "hey"] }}
-        />
-      </DataSourceLoader>
+        render={(resource: Props["user"]) => <UserInfo user={resource} />}
+      />
     </main>
   );
 }
