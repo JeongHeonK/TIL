@@ -201,3 +201,72 @@ recordData(updateTries(getTries(users, "henry")), "tries");
 #### 해당함수 문제점
 
 - 전역 변수의 값을 바꾸기 때문에 모든 변수가 업데이트된 값을 가진다. -> side effect
+
+### Using Reduce, Map and Filter
+
+- `reduce` and `reduceRight`: 전달한 콜백함수에 따라 배열을 조합한다. (`reduceRight`는 실행 순서가 반대)
+- `map`: 각각의 배열 요소를 콜백함수의 인수로 전달한 후 반환값으로 새로운 배열을 생성한다.
+- `filter`: 전달된 함수의 조건에 따라 subset 배열을 만들어 반환한다.
+
+- 세 함수의 공통점은 원본 배열을 변형시키지 않은다.(불변성)
+
+#### 실습
+
+```ts
+const scores = [50, 6, 100, 0, 10, 75, 8, 60, 90, 80, 0, 30, 100, 30, 110];
+
+// 1. 10점 이하는 10을 곱한다.
+
+const multiplyTen = scores.map((score) => {
+  if (score <= 10) {
+    return score * 10;
+  }
+
+  return score;
+});
+
+// 2. 100 초과인 점수는 제거한다.
+
+const underHundred = multiplyTen.filter((score) => score <= 100);
+
+// 3. 0 이하인 점수는 제거한다.
+
+const overZero = underHundred.filter((score) => score > 0);
+
+// 4. 합을 구한다.
+
+const sum = overZero.reduce((accumulator, score) => accumulator + score, 0);
+
+// 5. 남아있는 배열 요소의 숫자는?
+
+const elemNum = overZero.reduce((count, val) => count + val, 0);
+```
+
+- 총합을 구할때로 reduce 사용가능
+- reduce 메서드 자체가 하나의 값(어떤 형태든)으로 반환하는 메서드이기에 사용법 익숙해진다면 다양하게 사용할 수 있을 것 같다.
+
+```ts
+type Proto = {
+  name: string;
+};
+
+const storeUser = <T extends Proto, U extends Proto>(array: T[], user: U) => {
+  const isValidUser = (elem: T) => {
+    if (elem.name?.toLowerCase() === user.name.toLocaleLowerCase()) {
+      return user;
+    }
+
+    return elem;
+  };
+
+  return array.map(isValidUser);
+};
+
+const getUser = <T extends Proto>(array: T[], name: string) => {
+  return (
+    array.find(
+      (elem) => elem.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+    ) || null
+  );
+};
+```
