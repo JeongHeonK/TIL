@@ -9,29 +9,28 @@
 
 ### React Design Pattern
 
+#### Layout Components
+
 - [start](./pages/React/design-pattern/start.md)
 - [screenSplitter](./pages/React/design-pattern/screenSplitter.md)
 - [screenSplitterEnhancement](./pages/React/design-pattern/screenSplitterEnhancement.md)
 - [List](./pages/React/design-pattern/List.md)
 - [Modal](./pages/React/design-pattern/Modal.md)
-- [Container](./pages/React/design-pattern/Container.md)
+
+#### Container Components (data fetching)
+
+- [Loader Component for CurrentUser Data](./pages/React/design-pattern/Container.md)
 - [UserDataLoader](./pages/React/design-pattern/UserDataLoader.md)
 - [ResourceLoader](./pages/React/design-pattern/ResourceLoader.md)
 - [DataSourceLoader](./pages/React/design-pattern/DataSourceLoader.md)
 - [DataSourceWithRender](./pages/React/design-pattern/DataSourceWithRender.md)
 - [localStorage](./pages/React/design-pattern/locastorage.md)
 
-#### Layout Component
+#### Controlled and Uncontrolled Components
 
-- [design pattern 이란?](./pages/React/design-pattern/start.md)
-- [Screen Splitter](./pages/React/design-pattern/screenSplitter.md)
-- [Screen Splitter Enhancement](./pages/React/design-pattern/screenSplitterEnhancement.md)
-- [List](./pages/React/design-pattern/List.md)
-- [Modal](./pages/React/design-pattern/Modal.md)
-
-#### Layout Component
-
-- [Loader Component for CurrentUser Data](./pages/React/design-pattern/Container.md)
+- [Uncontrolled Components](./pages/React/design-pattern/UncontrolledComponents.md)
+- [Controlled Components](./pages/React/design-pattern/ControlledComponents.md)
+- [Controlled Modal](./pages/React/design-pattern/ControlledModal.md)
 
 ---
 

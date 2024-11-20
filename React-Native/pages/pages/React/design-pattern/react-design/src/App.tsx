@@ -1,34 +1,19 @@
-import { Props, UserInfo } from "./Components/Server/user-info";
-import { DataSourceWithRender } from "./Components/DataSourceWithRender";
-import axios from "axios";
-import { DataSourceLoader } from "./Components/DataSourceLoader";
-
-const getDataFromServer = async (url: string) => {
-  const response = await axios.get(url);
-
-  return response.data;
-};
-
-const getDataFromLocalStorage = (key: string) => () => {
-  return localStorage.getItem(key);
-};
-
-const Message = ({ msg }: { msg?: string }) => <h1>{msg}</h1>;
+import { useState } from "react";
+import { ControlledModal } from "./Components/ControlledModal";
 
 function App() {
+  const [shouldDisplay, setShouldDisplay] = useState<boolean>(false);
   return (
     <main style={{ width: "100%" }}>
-      <DataSourceWithRender
-        getData={() => getDataFromServer("someUrl")}
-        render={(resource: Props["user"]) => <UserInfo user={resource} />}
-      />
-
-      <DataSourceLoader
-        getData={getDataFromLocalStorage("test")}
-        resourceName="msg"
+      <ControlledModal
+        shouldDisplay={shouldDisplay}
+        onClose={setShouldDisplay.bind(null, false)}
       >
-        <Message />
-      </DataSourceLoader>
+        <h3>it's controlledModal</h3>
+      </ControlledModal>
+      <button onClick={setShouldDisplay.bind(null, true)}>
+        {shouldDisplay ? "hide" : "display"}
+      </button>
     </main>
   );
 }
