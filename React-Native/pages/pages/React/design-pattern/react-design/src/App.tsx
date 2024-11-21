@@ -1,19 +1,28 @@
-import { useState } from "react";
-import { ControlledModal } from "./Components/ControlledModal";
+import { UncontrolledFlow } from "./Components/UncontrolledFlow";
+
+const StepIndicator = ({
+  step,
+  goNext,
+}: {
+  step: number;
+  goNext?: () => void;
+}) => {
+  return (
+    <>
+      <h2>step #{step}</h2>
+      <button onClick={goNext}>Next</button>
+    </>
+  );
+};
 
 function App() {
-  const [shouldDisplay, setShouldDisplay] = useState<boolean>(false);
   return (
     <main style={{ width: "100%" }}>
-      <ControlledModal
-        shouldDisplay={shouldDisplay}
-        onClose={setShouldDisplay.bind(null, false)}
-      >
-        <h3>it's controlledModal</h3>
-      </ControlledModal>
-      <button onClick={setShouldDisplay.bind(null, true)}>
-        {shouldDisplay ? "hide" : "display"}
-      </button>
+      <UncontrolledFlow onDone={false}>
+        <StepIndicator step={1} />
+        <StepIndicator step={2} />
+        <StepIndicator step={3} />
+      </UncontrolledFlow>
     </main>
   );
 }
