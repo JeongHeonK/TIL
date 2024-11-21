@@ -14,3 +14,4 @@
 #### Moti && Reanimated 라이브러리 분석
 
 - [Moti 라이브러리 문제점 및 분석 시작](./moti/Moti.md)
+- [useSharedValue, cancelAnimation 및 애니메이션 관련 api in reanimated](./moti/withAPI.md)
