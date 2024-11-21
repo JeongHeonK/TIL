@@ -412,6 +412,8 @@ if (animationType === "timing") {
 
 이제 이 animation이 어디서 선언된 sharedValue()를 사용해 동작하는 지 알면 cancelAnimation()을 추가할 수 있다.
 
+- [다음 -> isSharedValue 및 애니메이션 관련 api in reanimated](./moti/withAPI.md)
+
 **[참고자료]**
 
 [Moti](https://moti.fyi/)
