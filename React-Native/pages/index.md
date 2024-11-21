@@ -33,6 +33,7 @@
 - [Controlled Modal](./pages/React/design-pattern/ControlledModal.md)
 - [Uncontrolled Flows](./pages/React/design-pattern/UncontrolledFlows.md)
 - [Data Collecting with Uncontrolled Flow](./pages/React/design-pattern/UncontrolledFlowDataCollecting.md)
+- [Controlled Flow](./pages/React/design-pattern/ControlledFlow.md)
 
 ---
 
