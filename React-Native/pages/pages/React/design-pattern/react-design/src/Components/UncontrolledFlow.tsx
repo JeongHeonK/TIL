@@ -1,9 +1,9 @@
-import React, { ReactElement } from "react";
+import React, { Children, ReactElement } from "react";
 import { ReactNode, useState } from "react";
 
 interface Props {
   children: ReactNode[];
-  onDone: boolean;
+  onDone: (data: object) => void;
 }
 
 export const UncontrolledFlow = ({ children, onDone }: Props) => {
@@ -12,17 +12,28 @@ export const UncontrolledFlow = ({ children, onDone }: Props) => {
 
   const currentChild = React.Children.toArray(children)[
     currentStepIndex
-  ] as ReactElement<{ goNext: () => void }>;
+  ] as ReactElement<{ goNext: (data: object) => void }>;
 
-  const goNext = () => {
-    setCurrentStepIndex((prev) =>
-      prev >= React.Children.count(children) - 1 ? 0 : ++prev
-    );
+  const goNext = (dataFromStep: object) => {
+    const nextStepIndex = currentStepIndex + 1;
+
+    const newData = {
+      ...data,
+      ...dataFromStep,
+    };
+
+    setData(newData);
+
+    if (nextStepIndex < Children.count(children)) {
+      setCurrentStepIndex(nextStepIndex);
+    } else {
+      onDone(newData);
+    }
   };
 
   return (
     React.isValidElement(currentChild) &&
-    React.cloneElement(currentChild, { goNext: goNext })
+    React.cloneElement(currentChild, { goNext: (data: object) => goNext(data) })
   );
 
   return currentChild;

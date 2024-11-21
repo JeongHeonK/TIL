@@ -5,12 +5,20 @@ const StepIndicator = ({
   goNext,
 }: {
   step: number;
-  goNext?: () => void;
+  goNext?: (data: object) => void;
 }) => {
   return (
     <>
       <h2>step #{step}</h2>
-      <button onClick={goNext}>Next</button>
+      <button
+        onClick={() => {
+          if (goNext) {
+            goNext({ data: step });
+          }
+        }}
+      >
+        Next
+      </button>
     </>
   );
 };
@@ -18,7 +26,7 @@ const StepIndicator = ({
 function App() {
   return (
     <main style={{ width: "100%" }}>
-      <UncontrolledFlow onDone={false}>
+      <UncontrolledFlow onDone={() => {}}>
         <StepIndicator step={1} />
         <StepIndicator step={2} />
         <StepIndicator step={3} />
