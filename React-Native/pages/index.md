@@ -35,6 +35,11 @@
 - [Data Collecting with Uncontrolled Flow](./pages/React/design-pattern/UncontrolledFlowDataCollecting.md)
 - [Controlled Flow](./pages/React/design-pattern/ControlledFlow.md)
 
+#### Higher Order Components
+
+- [HOCs ??](./pages/React/design-pattern/HOCs.md)
+- [Check Props with HOCs](./pages/React/design-pattern/CheckPropsWithHOCs.md)
+
 ---
 
 ### React 까보기
