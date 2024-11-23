@@ -147,7 +147,7 @@ useEffect(
 useEffect는 리액트의 대표적인 비동기함수로 렌더링 완료 시점에서 실행된다.
 즉, isMount를 통해서 Mount여부를 판단하는 것이다.
 
-그리고 하단의 조건문을 통해서 내보낼 style의 속성들을 결정한다.
+그리고 하단의 조건문을 통해서 내보낼 style의 속성들을 결정한다. 그리고 isMount에 따라서 어떤 스티일 값이 부여되는지 결정된다.
 
 ```jsx
 if (
@@ -170,11 +170,11 @@ if (isExiting && exitStyle) {
 
 그리고 `isMounted`가 `true`일 경우, `Object.assign()` 이용해서 mergedStyled을 덮어씌운다.
 
-왜냐면 하단에서 mergedStyle은 로직에 따라 최종값으로 계산된다.
+왜냐면 하단에서 `mergedStyle`은 로직에 따라 최종값으로 계산된다.
 
-그리고 exitStyle이 있다면 exitStyle을 mergedStyled에 할당한다. 여기서는 `framer-motion`의 api인 `PresenceContext`와 `usePresence`를 사용한다.
+그리고 `exitStyle`이 있다면 `exitStyle`을 `mergedStyled`에 할당한다. 여기서는 `framer-motion`의 api인 `PresenceContext`와 `usePresence`를 사용한다.
 
-그리고 이 mergedStyle은 Object.keys를 이용해서 각 스타일마다 reanimated의 api를 사용해서 동작할 값들을 부여되게 된다.
+그리고 이 mergedStyle은 `Object.keys()`를 이용해서 각 스타일마다 reanimated의 api를 사용해서 동작할 값들을 부여되게 된다.
 
 ```js
 Object.keys(mergedStyles as any).forEach((key) => {
