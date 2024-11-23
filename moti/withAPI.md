@@ -52,6 +52,4 @@ function App() {
 
 문제는 `Moti`라이브러리에서는 useSharedValue로 선언한 값은 `isMount`밖에 없다.
 
-그래서 useSharedValue로 초기화 된 갑이 sharedValue이나 withTiming()같은 api 사용시 암묵적으로 초기값이 from 으로 전달된 값으로 사용된다.
-
-즉 원리를 알려면 reanimated의 useSharedValue와 useTiming, useSpring등의 api들을 분석해야 한다.🥲
+그럼 useSharedValue가 없이 어떻게 스타일을 변경하는 것인가?
