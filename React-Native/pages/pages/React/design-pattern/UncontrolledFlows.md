@@ -3,7 +3,7 @@
 회원가입 혹은 로그인 시 한 form을 제공하는 것이 아니라
 한 스탭별로 정보를 입력하고 다음 버튼을 누르는 방식
 
-```tsx
+```jsx
 import React, { ReactElement } from "react";
 import { ReactNode, useState } from "react";
 

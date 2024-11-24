@@ -1,6 +1,6 @@
 ### DataSourceLoader
 
-```tsx
+```jsx
 import React, { ReactNode, useEffect, useState } from "react";
 
 type GetData = <T>(url: string) => Promise<T>;
