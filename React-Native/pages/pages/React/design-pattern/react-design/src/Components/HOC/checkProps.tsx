@@ -1,8 +1,7 @@
 import { ComponentType } from "react";
-import { Props } from "../../App";
 
-export const logProps = (Component: ComponentType<Props>) => {
-  return (props: Props) => {
+export const logProps = (Component: ComponentType<any>) => {
+  return (props: any) => {
     console.log(props);
     return <Component {...props} />;
   };
