@@ -86,11 +86,12 @@ const CustomQueryProvider = ({ children, Components }) => {
 ### 실습
 
 ```js
-type Func = (...x: any) => any;
+type Func<T = any, R = any> = (arg: T) => R;
 
-const pipe = (...fns: Func[]) => {
-  return <T extends number>(x: T[]) =>
-    fns.reduce((v: T[], fn: Func) => fn(v), x);
+const pipe = <T extends number[], R extends number>(
+  ...fns: Func<any, any>[]
+) => {
+  return (x: T): R => fns.reduce((v, fn) => fn(v), x as any);
 };
 
 const scores = [50, 6, 100, 0, 10, 75, 8, 60, 90, 80, 0, 30, 110];
@@ -113,13 +114,13 @@ const scoresSum = <T extends number>(arr: T[]) =>
 const scoresCnt = <T extends number>(arr: T[]) =>
   arr.reduce((cnt) => cnt + 1, 0);
 
-const getTotalSum = pipe(
-  bootSingleScores,
-  rmZeroScores,
-  rmOverScores,
-  scoresSum
-);
+const getAverage = <T extends number>(arr: T[]) => scoresSum(arr) / arr.length;
 
-const result = getTotalSum(scores);
+const rmBothHighLow = pipe(rmZeroScores, rmOverScores);
 
+const getTotalSum = pipe(bootSingleScores, rmBothHighLow, scoresSum);
+
+const sum = getTotalSum(scores);
+
+const average = pipe(bootSingleScores, rmBothHighLow, getAverage)(scores);
 ```
