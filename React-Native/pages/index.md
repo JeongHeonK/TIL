@@ -39,6 +39,7 @@
 
 - [HOCs ??](./pages/React/design-pattern/HOCs.md)
 - [Check Props with HOCs](./pages/React/design-pattern/CheckPropsWithHOCs.md)
+- [Load User Data With HOCs](./pages/React/design-pattern/loadUserDataWithHOCs.md)
 
 ---
 
