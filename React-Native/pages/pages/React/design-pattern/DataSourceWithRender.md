@@ -35,7 +35,7 @@ export const DataSourceWithRender = ({ getData, render }: Props) => {
 
 사용
 
-```tsx
+```jsx
 import { Props, UserInfo } from "./Components/Server/user-info";
 import { DataSourceWithRender } from "./Components/DataSourceWithRender";
 import axios from "axios";
