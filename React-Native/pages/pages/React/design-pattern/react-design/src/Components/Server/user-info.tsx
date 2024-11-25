@@ -1,8 +1,11 @@
+import { useUser } from "../CustomHooks/useUser";
+
 export type Props = {
   user: { name: string; age: number; country: string; books: string[] };
 };
 
-export const UserInfo = ({ user }: Props) => {
+export const UserInfo = () => {
+  const user = useUser() as Props["user"];
   const { name, age, country, books } = user || {};
   return user ? (
     <>
