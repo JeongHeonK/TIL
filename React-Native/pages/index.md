@@ -48,6 +48,7 @@
 - [useUser](./pages/React/design-pattern/useUser.md)
 - [useUsers](./pages/React/design-pattern/useUsers.md)
 - [useResource](./pages/React/design-pattern/useResource.md)
+- [useDataSource](./pages/React/design-pattern/useDataSource.md)
 
 ---
 
