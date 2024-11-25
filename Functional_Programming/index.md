@@ -24,4 +24,7 @@
 
 - [Avoiding Sided Effects and Using Pure Function](./pages/Avoiding_Sided_Effects_and_Using_Pure_Function.md)
 - [Avoiding Shared State and Mutations](./pages/Avoiding_Shared_State_and_Mutations.md)
-- [Function Composition](./pages/FunctionComposition_1.md)
+- [Function Composition_1](./pages/FunctionComposition_1.md)
+- [Function Composition_2](./pages/FunctionComposition_2.md)
+- [Arity](./pages/Arity.md)
+- [Currying](./pages/Currying.md)

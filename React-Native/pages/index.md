@@ -42,6 +42,14 @@
 - [Load User Data With HOCs](./pages/React/design-pattern/loadUserDataWithHOCs.md)
 - [Updating Data With HOCs](./pages/React/design-pattern/UpdatingDataWithHOCs.md)
 
+### Custom hooks
+
+- [Custom Hooks](./pages/React/design-pattern/CustomHooks.md)
+- [useUser](./pages/React/design-pattern/useUser.md)
+- [useUsers](./pages/React/design-pattern/useUsers.md)
+- [useResource](./pages/React/design-pattern/useResource.md)
+- [useDataSource](./pages/React/design-pattern/useDataSource.md)
+
 ---
 
 ### React 까보기

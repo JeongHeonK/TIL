@@ -1,3 +1,25 @@
+### useDataSource
+
+```jsx
+import { useEffect, useState } from "react";
+
+export const useDataSource = (getData: (...args: any[]) => Promise<any>) => {
+  const [resource, setResource] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+      setResource(data?.data);
+    })();
+  }, [getData]);
+
+  return resource;
+};
+```
+
+사용
+
+```jsx
 import axios from "axios";
 import { useDataSource } from "../CustomHooks/data-source.hook";
 import { useCallback } from "react";
@@ -33,3 +55,7 @@ export const UserInfo = ({ userId }: { userId: string }) => {
     <h1>Loading...</h1>
   );
 };
+```
+
+- 함수로 일급객체이기에 매번 재생성되면 useHook내부에서 useEffect가 리렌더링을 유발함.
+- 그래서 useCallback 사용해줘야 함.
