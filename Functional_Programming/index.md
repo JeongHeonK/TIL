@@ -27,3 +27,4 @@
 - [Function Composition_1](./pages/FunctionComposition_1.md)
 - [Function Composition_2](./pages/FunctionComposition_2.md)
 - [Arity](./pages/Arity.md)
+- [Currying](./pages/Currying.md)

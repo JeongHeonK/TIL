@@ -1,37 +1,41 @@
 type Func<T = any, R = any> = (arg: T) => R;
 
+type CurriedFunction<Args extends any[], R> = Args extends [
+  infer First,
+  ...infer Rest
+]
+  ? (arg: First) => CurriedFunction<Rest, R>
+  : R;
+
+function curry<Args extends any[], R>(
+  fn: (...args: Args) => R
+): CurriedFunction<Args, R> {
+  return (function nextCurried(prevArgs: any[]) {
+    return function curried(nextArg: any) {
+      const args = [...prevArgs, nextArg];
+      if (args.length >= fn.length) {
+        return fn(...(args as Args));
+      } else {
+        return nextCurried(args);
+      }
+    };
+  })([]) as unknown as CurriedFunction<Args, R>;
+}
+
 const pipe = <T extends number[], R extends number>(
-  ...fns: Func<any, any>[]
+  ...fns: Func<number, number>[]
 ) => {
   return (x: T): R => fns.reduce((v, fn) => fn(v), x as any);
 };
 
-const scores = [50, 6, 100, 0, 10, 75, 8, 60, 90, 80, 0, 30, 110];
+const ffun = function <T extends number>(a: T, b: T, c: T) {
+  return a + b + c;
+};
 
-const bootSingleScores = <T extends number>(arr: T[]) =>
-  arr.map((val: T) => (val < 10 ? val * 10 : val));
+const gfun = function <T extends number>(d: T, e: T) {
+  return d + e;
+};
 
-const rmOverScores = <T extends number>(arr: T[]) =>
-  arr.filter((val) => {
-    if (val <= 100) return true;
-    return false;
-  });
-
-const rmZeroScores = <T extends number>(arr: T[]) =>
-  arr.filter((val) => val > 0);
-
-const scoresSum = <T extends number>(arr: T[]) =>
-  arr.reduce((sum, val) => sum + val, 0);
-
-const scoresCnt = <T extends number>(arr: T[]) =>
-  arr.reduce((cnt) => cnt + 1, 0);
-
-const getAverage = <T extends number>(arr: T[]) => scoresSum(arr) / arr.length;
-
-const rmBothHighLow = pipe(rmZeroScores, rmOverScores);
-
-const getTotalSum = pipe(bootSingleScores, rmBothHighLow, scoresSum);
-
-const sum = getTotalSum(scores);
-
-const average = pipe(bootSingleScores, rmBothHighLow, getAverage)(scores);
+const hfun = function <T extends number>(f: T, g: T, h: T) {
+  return f + g + h;
+};
