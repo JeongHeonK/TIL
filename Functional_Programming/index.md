@@ -29,3 +29,4 @@
 - [Arity](./pages/Arity.md)
 - [Currying](./pages/Currying.md)
 - [Dissecting the Currying function](./pages/Dissection_Currying.md)
+- [Imperative vs Declarative](./pages/ImperativeDeclarative.md)
