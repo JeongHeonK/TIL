@@ -28,3 +28,4 @@
 - [Function Composition_2](./pages/FunctionComposition_2.md)
 - [Arity](./pages/Arity.md)
 - [Currying](./pages/Currying.md)
+- [Dissecting the Currying function](./pages/Dissection_Currying.md)
