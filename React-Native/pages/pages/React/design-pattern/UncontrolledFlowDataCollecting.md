@@ -3,7 +3,7 @@
 - 각 스텝 진행하면서 데이터 수집
 - 마지막 스탭에서 전송
 
-```tsx
+```jsx
 import React, { Children, ReactElement } from "react";
 import { ReactNode, useState } from "react";
 
