@@ -54,6 +54,7 @@
 
 - [Recursive Components](./pages/React/design-pattern/RecursiveComponents.md)
 - [Compositions](./pages/React/design-pattern/Compositions.md)
+- [Partial](./pages/React/design-pattern/Partial.md)
 
 ---
 

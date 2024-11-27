@@ -1,4 +1,4 @@
-interface Props {
+export interface Props {
   size: "small" | "medium" | "large";
   color: string;
   text: string;
