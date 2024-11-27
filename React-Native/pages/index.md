@@ -53,6 +53,7 @@
 #### Functional Programming in React
 
 - [Recursive Components](./pages/React/design-pattern/RecursiveComponents.md)
+- [Compositions](./pages/React/design-pattern/Compositions.md)
 
 ---
 
