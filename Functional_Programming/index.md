@@ -30,3 +30,4 @@
 - [Currying](./pages/Currying.md)
 - [Dissecting the Currying function](./pages/Dissection_Currying.md)
 - [Imperative vs Declarative](./pages/ImperativeDeclarative.md)
+- [Lodash](./pages/Lodash.md)
