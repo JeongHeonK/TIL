@@ -1,7 +1,7 @@
 ### Lodash
 
 - curry가 적용되기 쉽도록 먼저 데이터를 받고, `callback` 함수를 받음
-- 거기다 자동으로 curry가 적용됨.
+- `Lodash-FP`를 사용할 경우, 자동으로 curry가 적용됨.
 
 ```js
 let sum = _.add(5, 2); // 7
