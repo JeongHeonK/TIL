@@ -31,3 +31,4 @@
 - [Dissecting the Currying function](./pages/Dissection_Currying.md)
 - [Imperative vs Declarative](./pages/ImperativeDeclarative.md)
 - [Lodash](./pages/Lodash.md)
+- [Ramda](./pages/Ramda.md)
