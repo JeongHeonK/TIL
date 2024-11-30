@@ -32,3 +32,4 @@
 - [Imperative vs Declarative](./pages/ImperativeDeclarative.md)
 - [Lodash](./pages/Lodash.md)
 - [Ramda](./pages/Ramda.md)
+- [Recursive Function](./pages/RecursiveFunction.md)
