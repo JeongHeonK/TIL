@@ -11,4 +11,6 @@
 - `factory pattern`은 가장 대표적인 객체 생성 패턴이다.
 - 그러나 생성하기 복잡하고 까다롭기 때문에, 간단한 객체를 생성할 때는 `over-engineering`이 된다.
 
+---
+
 - [OOP](./pages/OOP.md)
