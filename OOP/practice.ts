@@ -1,24 +1,13 @@
-interface Animal {
-  name: string;
-  makeSound(): void;
-}
-
-class Dog implements Animal {
-  constructor(public name: string) {
-    this.name = name;
+class CustomDate extends Date {
+  currentYear() {
+    return this.getFullYear;
   }
 
-  makeSound(): void {
-    console.log("멍멍");
-  }
-}
-
-class Cat implements Animal {
-  constructor(public name: string) {
-    this.name = name;
+  currentMonth() {
+    return (Number(this.getMonth) + 1).toString();
   }
 
-  makeSound(): void {
-    console.log("냐옹");
+  currentDate() {
+    return this.getDate();
   }
 }
