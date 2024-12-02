@@ -16,3 +16,4 @@
 - [OOP](./pages/OOP.md)
 - [Abstraction](./pages/Abstraction.md)
 - [Encapsulation](./pages/Encapsulation.md)
+- [Polymorphism](./pages/Polymorphism.md)
