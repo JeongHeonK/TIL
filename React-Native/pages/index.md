@@ -61,6 +61,10 @@
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)
 - Compound Pattern의 경우 skip합니다. `<Animated.View></Animated.View>`같은 컴포넌트가 어떻게 생겼는지 이해할 정도면 충분하다 생각되며, 추후 Reanimated에서 더 깊게 생각해볼 예정입니다.
 
+#### Re-Render
+
+- [Hook 분리와 컴포넌트 분리 고려할 점](./pages/React/design-pattern/hooks_drawback.md)
+
 ---
 
 ### React 까보기
