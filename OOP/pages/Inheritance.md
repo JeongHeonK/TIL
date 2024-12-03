@@ -1,3 +1,30 @@
+### Inheritance
+
+- 이미 알게 모르게 많이 사용해서 익숙한 개념.
+- CSS의 폰트 관련 속성같은 것
+
+```ts
+class Animal {
+  constructor(public name: string) {}
+
+  move(distance: number): void {
+    console.log(`${this.name} moved ${distance} meters.`);
+  }
+}
+
+class Dog extends Animal {
+  constructor(public name: string = "dog") {
+    super(name);
+  }
+}
+
+let myDog = new Dog();
+myDog.move(4);
+```
+
+연습
+
+```ts
 class Product {
   constructor(
     public id: string,
@@ -45,3 +72,4 @@ class Electronic extends Product {
     this.model = model;
   }
 }
+```
