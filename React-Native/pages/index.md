@@ -56,6 +56,12 @@
 - [Compositions](./pages/React/design-pattern/Compositions.md)
 - [Partial](./pages/React/design-pattern/Partial.md)
 
+#### Elements as props tips ans tricks
+
+- [Locating an issue](./pages/React/design-pattern/LocatingIssue.md)
+
+#### Memoization
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)

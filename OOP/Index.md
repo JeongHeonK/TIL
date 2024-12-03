@@ -17,3 +17,4 @@
 - [Abstraction](./pages/Abstraction.md)
 - [Encapsulation](./pages/Encapsulation.md)
 - [Polymorphism](./pages/Polymorphism.md)
+- [Inheritance](./pages/Inheritance.md)
