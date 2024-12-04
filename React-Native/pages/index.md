@@ -63,6 +63,7 @@
 #### Memoization
 
 - [Memoization](./pages/React/design-pattern/Memoization.md)
+- [Comparing values](./pages/React/design-pattern/ComparingValues.md)
 
 #### extra
 
