@@ -62,6 +62,8 @@
 
 #### Memoization
 
+- [Memoization](./pages/React/design-pattern/Memoization.md)
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)
