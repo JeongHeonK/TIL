@@ -22,3 +22,4 @@
 #### SOLID
 
 - [SOLID](./pages/SOLID.md)
+- [SRP](./pages/SRP.md)
