@@ -64,7 +64,8 @@
 
 - [Memoization](./pages/React/design-pattern/Memoization.md)
 - [Comparing values](./pages/React/design-pattern/ComparingValues.md)
-- [useMemo&useCallback](./pages/React/design-pattern/useMemo&useCallback.md)
+- [useMemo & useCallback](./pages/React/design-pattern/useMemo&useCallback.md)
+- [memo](./pages/React/design-pattern/memo.md)
 
 #### extra
 
