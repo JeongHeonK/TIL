@@ -18,3 +18,8 @@
 - [Encapsulation](./pages/Encapsulation.md)
 - [Polymorphism](./pages/Polymorphism.md)
 - [Inheritance](./pages/Inheritance.md)
+
+#### SOLID
+
+- [SOLID](./pages/SOLID.md)
+- [SRP](./pages/SRP.md)
