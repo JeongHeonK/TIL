@@ -23,3 +23,4 @@
 
 - [SOLID](./pages/SOLID.md)
 - [SRP](./pages/SRP.md)
+- [OCP](./pages/OCP.md)

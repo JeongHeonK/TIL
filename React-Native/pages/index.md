@@ -67,6 +67,12 @@
 - [useMemo & useCallback](./pages/React/design-pattern/useMemo&useCallback.md)
 - [memo](./pages/React/design-pattern/memo.md)
 
+#### Reconciliation
+
+- [Reconciliation Intro](./pages/React/design-pattern/ReconciliationIntro.md)
+- [문제점](./pages/React/design-pattern/ReconciliationIssue.md)
+  = [Diffing](./pages/React/design-pattern/Diffing.md)
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)

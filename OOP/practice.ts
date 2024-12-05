@@ -1,69 +1,54 @@
-class BlogPost {
-  title: string;
-  content: string;
+// regular - 10%, 1
+// premium - 20%, 2
+// 추가: Gold - 30%, 3
 
-  constructor(title: string, content: string) {
-    this.title = title;
-    this.content = content;
+interface Customer {
+  giveDiscount(): number;
+  addLoyaltyPoints(amountSpent: number): number;
+}
+
+class RegularCustomer implements Customer {
+  giveDiscount(): number {
+    return 10;
+  }
+
+  addLoyaltyPoints(amountSpent: number): number {
+    return amountSpent;
   }
 }
 
-class CreatePost {
-  post: BlogPost;
-  constructor(blogPost: BlogPost) {
-    this.post = blogPost;
+class PremiumCustomer implements Customer {
+  giveDiscount(): number {
+    return 20;
   }
 
-  create() {}
-}
-
-class UpdatePost {
-  post: BlogPost;
-  constructor(blogPost: BlogPost) {
-    this.post = blogPost;
-  }
-
-  update() {}
-}
-
-class DeletePost {
-  post: BlogPost;
-  constructor(blogPost: BlogPost) {
-    this.post = blogPost;
-  }
-
-  delete() {}
-}
-
-class BlogPostDisplay {
-  post: BlogPost;
-  constructor(blogPost: BlogPost) {
-    this.post = blogPost;
-  }
-
-  displayHTML(targetNode: HTMLElement) {
-    const wrapper = document.createElement("div");
-
-    const title = document.createElement("h1");
-    title.textContent = this.post.title;
-
-    const content = document.createElement("p");
-    content.textContent = this.post.content;
-
-    wrapper.append(title);
-    wrapper.append(content);
-
-    return wrapper;
+  addLoyaltyPoints(amountSpent: number): number {
+    return amountSpent * 2;
   }
 }
 
-class BlogPostJson {
-  blogPost: BlogPost;
-  constructor(blogPost: BlogPost) {
-    this.blogPost = blogPost;
-  }
-
-  returnJSON() {
-    return JSON.stringify(this.blogPost);
+class Discount {
+  giveDiscount(customer: Customer): number {
+    return customer.giveDiscount();
   }
 }
+
+let premiumCustomer = new PremiumCustomer();
+let discount = new Discount();
+
+discount.giveDiscount(premiumCustomer); //20
+
+// 추가 가능
+
+class GoldCustomer implements Customer {
+  giveDiscount(): number {
+    return 30;
+  }
+
+  addLoyaltyPoints(amountSpent: number): number {
+    return amountSpent * 3;
+  }
+}
+
+let goldCustomer = new GoldCustomer();
+discount.giveDiscount(goldCustomer); // 30
