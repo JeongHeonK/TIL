@@ -70,6 +70,7 @@
 #### Reconciliation
 
 - [Reconciliation Intro](./pages/React/design-pattern/ReconciliationIntro.md)
+- [문제점](./pages/React/design-pattern/ReconciliationIssue.md)
 
 #### extra
 
