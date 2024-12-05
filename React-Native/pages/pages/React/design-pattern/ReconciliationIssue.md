@@ -27,7 +27,7 @@ const OTP = () => {
 
   return (
     <CheckboxWrapper>
-      <Checkbox id="otp-checkbox" onChange={() => setReceived(!received)}>
+      <Checkbox id="otp-checkbox" onChange={() => setReceived(!received)} />
       <label htmlFor="otp-checkbox">I received the OTP</label>
     </CheckboxWrapper>
 

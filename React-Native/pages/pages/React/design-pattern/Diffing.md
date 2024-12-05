@@ -98,3 +98,62 @@ x === y; // always false
 ```
 
 그러므로 Input도 계속 새롭게 마운트 된다.
+
+---
+
+#### 1. 배열을 통한 해결
+
+```jsx
+const OTP = () => {
+  const [received, setReceived] = useState(false);
+
+  return (
+    <>
+      <CheckboxWrapper>
+        <Checkbox id="otp-checkbox" onChange={() => setReceived(!received)} />
+        <label htmlFor="otp-checkbox">I received the OTP</label>
+      </CheckboxWrapper>
+
+      {received ? (
+        <Input id="otp-code" placeholder="Enter the otp code here" />
+      ) : null}
+
+      {received ? null : (
+        <Input id="otp-code" placeholder="Enter the otp code here" />
+      )}
+    </>
+  );
+};
+
+// 이 경우
+// [CheckboxWrapper, Input, null]
+// [CheckboxWrapper, null, Input]
+
+// 이렇게 비교하기 때문에 다른 값으로 판단해서 새롭게 Input을 마운트 한다.
+```
+
+#### 2. key를 통한 초기화
+
+리액트는 type과 key과 같을 때, 같은 컴포넌트라 판단해서 기존 돔을 재사용한다.
+
+이걸 이용해서 key값을 바꿈으로써 다른 컴포넌트로 인식시켜 새롭게 mount 시킬 수 있다.
+
+```jsx
+const OTP = () => {
+  const [received, setReceived] = useState(false);
+
+  return (
+    <>
+      <CheckboxWrapper>
+        <Checkbox id="otp-checkbox" onChange={() => setReceived(!received)} />
+        <label htmlFor="otp-checkbox">I received the OTP</label>
+      </CheckboxWrapper>
+      {received ? (
+        <Input id="otp-code" placeholder="Enter the otp code here" key={1} />
+      ) : (
+        <Input id="otp-code" placeholder="Enter the otp code here" key={2} />
+      )}
+    </>
+  );
+};
+```
