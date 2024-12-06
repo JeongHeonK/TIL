@@ -71,7 +71,13 @@
 
 - [Reconciliation Intro](./pages/React/design-pattern/ReconciliationIntro.md)
 - [문제점](./pages/React/design-pattern/ReconciliationIssue.md)
-  = [Diffing](./pages/React/design-pattern/Diffing.md)
+- [Diffing](./pages/React/design-pattern/Diffing.md)
+- [map()을 사용할 시, key에 index를 주지 않는 이유](./pages/React/design-pattern/keyInMap.md)
+
+#### Context api
+
+- [Context](./pages/React/design-pattern/Context.md)
+- [Wasted re-renders](./pages/React/design-pattern/WastedReRenders.md)
 
 #### extra
 
