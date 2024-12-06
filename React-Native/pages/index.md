@@ -77,6 +77,7 @@
 #### Context api
 
 - [Context](./pages/React/design-pattern/Context.md)
+- [Wasted re-renders](./pages/React/design-pattern/WastedReRenders.md)
 
 #### extra
 
