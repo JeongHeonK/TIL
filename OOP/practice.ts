@@ -1,35 +1,34 @@
-abstract class Shape {
-  abstract calculateArea(): number;
+// Payment Processor
+// Credit Card
+// Debit Card
+// Paypal
+
+abstract class Payment {
+  abstract processPayment(amount: number): void;
 }
 
-class Rectangle extends Shape {
-  constructor(public width: number, public height: number) {
-    super();
-    // 부모 클래스 Constructor를 불러 초기화
-    // Parameter Property 문법.
-  }
-
-  calculateArea(): number {
-    return this.height * this.width;
-  }
-}
-
-class Square extends Shape {
-  constructor(public side: number) {
-    super();
-  }
-
-  calculateArea(): number {
-    return this.side ** 2;
+class CreditCard extends Payment {
+  processPayment(amount: number): void {
+    console.log(`Processing Credit Card Payments - Amount ${amount}`);
   }
 }
 
-function area(shape: Shape) {
-  return shape.calculateArea();
+class DebitCard extends Payment {
+  processPayment(amount: number): void {
+    console.log(`Processing Debit Card Payments - Amount ${amount}`);
+  }
 }
 
-let rectangle = new Rectangle(10, 12);
-let square = new Square(9);
+class Paypal extends Payment {
+  processPayment(amount: number): void {
+    console.log(`Processing Paypal Payments - Amount ${amount}`);
+  }
+}
 
-area(rectangle);
-area(square);
+function executePayments(payment: Payment, amount: number) {
+  return payment.processPayment(amount);
+}
+
+executePayments(new Paypal(), 1000);
+executePayments(new DebitCard(), 3000);
+executePayments(new CreditCard(), 9000);
