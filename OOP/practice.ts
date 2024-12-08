@@ -1,34 +1,48 @@
-// Payment Processor
-// Credit Card
-// Debit Card
-// Paypal
-
-abstract class Payment {
-  abstract processPayment(amount: number): void;
+interface GlobalState {
+  get<T>(key: string): T;
+  set(key: string, data: string): void;
 }
 
-class CreditCard extends Payment {
-  processPayment(amount: number): void {
-    console.log(`Processing Credit Card Payments - Amount ${amount}`);
+class ZustandStore implements GlobalState {
+  get<T>(key: string): T {
+    return useStore()[key];
+  }
+  set(key: string, data: string) {
+    useStore()[key](data);
   }
 }
 
-class DebitCard extends Payment {
-  processPayment(amount: number): void {
-    console.log(`Processing Debit Card Payments - Amount ${amount}`);
+class RecoilStore implements GlobalState {
+  get<T>(key: string): T {
+    return useRecoilValue(key);
+  }
+
+  set(key: string, data: string) {
+    useSetRecoilState(key)(data);
   }
 }
 
-class Paypal extends Payment {
-  processPayment(amount: number): void {
-    console.log(`Processing Paypal Payments - Amount ${amount}`);
+const initialState = {
+  id: "123",
+  firstName: "John",
+  lastName: "Doe",
+};
+
+class SingleTone {
+  constructor(
+    private initialValue: typeof initialState,
+    private globalState: GlobalState
+  ) {}
+
+  getState(key: string) {
+    return this.globalState.get(key);
+  }
+
+  save(key: string, data: string) {
+    this.globalState.set(key, data);
   }
 }
 
-function executePayments(payment: Payment, amount: number) {
-  return payment.processPayment(amount);
-}
-
-executePayments(new Paypal(), 1000);
-executePayments(new DebitCard(), 3000);
-executePayments(new CreditCard(), 9000);
+const test = new SingleTone(initialState, new ZustandStore());
+test.save("comment", "1111");
+test.getState("comment");
