@@ -1,50 +1,48 @@
-// creating Posts
-// commenting Posts
-// sharing Posts
-
-// Admin, Regular user
-
-interface Post {
-  title: string;
-  content: string;
+interface GlobalState {
+  get<T>(key: string): T;
+  set(key: string, data: string): void;
 }
 
-interface Comment {
-  title: string;
-  content: string;
-}
-
-interface CreatingPosts {
-  creatingPost(post: Post): void;
-}
-
-interface CommentingPosts {
-  commentingPost(comment: Comment): void;
-}
-
-interface SharingPosts {
-  sharingPosts(post: Post): void;
-}
-
-class Admin implements CreatingPosts, CommentingPosts, SharingPosts {
-  creatingPost(post: Post): void {
-    console.log("creating");
+class ZustandStore implements GlobalState {
+  get<T>(key: string): T {
+    return useStore()[key];
   }
-
-  commentingPost(comment: Comment): void {
-    console.log("commenting");
-  }
-
-  sharingPosts(post: Post): void {
-    console.log("sharing....");
+  set(key: string, data: string) {
+    useStore()[key](data);
   }
 }
-class Regular implements CommentingPosts, SharingPosts {
-  commentingPost(comment: Comment): void {
-    console.log("commenting");
+
+class RecoilStore implements GlobalState {
+  get<T>(key: string): T {
+    return useRecoilValue(key);
   }
 
-  sharingPosts(post: Post): void {
-    console.log("sharing....");
+  set(key: string, data: string) {
+    useSetRecoilState(key)(data);
   }
 }
+
+const initialState = {
+  id: "123",
+  firstName: "John",
+  lastName: "Doe",
+};
+
+class SingleTone {
+  constructor(
+    private initialValue: typeof initialState,
+    private globalState: GlobalState
+  ) {}
+
+  getState(key: string) {
+    return this.globalState.get(key);
+  }
+
+  save(key: string, data: string) {
+    this.globalState.set(key, data);
+  }
+}
+
+const test = new SingleTone(initialState, new ZustandStore());
+test.save("comment", "1111");
+test.getState("comment");

@@ -26,3 +26,4 @@
 - [OCP](./pages/OCP.md)
 - [LSP](./pages/LSP.md)
 - [ISP](./pages/ISP.md)
+- [DIP](./pages/DIP.md)
