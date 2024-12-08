@@ -25,3 +25,4 @@
 - [SRP](./pages/SRP.md)
 - [OCP](./pages/OCP.md)
 - [LSP](./pages/LSP.md)
+- [ISP](./pages/ISP.md)

@@ -1,34 +1,50 @@
-// Payment Processor
-// Credit Card
-// Debit Card
-// Paypal
+// creating Posts
+// commenting Posts
+// sharing Posts
 
-abstract class Payment {
-  abstract processPayment(amount: number): void;
+// Admin, Regular user
+
+interface Post {
+  title: string;
+  content: string;
 }
 
-class CreditCard extends Payment {
-  processPayment(amount: number): void {
-    console.log(`Processing Credit Card Payments - Amount ${amount}`);
+interface Comment {
+  title: string;
+  content: string;
+}
+
+interface CreatingPosts {
+  creatingPost(post: Post): void;
+}
+
+interface CommentingPosts {
+  commentingPost(comment: Comment): void;
+}
+
+interface SharingPosts {
+  sharingPosts(post: Post): void;
+}
+
+class Admin implements CreatingPosts, CommentingPosts, SharingPosts {
+  creatingPost(post: Post): void {
+    console.log("creating");
+  }
+
+  commentingPost(comment: Comment): void {
+    console.log("commenting");
+  }
+
+  sharingPosts(post: Post): void {
+    console.log("sharing....");
   }
 }
+class Regular implements CommentingPosts, SharingPosts {
+  commentingPost(comment: Comment): void {
+    console.log("commenting");
+  }
 
-class DebitCard extends Payment {
-  processPayment(amount: number): void {
-    console.log(`Processing Debit Card Payments - Amount ${amount}`);
+  sharingPosts(post: Post): void {
+    console.log("sharing....");
   }
 }
-
-class Paypal extends Payment {
-  processPayment(amount: number): void {
-    console.log(`Processing Paypal Payments - Amount ${amount}`);
-  }
-}
-
-function executePayments(payment: Payment, amount: number) {
-  return payment.processPayment(amount);
-}
-
-executePayments(new Paypal(), 1000);
-executePayments(new DebitCard(), 3000);
-executePayments(new CreditCard(), 9000);
