@@ -81,6 +81,10 @@
 - [Splitting context with useReducer](./pages/React/design-pattern/ContextWithReducer.md)
 - [Building a Selector](./pages/React/design-pattern/BuildingSelector.md)
 
+#### Ref
+
+- [Ref use-cases](./pages/React/design-pattern/Ref.md)
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)
