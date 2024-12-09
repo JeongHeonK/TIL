@@ -1,23 +1,27 @@
-class Singleton {
-  private static instance: Singleton;
+// Singleton Logger Class
+// log method
 
-  private static _value: number;
+class Logger {
+  private static instance: Logger;
 
   private constructor() {}
 
-  public static getInstance(): Singleton {
-    if (!Singleton.instance) {
-      Singleton.instance = new Singleton();
+  public static getInstance() {
+    if (!Logger.instance) {
+      Logger.instance = new Logger();
     }
 
-    return Singleton.instance;
+    return Logger.instance;
   }
 
-  set value(value: number) {
-    Singleton._value = value;
-  }
-
-  get value() {
-    return Singleton._value;
+  public log(message: string): void {
+    const timestamp = new Date();
+    console.log(`[${timestamp.toLocaleString()} - ${message}]`);
   }
 }
+
+const logger1 = Logger.getInstance();
+logger1.log("This is the first message");
+
+const logger2 = Logger.getInstance();
+logger2.log("This is the second message");
