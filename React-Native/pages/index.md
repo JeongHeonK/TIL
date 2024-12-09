@@ -78,6 +78,12 @@
 
 - [Context](./pages/React/design-pattern/Context.md)
 - [Wasted re-renders](./pages/React/design-pattern/WastedReRenders.md)
+- [Splitting context with useReducer](./pages/React/design-pattern/ContextWithReducer.md)
+- [Building a Selector](./pages/React/design-pattern/BuildingSelector.md)
+
+#### Ref
+
+- [Ref](./pages/React/design-pattern/Ref.md)
 
 #### extra
 

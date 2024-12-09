@@ -1,48 +1,27 @@
-interface GlobalState {
-  get<T>(key: string): T;
-  set(key: string, data: string): void;
-}
+// Singleton Logger Class
+// log method
 
-class ZustandStore implements GlobalState {
-  get<T>(key: string): T {
-    return useStore()[key];
-  }
-  set(key: string, data: string) {
-    useStore()[key](data);
-  }
-}
+class Logger {
+  private static instance: Logger;
 
-class RecoilStore implements GlobalState {
-  get<T>(key: string): T {
-    return useRecoilValue(key);
+  private constructor() {}
+
+  public static getInstance() {
+    if (!Logger.instance) {
+      Logger.instance = new Logger();
+    }
+
+    return Logger.instance;
   }
 
-  set(key: string, data: string) {
-    useSetRecoilState(key)(data);
+  public log(message: string): void {
+    const timestamp = new Date();
+    console.log(`[${timestamp.toLocaleString()} - ${message}]`);
   }
 }
 
-const initialState = {
-  id: "123",
-  firstName: "John",
-  lastName: "Doe",
-};
+const logger1 = Logger.getInstance();
+logger1.log("This is the first message");
 
-class SingleTone {
-  constructor(
-    private initialValue: typeof initialState,
-    private globalState: GlobalState
-  ) {}
-
-  getState(key: string) {
-    return this.globalState.get(key);
-  }
-
-  save(key: string, data: string) {
-    this.globalState.set(key, data);
-  }
-}
-
-const test = new SingleTone(initialState, new ZustandStore());
-test.save("comment", "1111");
-test.getState("comment");
+const logger2 = Logger.getInstance();
+logger2.log("This is the second message");
