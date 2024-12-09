@@ -83,7 +83,7 @@
 
 #### Ref
 
-- [Ref use-cases](./pages/React/design-pattern/Ref.md)
+- [Ref](./pages/React/design-pattern/Ref.md)
 
 #### extra
 
