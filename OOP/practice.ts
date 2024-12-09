@@ -1,48 +1,23 @@
-interface GlobalState {
-  get<T>(key: string): T;
-  set(key: string, data: string): void;
-}
+class Singleton {
+  private static instance: Singleton;
 
-class ZustandStore implements GlobalState {
-  get<T>(key: string): T {
-    return useStore()[key];
-  }
-  set(key: string, data: string) {
-    useStore()[key](data);
-  }
-}
+  private static _value: number;
 
-class RecoilStore implements GlobalState {
-  get<T>(key: string): T {
-    return useRecoilValue(key);
+  private constructor() {}
+
+  public static getInstance(): Singleton {
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
+    }
+
+    return Singleton.instance;
   }
 
-  set(key: string, data: string) {
-    useSetRecoilState(key)(data);
-  }
-}
-
-const initialState = {
-  id: "123",
-  firstName: "John",
-  lastName: "Doe",
-};
-
-class SingleTone {
-  constructor(
-    private initialValue: typeof initialState,
-    private globalState: GlobalState
-  ) {}
-
-  getState(key: string) {
-    return this.globalState.get(key);
+  set value(value: number) {
+    Singleton._value = value;
   }
 
-  save(key: string, data: string) {
-    this.globalState.set(key, data);
+  get value() {
+    return Singleton._value;
   }
 }
-
-const test = new SingleTone(initialState, new ZustandStore());
-test.save("comment", "1111");
-test.getState("comment");

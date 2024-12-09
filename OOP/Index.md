@@ -27,3 +27,7 @@
 - [LSP](./pages/LSP.md)
 - [ISP](./pages/ISP.md)
 - [DIP](./pages/DIP.md)
+
+#### Creational Design Pattern
+
+- [Singleton Pattern](./pages/Singleton.md)
