@@ -48,6 +48,9 @@ function App() {
 
 위 두가지를 보면 값을 변경할 때, 얕은복사를 사용하거나 새로운 참조값을 만든다.
 
+[다음](./motiAnimationProcess.md)
+[main](./index.md)
+
 즉, 리액트의 useState와 비슷하게 '값이 변했다'는 가정하에 애니메이션이 동작하는 것을 확인할 수 있다.
 
 문제는 `Moti`라이브러리에서는 useSharedValue로 선언한 값은 `isMount`밖에 없다.
