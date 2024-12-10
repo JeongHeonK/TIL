@@ -257,3 +257,6 @@ cancelAnimation()이 동작하지 않고 전달된 props의 from과 to로 이동
 그럼 cancelAnimation은 useSharedValue의 사용 부재로 불가능할까?
 
 지금 상황으로는 Moti의 철학과 달리 api를 분리해서 animation을 변경하는 `useAnimationState()`와 `useDynamicAnimation()`을 분석해봐야 한다.
+
+[결론](./addCancelAnimation.md)<br />
+[main](./index.md)
