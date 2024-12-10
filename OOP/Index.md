@@ -31,3 +31,4 @@
 #### Creational Design Pattern
 
 - [Singleton Pattern](./pages/Singleton.md)
+- [Prototype Pattern](./pages/PrototypePattern.md)

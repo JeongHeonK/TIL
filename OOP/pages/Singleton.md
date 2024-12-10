@@ -110,6 +110,66 @@ logger2.log("This is the second message");
 
 ---
 
+#### 싱글턴 주의점
+
+##### 1. 전역 상태의 객체를 사용함으로써 클래스간의 의존성을 증가시킨다.
+
+```ts
+class Application {
+  constructor(private logger: Logger) {}
+
+  run(): void {
+    this.logger.log("Application is running");
+    this.logger.log("Application is shutting down");
+  }
+}
+
+const app = new Application(Logger.getInstance());
+app.run();
+```
+
+- app은 이제 logger와 결합도가 높아짐.
+
+##### 2. test의 어려움
+
+```js
+describe("Logger", () => {
+  it("should log messages", () => {
+    const logger = Logger.getInstance();
+    const spy = jest.spyOn(console, "log");
+    logger.log("Test message");
+    expect(spy).toHaveBeenCalledWith("[<timestamp>] - Test message");
+  });
+
+  it("should log different messages", () => {
+    const logger = Logger.getInstance();
+    const spy = jest.spyOn(console, "log");
+    logger.log("Another test message");
+    expect(spy).toHaveBeenCalledWith("[<timestamp>] - Another test message");
+  });
+});
+```
+
+- 이 경우 첫번째 테스트를 실행하면서 만든 인스턴스가 두번째 테스트에 영향을 미친다.
+
+##### 3. instance를 만들 수 없다.
+
+- Instance를 만들 수 없기 때문에, 클래스가 비대해지는 경향이 있다.
+- 그리고 한번 생성되면 계속 전역에서 참조하기 때문에 프로그램이 종료할 때까지 gc에 수집되지 않는다.
+- 때문에 메모리 낭비를 유발할 수 있다.
+
+---
+
+#### 실제 사용
+
+1. Caching: 요즘은 Next.js의 Fetch가 자동으로 해주나, 만약 컴포넌트가 너무 많아진다면, 서버 부하를 줄이기 위해 cache class를 만들어 관리해도 좋을 거 같음
+2. Service Proxies : 프론트엔드에서 필요한 개념. 서버에 대이터를 요청할때 하나의 싱글턴으로 통합
+3. Shared Resources
+4. Configuration Data
+5. Logger
+
+---
+
 #### 참조
 
 - `this.instance`가 아닌 `Logger.instance`인 이유
