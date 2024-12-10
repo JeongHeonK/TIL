@@ -86,6 +86,7 @@
 - [Ref](./pages/React/design-pattern/Ref.md)
 - [Ref for accessing Dom](./pages/React/design-pattern/RefDom.md)
 - [Ref as Prop](./pages/React/design-pattern/RefProp.md)
+- [useImperativeHandler](./pages//React/design-pattern//useImperativeHandle.md)
 
 #### extra
 

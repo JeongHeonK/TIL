@@ -1,7 +1,7 @@
 ### Ref as Prop
 
 - ref라는 이름말고 다른 이름을 사용해야 한다.
-- ref는 이미 특정 값으로 지정되어 있음.
+- React는 ref를 props의 일부로 처리하지 않고 별도로 관리한다.
 
 ```jsx
 const ref = useRef < HTMLInputElement > null;
