@@ -84,6 +84,7 @@
 #### Ref
 
 - [Ref](./pages/React/design-pattern/Ref.md)
+- [Ref for accessing Dom](./pages/React/design-pattern/RefDom.md)
 
 #### extra
 
