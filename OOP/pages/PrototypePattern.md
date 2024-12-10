@@ -1,3 +1,6 @@
+### Prototype Pattern
+
+```ts
 interface UserDetails {
   name: string;
   age: number;
@@ -30,13 +33,28 @@ let user1 = new ConcretePrototype({
 });
 
 let user2 = user1.clone();
+```
 
-interface ShapeProperties {
-  color: string;
-  x: number;
-  y: number;
-}
+#### 주 사용
 
+- 객체 생성이 복잡하거나 비용이 많이 드는 경우.
+- 기존 객체를 기반으로 유사한 객체를 반복적으로 생성해야 하는 경우.
+- 객체 생성 과정이 런타임에 동적으로 결정되는 경우.
+- 객체의 생성 로직을 외부에 숨겨야 하는 경우.
+- 여러 종류의 객체를 다형적으로 관리해야 하는 경우.
+- 리액트에서 current와 workInProgress를 만들때 이 패턴 사용.
+
+#### Prototype 패턴을 사용하지 않아도 되는 경우
+
+- 객체가 단순하며 생성 비용이 크지 않은 경우.
+- 객체 생성 로직이 명확하고 생성자를 사용하는 것이 더 직관적인 경우.
+- 복제가 필요하지 않고, 생성 시 객체를 독립적으로 설정할 수 있는 경우.
+
+---
+
+#### 실습
+
+```ts
 abstract class Shape {
   constructor(public properties: ShapeProperties) {}
 
@@ -82,3 +100,7 @@ class Circle extends Shape {
 const redRectangle = new Rectangle({ color: "red", x: 10, y: 20 }, 20, 20);
 const anotherRectangle = redRectangle.clone();
 anotherRectangle.properties.color = "blue";
+```
+
+- 비슷한 객체를 만들어서 속성 1~2개만 바꿀 때 유용할 것 같다.
+- 문제는 이럴거면 그냥 class로 여러 객체 만들어도 될거 같은데
