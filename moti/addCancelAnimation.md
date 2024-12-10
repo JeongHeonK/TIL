@@ -224,3 +224,5 @@ if (controller.current == null) {
 ```
 
 이제 끝이 보인다.
+
+[PR link](https://github.com/nandorojo/moti/pull/367#issuecomment-2500236087)
