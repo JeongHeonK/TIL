@@ -158,6 +158,18 @@ describe("Logger", () => {
 - 그리고 한번 생성되면 계속 전역에서 참조하기 때문에 프로그램이 종료할 때까지 gc에 수집되지 않는다.
 - 때문에 메모리 낭비를 유발할 수 있다.
 
+---
+
+#### 실제 사용
+
+1. Caching: 요즘은 Next.js의 Fetch가 자동으로 해주나, 만약 컴포넌트가 너무 많아진다면, 서버 부하를 줄이기 위해 cache class를 만들어 관리해도 좋을 거 같음
+2. Service Proxies : 프론트엔드에서 필요한 개념. 서버에 대이터를 요청할때 하나의 싱글턴으로 통합
+3. Shared Resources
+4. Configuration Data
+5. Logger
+
+---
+
 #### 참조
 
 - `this.instance`가 아닌 `Logger.instance`인 이유
