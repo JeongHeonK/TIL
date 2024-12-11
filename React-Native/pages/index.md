@@ -88,6 +88,10 @@
 - [Ref as Prop](./pages/React/design-pattern/RefProp.md)
 - [useImperativeHandler](./pages//React/design-pattern//useImperativeHandle.md)
 
+#### Closures
+
+- [issue cause of Closure](./pages/React/design-pattern/ClosureIssue.md)
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)

@@ -104,3 +104,18 @@ anotherRectangle.properties.color = "blue";
 
 - 비슷한 객체를 만들어서 속성 1~2개만 바꿀 때 유용할 것 같다.
 - 문제는 이럴거면 그냥 class로 여러 객체 만들어도 될거 같은데
+
+---
+
+#### Prototype pattern 주의점
+
+- 얕은 복사만 가능, 만약 깊은 복사를 구현한다면 코드 복잡성 증가
+- `JSON.parse(JSON.stringify(targe))`만으로도 깊은 복사 가능.
+
+#### 실제 사용 예시
+
+- Graphics Editors: 복잡한 객체를 복사할 때
+- Game Development: 유사한 유닛이나 물체를 효율적으로 복사할 때
+- Data Processing Pipeline: immutable 구현. 기존 데이터를 유지하면서 가공된 데이터를 Return 할때.
+
+그냥 복사해서 수정하는 것이 아니라 복사할 때, 로직을 추가해서 비슷하지만 약간 다른 객체를 `clone()`으로 만들어 낼때 사용
