@@ -95,6 +95,7 @@
 #### Advanced Concepts and Hooks
 
 - [React Portals](./pages/React/design-pattern/ReactPortals.md)
+- [Error Boundary](./pages/React/design-pattern/ErrorBoundary.md)
 
 #### extra
 
