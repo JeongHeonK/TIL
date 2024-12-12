@@ -92,6 +92,12 @@
 
 - [issue cause of Closure](./pages/React/design-pattern/ClosureIssue.md)
 
+#### Advanced Concepts and Hooks
+
+- [React Portals](./pages/React/design-pattern/ReactPortals.md)
+- [Error Boundary](./pages/React/design-pattern/ErrorBoundary.md)
+- [Keys Explained](./pages/React/design-pattern/KeysExplained.md)
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)

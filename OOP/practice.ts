@@ -76,3 +76,99 @@ let minProduct = builder.getProduct();
 director.buildFullProduct();
 let gullProduct = builder.getProduct();
 // ["PartA", "PartB", "PartC"]
+
+interface IUser {
+  [key: string]: string | number;
+}
+
+class User {
+  private user: IUser;
+
+  public setUser(key: string, value: string | number) {
+    this.user[key] = value;
+  }
+}
+
+class ConcreteUserBuilder implements IUserBuilder {
+  private user!: User;
+
+  constructor() {
+    this.reset();
+  }
+
+  public reset() {
+    this.user = new User();
+  }
+
+  public setFirstName(value: string) {
+    this.user.setUser("firstName", value);
+    return this;
+  }
+  public setLastName(value: string) {
+    this.user.setUser("lastName", value);
+    return this;
+  }
+  public setAge(value: number) {
+    this.user.setUser("age", value);
+    return this;
+  }
+  public setLocation(value: string) {
+    this.user.setUser("firstName", value);
+    return this;
+  }
+  public setHobby(value: string) {
+    this.user.setUser("hobby", value);
+    return this;
+  }
+
+  public getUser(): User {
+    const result = this.user;
+    this.reset();
+
+    return result;
+  }
+}
+
+interface IUserBuilder {
+  setFirstName(value: string): IUserBuilder;
+  setLastName(value: string): IUserBuilder;
+  setAge(value: number): IUserBuilder;
+  setLocation(value: string): IUserBuilder;
+  setHobby(value: string): IUserBuilder;
+}
+
+class UserDirector {
+  private builder: IUserBuilder;
+
+  public setBuilder(builder: IUserBuilder): void {
+    this.builder = builder;
+  }
+
+  public buildMinUser(user: { firstName: string; lastName: string }): void {
+    const { firstName, lastName } = user;
+    this.builder.setFirstName(firstName).setLastName(lastName);
+  }
+
+  public builderMaxUser(
+    firstName: string,
+    lastName: string,
+    age: number,
+    location: string,
+    hobby: string
+  ) {
+    this.builder
+      .setFirstName(firstName)
+      .setLastName(lastName)
+      .setAge(age)
+      .setLocation(location)
+      .setHobby(hobby);
+  }
+}
+
+const userDirector = new UserDirector();
+const userBuilder = new ConcreteUserBuilder();
+
+userDirector.setBuilder(userBuilder);
+userDirector.builderMaxUser("john", "doe", 10000, "nowhere", "cross-fit");
+
+const newUser = userBuilder.getUser();
