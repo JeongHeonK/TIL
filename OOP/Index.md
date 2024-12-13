@@ -33,3 +33,4 @@
 - [Singleton Pattern](./pages/Creational_Design/Singleton.md)
 - [Prototype Pattern](./pages/Creational_Design/PrototypePattern.md)
 - [Builder Pattern](./pages/Creational_Design/BuilderPattern.md)
+- [Factory Pattern](./pages/Creational_Design/FactoryPattern.md)
