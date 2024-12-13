@@ -209,6 +209,32 @@ const newUser = userBuilder.getUser();
 
 ---
 
+#### Builder Pattern 장점
+
+- 유연한 인터페이스
+- 분리된 로직
+- 다양한 결과
+- 객체 보존(항상 새로운 객체 생성)
+- parameter 복잡성 완화
+- immutable
+- 쉽게 확장 가능
+
+---
+
+#### Caveats
+
+- 복잡성 증가, 오버 프로그래밍 위험 있음.
+- 보일러 플레이트가 큼
+- 변형 가능성이 있음.
+  - builder가 수정되면 결과물이 수정됨.
+  - shallow copy를 사용하기에 중첩객체에 대한 위험성 존재
+- 리펙터링 어려움.
+  - 다양한 클래스가 결합되어 있음
+- 메모리 낭비
+  - 동작이 추가되면 추가될 수록 builder객체의 사이즈가 비대해짐.
+
+---
+
 - director가 builder의 동작을 관리
 - builder기 Product라는 객체를 계속 생성
 - 새로운 객체를 만드는 것이기 때문에 불변성 구현
