@@ -81,6 +81,14 @@ interface IUser {
   [key: string]: string | number;
 }
 
+interface IUserBuilder {
+  setFirstName(value: string): IUserBuilder;
+  setLastName(value: string): IUserBuilder;
+  setAge(value: number): IUserBuilder;
+  setLocation(value: string): IUserBuilder;
+  setHobby(value: string): IUserBuilder;
+}
+
 class User {
   private user: IUser;
 
@@ -127,14 +135,6 @@ class ConcreteUserBuilder implements IUserBuilder {
 
     return result;
   }
-}
-
-interface IUserBuilder {
-  setFirstName(value: string): IUserBuilder;
-  setLastName(value: string): IUserBuilder;
-  setAge(value: number): IUserBuilder;
-  setLocation(value: string): IUserBuilder;
-  setHobby(value: string): IUserBuilder;
 }
 
 class UserDirector {
