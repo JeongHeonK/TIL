@@ -97,6 +97,8 @@
 - [React Portals](./pages/React/design-pattern/ReactPortals.md)
 - [Error Boundary](./pages/React/design-pattern/ErrorBoundary.md)
 - [Keys Explained](./pages/React/design-pattern/KeysExplained.md)
+- [Event Listeners](./pages/React/design-pattern/EventListeners.md)
+- [useLayoutEffect](./pages/React/design-pattern/useLayoutEffect.md)
 
 #### extra
 
