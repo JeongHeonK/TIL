@@ -1,46 +1,41 @@
-abstract class Car {
-  constructor(public model: string, public productionYear: number) {}
+abstract class PaymentProcessor {
+  constructor(public amount: number) {}
 
-  abstract displayCarInfo(): void;
+  abstract processPayment(): void;
 }
 
-class Sedan extends Car {
-  displayCarInfo(): void {
-    console.log("Sedan, model: " + this.model + "year :" + this.productionYear);
-  }
-}
-class SUV extends Car {
-  displayCarInfo(): void {
-    console.log("SUV, model: " + this.model + "year :" + this.productionYear);
-  }
-}
-class Hatchback extends Car {
-  displayCarInfo(): void {
-    console.log(
-      "Hatchback, model: " + this.model + "year :" + this.productionYear
-    );
+class PaypalProcessor extends PaymentProcessor {
+  processPayment(): void {
+    console.log(`Paypal: ${this.amount}`);
   }
 }
 
-class CarFactory {
-  public createCar(
-    type: "sedan" | "suv" | "hatchback",
-    model: string,
-    productionYear: number
-  ): Car {
+class BankTransferProcessor extends PaymentProcessor {
+  processPayment(): void {
+    console.log(`BankTransfer: ${this.amount}`);
+  }
+}
+
+class CreditCardProcessor extends PaymentProcessor {
+  processPayment(): void {
+    console.log(`CreditCard: ${this.amount}`);
+  }
+}
+
+class PaymentProcessorFactory {
+  public createProcessor(
+    type: "paypal" | "bank" | "creditCard",
+    amount: number
+  ) {
     switch (type) {
-      case "sedan":
-        return new Sedan(model, productionYear);
-      case "suv":
-        return new SUV(model, productionYear);
-      case "hatchback":
-        return new Hatchback(model, productionYear);
+      case "paypal":
+        return new PaypalProcessor(amount);
+      case "bank":
+        return new BankTransferProcessor(amount);
+      case "creditCard":
+        return new CreditCardProcessor(amount);
       default:
-        throw new Error("Invalid car type");
+        throw new Error("improper type provided");
     }
   }
 }
-
-const carFactory = new CarFactory();
-
-const sedan = carFactory.createCar("sedan", "멋진차", 3333);
