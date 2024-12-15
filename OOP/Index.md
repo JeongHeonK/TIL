@@ -34,3 +34,9 @@
 - [Prototype Pattern](./pages/Creational_Design/PrototypePattern.md)
 - [Builder Pattern](./pages/Creational_Design/BuilderPattern.md)
 - [Factory Pattern](./pages/Creational_Design/FactoryPattern.md)
+
+---
+
+#### 추가 공부 내용
+
+- [interface vs abstract](./pages/Creational_Design/interface&abstact.md)

@@ -53,14 +53,95 @@ const sedan = carFactory.createCar("sedan", "멋진차", 3333);
 
 ---
 
-#### interface vs abstract
+#### 실습
 
-- abstract는 constructor가 있음
-- 그래서 class에 Implement를 사용할 때마다 코드 반복 필요 없음
-- 전달되는 파라미터 타입에 대한 걱정도 필요 없음.
-- interface는 상속과 동시에 다형성때문에 method 수정 가능함.
-- 그러나 abstract는 강제함.
+```ts
+abstract class PaymentProcessor {
+  constructor(public amount: number) {}
 
-즉,<br/>
-interface는 **구현을 강제**하며, 메서드 수정은 구현체에서만 가능합니다.<br/>
-abstract는 **강제와 선택 모두를 포함**하며, 수정(오버라이딩)이 가능합니다.<br/>
+  abstract processPayment(): void;
+}
+
+class PaypalProcessor extends PaymentProcessor {
+  processPayment(): void {
+    console.log(`Paypal: ${this.amount}`);
+  }
+}
+
+class BankTransferProcessor extends PaymentProcessor {
+  processPayment(): void {
+    console.log(`BankTransfer: ${this.amount}`);
+  }
+}
+
+class CreditCardProcessor extends PaymentProcessor {
+  processPayment(): void {
+    console.log(`CreditCard: ${this.amount}`);
+  }
+}
+
+class PaymentProcessorFactory {
+  public createProcessor(
+    type: "paypal" | "bank" | "creditCard",
+    amount: number
+  ) {
+    switch (type) {
+      case "paypal":
+        return new PaypalProcessor(amount);
+      case "bank":
+        return new BankTransferProcessor(amount);
+      case "creditCard":
+        return new CreditCardProcessor(amount);
+      default:
+        throw new Error("improper type provided");
+    }
+  }
+}
+```
+
+- 중요한 점은 class를 **런타임**에서 결정해할 때 사용한다.
+
+그리고 jwt로 토킅관리할때, header보낼때, 항상 직접 쓰거나 복사했었는데.
+
+```ts
+class HeaderFactory {
+  static createHeaders(authToken: string): Record<string, string> {
+    return {
+      Authorization: `Bearer ${authToken}`,
+      "Content-Type": "application/json",
+    };
+  }
+}
+
+const headers = HeaderFactory.createHeaders("my-token");
+console.log(headers);
+// { Authorization: "Bearer my-token", "Content-Type": "application/json" }
+
+const response = await fetch(url, {
+  headers,
+});
+```
+
+아 이렇게 쓸걸.
+
+조만간 고해성사 리팩토링 프로젝트라도 해야겠다.
+
+---
+
+#### 장점
+
+- 클래스간 의존성을 낮춤
+- 새로운 클래스가 추가된다면, 클래스를 생성하고 switch문에 추가하면 됨.
+- 근데 ocp는 위반아닌가..
+
+#### 단점
+
+- 클래스를 만들기 위해서 항상 `factory` 클래스를 생성해야함.
+- return 값의 타입이 `union type`임. 불분명함.
+- 생성 타입이 많아질 수록 코드가 복잡해짐 -> switch 문에서 다뤄야 하는 케이스가 증가함
+
+---
+
+#### 참고
+
+[interface&abstract](./interface&abstact.md)
