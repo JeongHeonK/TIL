@@ -1,41 +1,100 @@
-abstract class PaymentProcessor {
-  constructor(public amount: number) {}
-
-  abstract processPayment(): void;
+interface Button {
+  render(): void;
+  onClick(f: Function): void;
 }
 
-class PaypalProcessor extends PaymentProcessor {
-  processPayment(): void {
-    console.log(`Paypal: ${this.amount}`);
+interface Checkbox {
+  render(): void;
+  toggle(): void;
+}
+
+interface GUIFactory {
+  createButton(): Button;
+  createCheckbox(button: Button): Checkbox;
+}
+
+class WindowButton implements Button {
+  public render(): void {
+    console.log("Render a button in Window Style");
+  }
+
+  onClick(f: Function): void {
+    console.log("window button was clicked");
+    f();
   }
 }
 
-class BankTransferProcessor extends PaymentProcessor {
-  processPayment(): void {
-    console.log(`BankTransfer: ${this.amount}`);
+class WindowCheckbox implements Checkbox {
+  constructor(private button: Button) {}
+
+  render(): void {
+    console.log("Render a checkbox in Window Style");
+  }
+
+  toggle(): void {
+    this.button.onClick(() => {
+      console.log("Window checkbox toggled");
+    });
   }
 }
 
-class CreditCardProcessor extends PaymentProcessor {
-  processPayment(): void {
-    console.log(`CreditCard: ${this.amount}`);
+class MacOSButton implements Button {
+  public render(): void {
+    console.log("Render a button in MacOS Style");
+  }
+
+  onClick(f: Function): void {
+    console.log("MacOS button was clicked");
+    f();
   }
 }
 
-class PaymentProcessorFactory {
-  public createProcessor(
-    type: "paypal" | "bank" | "creditCard",
-    amount: number
-  ) {
-    switch (type) {
-      case "paypal":
-        return new PaypalProcessor(amount);
-      case "bank":
-        return new BankTransferProcessor(amount);
-      case "creditCard":
-        return new CreditCardProcessor(amount);
-      default:
-        throw new Error("improper type provided");
-    }
+class MacOSCheckbox implements Checkbox {
+  constructor(private button: Button) {}
+
+  render(): void {
+    console.log("Render a checkbox in MacOS Style");
+  }
+
+  toggle(): void {
+    this.button.onClick(() => {
+      console.log("MacOS checkbox toggled");
+    });
   }
 }
+
+class WindowFactory implements GUIFactory {
+  public createButton(): Button {
+    return new WindowButton();
+  }
+
+  public createCheckbox(button: Button): Checkbox {
+    return new WindowCheckbox(button);
+  }
+}
+
+class MacOSFactory implements GUIFactory {
+  public createButton(): Button {
+    return new MacOSButton();
+  }
+
+  public createCheckbox(button: Button): Checkbox {
+    return new MacOSCheckbox(button);
+  }
+}
+
+function renderUI(factory: GUIFactory) {
+  const button = factory.createButton();
+  const checkbox = factory.createCheckbox(button);
+
+  button.render();
+  checkbox.render();
+
+  button.onClick(() => {
+    console.log("buttons Clicked");
+  });
+  checkbox.toggle();
+}
+
+renderUI(new WindowFactory());
+renderUI(new MacOSFactory());

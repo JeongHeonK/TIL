@@ -40,3 +40,4 @@
 #### 추가 공부 내용
 
 - [interface vs abstract](./pages/Creational_Design/interface&abstact.md)
+- [Abstract Factory](./pages/Creational_Design/AbstractFactory.mdtst)
