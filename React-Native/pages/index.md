@@ -101,6 +101,7 @@
 - [useLayoutEffect](./pages/React/design-pattern/useLayoutEffect.md)
 - [useId](./pages/React/design-pattern/useId.md)
 - [useCallback as Ref](./pages//React/design-pattern/useCallbackAsRef.md)
+- [useDeferredValue](./pages/React/design-pattern/useDeferredValue.md)
 
 #### extra
 
