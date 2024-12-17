@@ -27,7 +27,7 @@ const NavController = ({ children }: { children: ReactNode }) => {
 export default NavController;
 ```
 
-- 이렇게 하면 toggle 값이 변하지 않았다 생각하여 리렌더링이 발생하니 않는다.
+- 이렇게 하면 toggle 값이 변하지 않았다 생각하여 리렌더링이 발생하지 않는다.
 - 그러나 이렇게 하더라도 collapsed state가 바뀐다면 toggle()만 사용하는 컴포넌트들도 모두 리렌더링 된다.
 
 #### 컨텍스트 분리
@@ -48,7 +48,8 @@ const useNavApi = () => useContext(ContextApi);
 const NavController = ({ children }: { children: ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
 
-  const toggle = useCallback(() => setCollapsed(!collapsed), [collapsed]);
+  const toggle = useCallback(() => setCollapsed((prev) => !prev), []);
+  // useCallback 내의 의존성도 제거해야 함.
 
   return (
     <ContextData.Provider value={collapsed}>
