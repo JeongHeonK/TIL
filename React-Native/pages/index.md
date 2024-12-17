@@ -107,6 +107,8 @@
 #### Clean Code tip
 
 - [Using Element Prop](./pages/React/design-pattern/UsingElementProp.md)
+- [Optimizing Context](./pages/React/design-pattern/OptimizingContext.md)
+- [Less useEffect](./pages/React/design-pattern/LessUseEffect.md)
 
 #### extra
 
