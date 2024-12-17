@@ -35,6 +35,13 @@
 - [Builder Pattern](./pages/Creational_Design/BuilderPattern.md)
 - [Factory Pattern](./pages/Creational_Design/FactoryPattern.md)
 
+#### Structural Design Pattern
+
+- 객체를 조합할때 사용.
+- 객체를 조합했으나 각각의 독립성을 유지한다.
+
+- [Facade Pattern](./pages/Structural_Design/FacadePattern.md)
+
 ---
 
 #### 추가 공부 내용
