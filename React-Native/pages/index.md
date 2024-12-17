@@ -104,6 +104,10 @@
 - [useDeferredValue](./pages/React/design-pattern/useDeferredValue.md)
 - [useTransition](./pages/React/design-pattern/useTransition.md)
 
+#### Clean Code tip
+
+- [Using Element Prop](./pages/React/design-pattern/UsingElementProp.md)
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)
