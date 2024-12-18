@@ -113,6 +113,7 @@
 #### Scalable Project Architecture
 
 - [General Architecture](./pages/React/design-pattern/GeneralArchitecture.md)
+- [Route Components](./pages//React/design-pattern/RouteComponents.md)
 
 #### extra
 
