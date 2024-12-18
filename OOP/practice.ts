@@ -1,49 +1,63 @@
-class Grinder {
-  public grindBeans(): void {
-    console.log("Grinding beans...");
+class Amplifier {
+  public turnOn(): void {
+    console.log("Amplifier turned On");
+  }
+
+  public setVolume(level: number): void {
+    console.log(`now volume level is ${level}`);
   }
 }
 
-class Boiler {
-  public boilWater(): void {
-    console.log("Boiling water..");
+class DvdPlayer {
+  public turnOn(): void {
+    console.log("DvdPlayer Turned on");
+  }
+
+  public play(movie: string): void {
+    console.log(`${movie} is playing`);
   }
 }
 
-class Brewer {
-  public brewCoffee(): void {
-    console.log("Brewing Coffee...");
+class Projector {
+  public turnOn(): void {
+    console.log(`Project turned on`);
+  }
+
+  public setInput(dvdPlayer: DvdPlayer): void {
+    console.log("Dvd Player is connected");
   }
 }
 
-class CoffeeMakerFacade {
+class Lights {
+  public dim(level: number): void {
+    console.log(`Light level is ${level}`);
+  }
+}
+
+class HomeTheaterFacade {
   constructor(
-    private grinder: Grinder,
-    private boiler: Boiler,
-    private brewer: Brewer
+    private amplifier: Amplifier,
+    private dvdPlayer: DvdPlayer,
+    private projector: Projector,
+    private light: Lights
   ) {}
 
-  public makeCoffee() {
-    this.grinder.grindBeans();
-    this.boiler.boilWater();
-    this.brewer.brewCoffee();
-    console.log("coffee is ready");
+  watchMovie(movie: string, volume: number, level: number): void {
+    this.light.dim(level);
+    this.amplifier.turnOn();
+    this.amplifier.setVolume(volume);
+    this.dvdPlayer.turnOn();
+    this.projector.turnOn();
+    this.projector.setInput(this.dvdPlayer);
+    this.dvdPlayer.play(movie);
   }
 }
 
-// Client Code
-
-const coffeeMaker = new CoffeeMakerFacade(
-  new Grinder(),
-  new Boiler(),
-  new Brewer()
+let homeTheater = new HomeTheaterFacade(
+  new Amplifier(),
+  new DvdPlayer(),
+  new Projector(),
+  new Lights()
 );
 
-coffeeMaker.makeCoffee();
-
-/**
- * "Grinding beans..."
- * "Boiling water.."
- * "Brewing Coffee..."
- * "coffee is ready"
- */
+homeTheater.watchMovie("finding dory", 3, 4);
