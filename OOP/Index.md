@@ -41,6 +41,7 @@
 - 객체를 조합했으나 각각의 독립성을 유지한다.
 
 - [Facade Pattern](./pages/Structural_Design/FacadePattern.md)
+- [Bridge Pattern](./pages/Structural_Design/BridgePattern.md)
 
 ---
 
