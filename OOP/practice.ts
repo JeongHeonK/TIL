@@ -1,63 +1,57 @@
-class Amplifier {
-  public turnOn(): void {
-    console.log("Amplifier turned On");
+interface Database {
+  connect(): void;
+  query(sql: string): void;
+  close(): void;
+}
+
+class PostqreSQLDatabase implements Database {
+  connect(): void {
+    console.log("P connected");
   }
 
-  public setVolume(level: number): void {
-    console.log(`now volume level is ${level}`);
+  query(sql: string) {
+    console.log("execute query " + sql);
+  }
+
+  close(): void {
+    console.log("P closed");
   }
 }
 
-class DvdPlayer {
-  public turnOn(): void {
-    console.log("DvdPlayer Turned on");
+class MongoDBDatabase implements Database {
+  connect(): void {
+    console.log("M connected");
   }
 
-  public play(movie: string): void {
-    console.log(`${movie} is playing`);
-  }
-}
-
-class Projector {
-  public turnOn(): void {
-    console.log(`Project turned on`);
+  query(sql: string) {
+    console.log("execute query " + sql);
   }
 
-  public setInput(dvdPlayer: DvdPlayer): void {
-    console.log("Dvd Player is connected");
+  close(): void {
+    console.log("M closed");
   }
 }
 
-class Lights {
-  public dim(level: number): void {
-    console.log(`Light level is ${level}`);
+abstract class DatabaseService {
+  constructor(protected database: Database) {}
+
+  abstract fetchData(query: string): any;
+}
+
+class ClientDatabaseService extends DatabaseService {
+  fetchData(query: string) {
+    this.database.connect();
+    this.database.query(query);
+    this.database.close();
   }
 }
 
-class HomeTheaterFacade {
-  constructor(
-    private amplifier: Amplifier,
-    private dvdPlayer: DvdPlayer,
-    private projector: Projector,
-    private light: Lights
-  ) {}
-
-  watchMovie(movie: string, volume: number, level: number): void {
-    this.light.dim(level);
-    this.amplifier.turnOn();
-    this.amplifier.setVolume(volume);
-    this.dvdPlayer.turnOn();
-    this.projector.turnOn();
-    this.projector.setInput(this.dvdPlayer);
-    this.dvdPlayer.play(movie);
-  }
-}
-
-let homeTheater = new HomeTheaterFacade(
-  new Amplifier(),
-  new DvdPlayer(),
-  new Projector(),
-  new Lights()
+const clientMongoDatabaseService = new ClientDatabaseService(
+  new MongoDBDatabase()
 );
+clientMongoDatabaseService.fetchData("dog");
 
-homeTheater.watchMovie("finding dory", 3, 4);
+const clientPostqreDatabaseService = new ClientDatabaseService(
+  new PostqreSQLDatabase()
+);
+clientPostqreDatabaseService.fetchData("dog");
