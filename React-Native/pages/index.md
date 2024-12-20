@@ -115,6 +115,13 @@
 - [General Architecture](./pages/React/design-pattern/GeneralArchitecture.md)
 - [Route Components](./pages//React/design-pattern/RouteComponents.md)
 
+#### API Layer and Async Operation
+
+항상 궁금했던 부분. 데이터 요청하는 부분을 하나로 통합할 수 없을까? <br />
+fetching하는 걸 한 페이지에서 모두 처리하게 할 수 없을까? <br />
+
+- [Building an Api Layer](./pages/React/design-pattern/BuildingApiLayer.md)
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)
