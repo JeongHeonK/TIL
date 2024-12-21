@@ -131,3 +131,26 @@ const clientPostqreDatabaseService = new ClientDatabaseService(
 );
 clientPostqreDatabaseService.fetchData("dog");
 ```
+
+#### 장점
+
+- interface와 abstract 클래스와의 분리
+- interface로 강제화된 클래스의 코드를 변경할때 interface코드를 변경할 필요는 없다.
+- 다른 클래스를 생성할때도 interface 재사용 가능하다.
+- 실행환경에서 바인딩할 수 있다.
+
+#### 단점
+
+- Over-Engineering
+- Design Difficulty
+- Performance Overhead
+- 러닝 커브 증가
+- 개발 경험 저하
+
+#### 사용
+
+- Graphic Libraries
+  - 많은 api와 같이 작업해야 할때
+- Cross-platform Apps
+  - 다양한 실행환경이 필요할 때 (Wind0ws, Linux, macOS, 등등)
+- Different Database Systems(데이터베이스 교체가 필요할 때)
