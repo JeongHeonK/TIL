@@ -122,6 +122,7 @@ fetching하는 걸 한 페이지에서 모두 처리하게 할 수 없을까? <b
 
 - [Building an Api Layer](./pages/React/design-pattern/BuildingApiLayer.md)
 - [API state](./pages//React/design-pattern/APIstate.md)
+- [Avoiding flickering Loaders](./pages/React/design-pattern/AvoidingFlickeringLoaders.md)
 
 #### extra
 
