@@ -1,8 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
-import { fetchUsers } from "../api/usersApi";
-// import { withAsync } from "../helper/with-async";
-import { useApi } from "../api/hooks/useApi";
+### Avoiding Flickering Loaders
 
+- 아무리 브라우저가 빨라졌더라도 데이터를 요청 및 응답시 약간의 지연시간이 있다.
+- 이 부분 역시 디테일하게 처리해줘야 한다.
+
+```jsx
 export const Users = () => {
   const { users, apiStatus, initFetchUsers } = useFetchUsers();
 
@@ -59,22 +60,4 @@ const LazyLoader = ({ show = false, delay = 0, defaultValue = "fetching" }) => {
 
   return showLoader ? "Loading..." : defaultValue;
 };
-
-type User = {
-  id: number;
-  email: string;
-  name: string;
-};
-
-const useFetchUsers = () => {
-  const {
-    data: users,
-    status: apiStatus,
-    exec: initFetchUsers,
-  } = useApi<User>(() => fetchUsers().then((response) => response.data));
-  return {
-    users,
-    apiStatus,
-    initFetchUsers,
-  };
-};
+```

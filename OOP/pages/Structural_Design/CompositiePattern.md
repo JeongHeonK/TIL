@@ -1,3 +1,15 @@
+### Composite Design Pattern
+
+객체를 트리 구조로 구성하여 단일 객체와 복합 객체를 동일하게 취급한다.
+Component, Leaf, Composite로 구성됨
+
+1. Component: 공통 인터페이스 또는 추상 클래스이다. 이 인터페이스로 Leaf와 Composite객체들이 동일한 방시으로 처리된다.
+
+2. Leaf: 트리의 말단 노드
+
+3. Composite: 하위 요소를 포함하는 복합 객체
+
+```js
 interface Employee {
   getName(): string;
   getSalary(): number;
@@ -71,18 +83,12 @@ class Manager implements CompositeEmployee {
     // Lodash의 isEqual 사용하거나 메서드 사용.
     // 그래서 이름으로 비교해서 삭제.
     if (
-      !this.employee.some(
-        (current) =>
-          current.getName() === employee.getName() &&
-          current.getRole() === employee.getRole()
-      )
+      !this.employee.some((current) => current.getName() === employee.getName())
     )
       return;
 
     this.employee = this.employee.filter(
-      (current) =>
-        current.getName() === employee.getName() &&
-        current.getRole() === employee.getRole()
+      (current) => current.getName() !== employee.getName()
     );
   }
 
@@ -90,15 +96,8 @@ class Manager implements CompositeEmployee {
     return this.employee;
   }
 }
+```
 
-const dev1 = new Developer("jh", 1000);
-const dev2 = new Developer("jjh", 2000);
-const designer = new Designer("jjhh", 500);
-
-const manager = new Manager("kjh", 100000000);
-
-manager.addEmployee(dev1);
-manager.addEmployee(dev2);
-manager.addEmployee(designer);
-manager.removeEmployee(dev2);
-manager.getEmployee();
+- 객체 비교는 위험성이 너무 크다.
+- 이래서 아직까지 lodash를 많이 사용하는 구나.
+- 지금까지 안 쓰고 만든 내 프로젝트의 신뢰성은 어찌 보장하는가.😇🫠

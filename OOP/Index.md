@@ -42,6 +42,7 @@
 
 - [Facade Pattern](./pages/Structural_Design/FacadePattern.md)
 - [Bridge Pattern](./pages/Structural_Design/BridgePattern.md)
+- [Composite Pattern](./pages/Structural_Design/CompositiePattern.md)
 
 ---
 
