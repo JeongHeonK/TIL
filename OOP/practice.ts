@@ -1,57 +1,83 @@
-interface Database {
-  connect(): void;
-  query(sql: string): void;
-  close(): void;
+// Component
+
+interface Employee {
+  getName(): string;
+  getSalary(): number;
+  getRole(): string;
 }
 
-class PostqreSQLDatabase implements Database {
-  connect(): void {
-    console.log("P connected");
+class Developer implements Employee {
+  constructor(private name: string, private salary: number) {}
+
+  getName(): string {
+    return this.name;
   }
 
-  query(sql: string) {
-    console.log("execute query " + sql);
+  getSalary(): number {
+    return this.salary;
   }
 
-  close(): void {
-    console.log("P closed");
-  }
-}
-
-class MongoDBDatabase implements Database {
-  connect(): void {
-    console.log("M connected");
-  }
-
-  query(sql: string) {
-    console.log("execute query " + sql);
-  }
-
-  close(): void {
-    console.log("M closed");
+  getRole(): string {
+    return "Developer";
   }
 }
+class Designer implements Employee {
+  constructor(private name: string, private salary: number) {}
 
-abstract class DatabaseService {
-  constructor(protected database: Database) {}
+  getName(): string {
+    return this.name;
+  }
 
-  abstract fetchData(query: string): any;
-}
+  getSalary(): number {
+    return this.salary;
+  }
 
-class ClientDatabaseService extends DatabaseService {
-  fetchData(query: string) {
-    this.database.connect();
-    this.database.query(query);
-    this.database.close();
+  getRole(): string {
+    return "Designer";
   }
 }
 
-const clientMongoDatabaseService = new ClientDatabaseService(
-  new MongoDBDatabase()
-);
-clientMongoDatabaseService.fetchData("dog");
+interface CompositeEmployee {
+  addEmployee(employee: Employee): void;
+  removeEmployee(employee: Employee): void;
+  getEmployee(): Employee[];
+}
 
-const clientPostqreDatabaseService = new ClientDatabaseService(
-  new PostqreSQLDatabase()
-);
-clientPostqreDatabaseService.fetchData("dog");
+class Manager implements CompositeEmployee {
+  constructor(
+    private name: string,
+    private salary: number,
+    private employee: Employee[]
+  ) {}
+
+  getName(): string {
+    return this.name;
+  }
+
+  getSalary(): number {
+    return this.salary;
+  }
+
+  getRole(): string {
+    return "Manager";
+  }
+
+  addEmployee(employee: Employee): void {
+    this.employee.push(employee);
+  }
+
+  removeEmployee(employee: Employee): void {
+    // 객체니까 다 다르다고 함.
+    // 함수형에서는 객체 비교할 때 간소화를 위해 JSON.stringify 사용
+    // 물론 허점이 존재.
+    // Lodash의 isEqual 사용하거나 메서드 사용.
+    // 그래서 이름으로 비교해서 삭제.
+    this.employee = this.employee.filter(
+      (current) => current.getName() !== employee.getName()
+    );
+  }
+
+  getEmployee(): Employee[] {
+    return this.employee;
+  }
+}
