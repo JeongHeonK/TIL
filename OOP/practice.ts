@@ -71,12 +71,18 @@ class Manager implements CompositeEmployee {
     // Lodash의 isEqual 사용하거나 메서드 사용.
     // 그래서 이름으로 비교해서 삭제.
     if (
-      !this.employee.some((current) => current.getName() === employee.getName())
+      !this.employee.some(
+        (current) =>
+          current.getName() === employee.getName() &&
+          current.getRole() === employee.getRole()
+      )
     )
       return;
 
     this.employee = this.employee.filter(
-      (current) => current.getName() !== employee.getName()
+      (current) =>
+        current.getName() === employee.getName() &&
+        current.getRole() === employee.getRole()
     );
   }
 
@@ -84,3 +90,15 @@ class Manager implements CompositeEmployee {
     return this.employee;
   }
 }
+
+const dev1 = new Developer("jh", 1000);
+const dev2 = new Developer("jjh", 2000);
+const designer = new Designer("jjhh", 500);
+
+const manager = new Manager("kjh", 100000000);
+
+manager.addEmployee(dev1);
+manager.addEmployee(dev2);
+manager.addEmployee(designer);
+manager.removeEmployee(dev2);
+manager.getEmployee();
