@@ -1,39 +1,7 @@
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { fetchUsers } from "../api/usersApi";
-import { withAsync } from "../helper/with-async";
-
-type User = {
-  id: number;
-  email: string;
-  name: string;
-};
-
-type ApiStatus = "IDLE" | "PENDING" | "SUCCESS" | "ERROR";
-
-const useFetchUsers = () => {
-  const [users, setUsers] = useState<User[]>();
-  const [apiStatus, setApiStatus] = useState<ApiStatus>("IDLE");
-
-  const initFetchUsers = useCallback(async () => {
-    setApiStatus("PENDING");
-    const { response, error } = await withAsync(fetchUsers);
-
-    if (error) {
-      setApiStatus("ERROR");
-    }
-
-    if (response) {
-      setApiStatus("SUCCESS");
-      setUsers(response);
-    }
-  }, []);
-
-  return {
-    users,
-    apiStatus,
-    initFetchUsers,
-  };
-};
+// import { withAsync } from "../helper/with-async";
+import { useApi } from "../api/hooks/useApi";
 
 export const Users = () => {
   const { users, apiStatus, initFetchUsers } = useFetchUsers();
@@ -90,4 +58,23 @@ const LazyLoader = ({ show = false, delay = 0, defaultValue = "fetching" }) => {
   }, [show, delay]);
 
   return showLoader ? "Loading..." : defaultValue;
+};
+
+type User = {
+  id: number;
+  email: string;
+  name: string;
+};
+
+const useFetchUsers = () => {
+  const {
+    data: users,
+    status: apiStatus,
+    exec: initFetchUsers,
+  } = useApi<User>(() => fetchUsers().then((response) => response.data));
+  return {
+    users,
+    apiStatus,
+    initFetchUsers,
+  };
 };
