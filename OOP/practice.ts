@@ -1,5 +1,3 @@
-// Component
-
 interface Employee {
   getName(): string;
   getSalary(): number;
@@ -37,7 +35,7 @@ class Designer implements Employee {
   }
 }
 
-interface CompositeEmployee {
+interface CompositeEmployee extends Employee {
   addEmployee(employee: Employee): void;
   removeEmployee(employee: Employee): void;
   getEmployee(): Employee[];
@@ -47,7 +45,7 @@ class Manager implements CompositeEmployee {
   constructor(
     private name: string,
     private salary: number,
-    private employee: Employee[]
+    private employee: Employee[] = []
   ) {}
 
   getName(): string {
@@ -72,6 +70,11 @@ class Manager implements CompositeEmployee {
     // 물론 허점이 존재.
     // Lodash의 isEqual 사용하거나 메서드 사용.
     // 그래서 이름으로 비교해서 삭제.
+    if (
+      !this.employee.some((current) => current.getName() === employee.getName())
+    )
+      return;
+
     this.employee = this.employee.filter(
       (current) => current.getName() !== employee.getName()
     );
