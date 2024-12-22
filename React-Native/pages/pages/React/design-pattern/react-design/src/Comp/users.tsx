@@ -42,17 +42,17 @@ export const Users = () => {
     initFetchUsers();
   }, [initFetchUsers]);
 
-  if (apiStatus === "ERROR") {
-    return <p>Error occurred</p>;
-  }
-
-  return (
-    <>
-      {apiStatus === "PENDING"
-        ? null
-        : apiStatus === "SUCCESS" &&
-          users &&
-          users.map((user) => {
+  switch (apiStatus) {
+    case "IDLE":
+      return null;
+    case "PENDING":
+      return <LazyLoader show={apiStatus === "PENDING"} delay={500} />;
+    case "ERROR":
+      return <p>Error occurred</p>;
+    case "SUCCESS":
+      return (
+        <>
+          {users?.map((user) => {
             return (
               <Fragment key={user.id}>
                 <h3>{user.name}</h3>
@@ -60,6 +60,34 @@ export const Users = () => {
               </Fragment>
             );
           })}
-    </>
-  );
+        </>
+      );
+  }
+};
+
+const LazyLoader = ({ show = false, delay = 0, defaultValue = "fetching" }) => {
+  const [showLoader, setShowLoader] = useState(false);
+
+  useEffect(() => {
+    let timeout: number;
+
+    if (!show) {
+      setShowLoader(false);
+      return;
+    }
+
+    if (delay === 0) {
+      setShowLoader(true);
+    } else {
+      timeout = setTimeout(() => setShowLoader(true), delay);
+    }
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [show, delay]);
+
+  return showLoader ? "Loading..." : defaultValue;
 };
