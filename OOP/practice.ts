@@ -1,104 +1,67 @@
-interface Employee {
+interface FileSystemComponent {
   getName(): string;
-  getSalary(): number;
-  getRole(): string;
+  getSize(): number;
 }
 
-class Developer implements Employee {
-  constructor(private name: string, private salary: number) {}
+class FileSys implements FileSystemComponent {
+  constructor(private name: string, private size: number) {}
 
   getName(): string {
     return this.name;
   }
 
-  getSalary(): number {
-    return this.salary;
-  }
-
-  getRole(): string {
-    return "Developer";
-  }
-}
-class Designer implements Employee {
-  constructor(private name: string, private salary: number) {}
-
-  getName(): string {
-    return this.name;
-  }
-
-  getSalary(): number {
-    return this.salary;
-  }
-
-  getRole(): string {
-    return "Designer";
+  getSize(): number {
+    return this.size;
   }
 }
 
-interface CompositeEmployee extends Employee {
-  addEmployee(employee: Employee): void;
-  removeEmployee(employee: Employee): void;
-  getEmployee(): Employee[];
+interface CompositeFileSystemComponent extends FileSystemComponent {
+  addComponent(component: FileSystemComponent): void;
+  removeComponent(component: FileSystemComponent): void;
+  getComponents(): FileSystemComponent[];
 }
 
-class Manager implements CompositeEmployee {
+class Folder implements CompositeFileSystemComponent {
   constructor(
     private name: string,
-    private salary: number,
-    private employee: Employee[] = []
+    private components: FileSystemComponent[] = []
   ) {}
 
   getName(): string {
     return this.name;
   }
 
-  getSalary(): number {
-    return this.salary;
-  }
-
-  getRole(): string {
-    return "Manager";
-  }
-
-  addEmployee(employee: Employee): void {
-    this.employee.push(employee);
-  }
-
-  removeEmployee(employee: Employee): void {
-    // 객체니까 다 다르다고 함.
-    // 함수형에서는 객체 비교할 때 간소화를 위해 JSON.stringify 사용
-    // 물론 허점이 존재.
-    // Lodash의 isEqual 사용하거나 메서드 사용.
-    // 그래서 이름으로 비교해서 삭제.
-    if (
-      !this.employee.some(
-        (current) =>
-          current.getName() === employee.getName() &&
-          current.getRole() === employee.getRole()
-      )
-    )
-      return;
-
-    this.employee = this.employee.filter(
-      (current) =>
-        current.getName() === employee.getName() &&
-        current.getRole() === employee.getRole()
+  getSize(): number {
+    if (this.components.length === 0) return 0;
+    return this.components.reduce(
+      (total, component) => component.getSize() + total,
+      0
     );
   }
 
-  getEmployee(): Employee[] {
-    return this.employee;
+  addComponent(component: FileSystemComponent): void {
+    this.components.push(component);
+  }
+
+  removeComponent(component: FileSystemComponent): void {
+    const targetIdx = this.components.indexOf(component);
+
+    if (targetIdx !== -1) {
+      this.components.splice(targetIdx, 1);
+    }
+  }
+
+  getComponents(): FileSystemComponent[] {
+    return this.components;
   }
 }
 
-const dev1 = new Developer("jh", 1000);
-const dev2 = new Developer("jjh", 2000);
-const designer = new Designer("jjhh", 500);
+const file1 = new FileSys("알고리즘1", 10);
+const file2 = new FileSys("알고리즘2", 20);
 
-const manager = new Manager("kjh", 100000000);
+const folder1 = new Folder("딱따구리");
 
-manager.addEmployee(dev1);
-manager.addEmployee(dev2);
-manager.addEmployee(designer);
-manager.removeEmployee(dev2);
-manager.getEmployee();
+folder1.addComponent(file1);
+folder1.addComponent(file2);
+folder1.getComponents();
+folder1.removeComponent(file1);

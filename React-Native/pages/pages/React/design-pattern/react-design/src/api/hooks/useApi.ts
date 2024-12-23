@@ -2,14 +2,7 @@ import { useState } from "react";
 
 type ApiStatus = "IDLE" | "PENDING" | "SUCCESS" | "ERROR";
 
-interface Config {
-  initialData?: object[];
-}
-
-export function useApi<T>(
-  fn: (...args: any[]) => Promise<T[]>,
-  config?: Config
-) {
+export function useApi<T>(fn: (...args: any[]) => Promise<T[]>) {
   const [data, setData] = useState<T[]>();
   const [error, setError] = useState("");
   const [status, setStatus] = useState<ApiStatus>();
@@ -24,8 +17,8 @@ export function useApi<T>(
         response: data,
         error: null,
       };
-    } catch (error) {
-      const fetchError = error as Error;
+    } catch (err) {
+      const fetchError = err as Error;
       setError(fetchError.message);
       setStatus("ERROR");
       return {
