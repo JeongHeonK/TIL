@@ -9,21 +9,33 @@ class SimpleCoffee implements Coffee {
   }
 
   description(): string {
-    return "simple coffee";
+    return "Simple Coffee";
   }
 }
 
 abstract class CoffeeDecorator implements Coffee {
-  constructor(private coffee: Coffee) {}
+  constructor(protected coffee: Coffee) {}
   abstract cost(): number;
   abstract description(): string;
 }
 
 class MildDecorator extends CoffeeDecorator {
+  constructor(coffee: Coffee) {
+    super(coffee);
+  }
+
   cost(): number {
-    return 5500;
+    return this.coffee.cost() + 1000;
   }
   description(): string {
-    return "milk coffee";
+    return "Milk ".concat(this.coffee.description().split(" ")[1]);
   }
 }
+
+// client code
+
+let coffee = new SimpleCoffee();
+coffee.cost(); // 4500
+
+coffee = new MildDecorator(coffee);
+coffee.cost(); // 5500
