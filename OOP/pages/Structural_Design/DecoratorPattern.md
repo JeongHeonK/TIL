@@ -1,3 +1,17 @@
+### Decorator Pattern
+
+기존 클래스의 기능을 수정하지 않고도 새로운 기능을 추가.
+
+1. Component
+2. ConcreteComponent
+3. Decorator
+4. ConcreteDecorator
+
+---
+
+#### 연습
+
+```ts
 interface Coffee {
   cost(): number;
   description(): string;
@@ -39,3 +53,4 @@ coffee.cost(); // 4500
 
 coffee = new MildDecorator(coffee);
 coffee.cost(); // 5500
+```

@@ -129,6 +129,11 @@ fetching하는 걸 한 페이지에서 모두 처리하게 할 수 없을까? <b
 
 - [Fetching Data with React-Query](./pages/React/design-pattern/APIwithTanStackQuery.md)
 
+#### State Management Patterns
+
+- [Immutable updates with useImmer](./pages/React/design-pattern/ImuutableUpdtaeWithUseImmer.md)
+- [Cleaner reducer wih useImmerReducer](./pages/React/design-pattern/useImmerReducer.md)
+
 #### extra
 
 - [ObserverPattern](./pages/React/design-pattern/ObserverPattern.md)
