@@ -27,7 +27,7 @@ export default App;
 #### useImmer 사용
 
 ```jsx
-import { useImmer } from "useImmer";
+import { useImmer } from "use-immer";
 
 function Comp({ loaderData }: Route.componentProps) {
   const [data, setDate] = useImmer(loaderData);
