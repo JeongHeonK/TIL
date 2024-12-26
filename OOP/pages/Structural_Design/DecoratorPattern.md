@@ -54,3 +54,9 @@ coffee.cost(); // 4500
 coffee = new MildDecorator(coffee);
 coffee.cost(); // 5500
 ```
+
+#### 사용
+
+- 이미 생성된 객체를 변경할 때.
+- 상속을 대체하고 런타임에서 수정하고 싶을 때.
+- 객체에 기능을 동적으로 추가할 때
