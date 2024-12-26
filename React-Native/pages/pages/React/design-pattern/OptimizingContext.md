@@ -156,7 +156,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, { count: 0 });
 
   return (
-    <StateContext.Provider value={stated}>
+    <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         {children}
       </DispatchContext.Provider>
