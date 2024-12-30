@@ -139,7 +139,6 @@ fetching하는 걸 한 페이지에서 모두 처리하게 할 수 없을까? <b
 - [Code-Splitting and Lazy-Loading](./pages/React/design-pattern/CodeSplittingAndLazyLoading.md)
 - [useCallback hook to preserve referential integrity](./pages/React/design-pattern/useCallbackHooktoPreserve.md)
 - [State Collocation](./pages/React/design-pattern/StateCollocation.md)
-- [Preventing re-renders by lifting components up](./pages/React/design-pattern/LifitingComponentsUp.md)
 
 #### extra
 
