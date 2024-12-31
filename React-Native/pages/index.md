@@ -141,6 +141,7 @@ fetching하는 걸 한 페이지에서 모두 처리하게 할 수 없을까? <b
 - [State Collocation](./pages/React/design-pattern/StateCollocation.md)
 - [Preventing re-renders by lifting components up](./pages/React/design-pattern/LifitingComponentsUp.md)
 - [Throttling](./pages/React/design-pattern/Throttling.md)
+- [Debounce](./pages/React/design-pattern/Debounce.md)
 
 #### extra
 
