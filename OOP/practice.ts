@@ -1,41 +1,39 @@
-interface Coffee {
-  cost(): number;
-  description(): string;
+interface ServerRequest {
+  handle(request: string): void;
 }
 
-class SimpleCoffee implements Coffee {
-  cost(): number {
-    return 4500;
-  }
-
-  description(): string {
-    return "Simple Coffee";
+class BaseServer implements ServerRequest {
+  public handle(request: string): void {
+    console.log(`request: ${request}`);
   }
 }
 
-abstract class CoffeeDecorator implements Coffee {
-  constructor(protected coffee: Coffee) {}
-  abstract cost(): number;
-  abstract description(): string;
+abstract class ServerRequestDecorator implements ServerRequest {
+  constructor(protected serverRequest: ServerRequest) {}
+  abstract handle(request: string): void;
 }
 
-class MildDecorator extends CoffeeDecorator {
-  constructor(coffee: Coffee) {
-    super(coffee);
-  }
-
-  cost(): number {
-    return this.coffee.cost() + 1000;
-  }
-  description(): string {
-    return "Milk ".concat(this.coffee.description().split(" ")[1]);
+class LoggingMiddleware extends ServerRequestDecorator {
+  public handle(request: string): void {
+    console.log(request + "with");
+    this.serverRequest.handle("base server");
   }
 }
 
-// client code
+class AuthMiddleware extends ServerRequestDecorator {
+  public handle(request: string): void {
+    console.log(request + "with");
+    this.serverRequest.handle("base server");
+  }
+}
 
-let coffee = new SimpleCoffee();
-coffee.cost(); // 4500
+// client
 
-coffee = new MildDecorator(coffee);
-coffee.cost(); // 5500
+let baseServer = new BaseServer();
+baseServer.handle("base");
+
+baseServer = new LoggingMiddleware(baseServer);
+baseServer.handle("logging");
+
+baseServer = new AuthMiddleware(baseServer);
+baseServer.handle("auth");
