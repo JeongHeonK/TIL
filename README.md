@@ -12,6 +12,14 @@
 
 ---
 
+#### JS-review
+
+디자인 패턴하다 현타옴. decorator 만들시간에 class 하나 더 만든다.
+
+- [JS_Advanced](./JS_review/index.md)
+
+---
+
 #### Moti && Reanimated 라이브러리 분석 및 추가 기능 구현
 
 - [Moti && Reanimated 라이브러리 분석 및 추가 기능 구현](./moti/index.md)
