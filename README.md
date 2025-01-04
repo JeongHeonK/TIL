@@ -16,7 +16,7 @@
 
 디자인 패턴하다 현타옴. decorator 만들시간에 class 하나 더 만든다.
 
-- [oop](./JS_review/js_object.md)
+- [JS_Advanced](./JS_review/index.md)
 
 ---
 
