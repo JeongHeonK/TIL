@@ -1,4 +1,4 @@
-#### Mixing Data & Functions With Objects
+### Mixing Data & Functions With Objects
 
 ```js
 function getTriangleArea(a, b) {
