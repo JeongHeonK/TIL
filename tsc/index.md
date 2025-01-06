@@ -3,3 +3,6 @@
 - [타입 스크립트가 정상 동작하지 않을 때 개입한다.](./pages/2024-09-16.md)
 - [유틸리티 타입 직접 만들기](./pages/2024-09-20.md)
 - [재귀 타입 지정](./pages/2024-09-23.md)
+- [10tips for generic](./pages/10tipsForGeneric.ts)
+- [Generic](./pages/Generic.md)
+- [type Remove or Change](./pages/typeRemoveOrChange.md)
