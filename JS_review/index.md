@@ -11,3 +11,4 @@
 **_Dynamic Programming_**
 
 - [Overlapping SubProblems](./OverlappingSubProblems.md)
+- [Optimized Substructure](./OptimizedSubstructure.md)
