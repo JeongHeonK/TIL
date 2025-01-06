@@ -5,3 +5,4 @@
 - [재귀 타입 지정](./pages/2024-09-23.md)
 - [10tips for generic](./pages/10tipsForGeneric.ts)
 - [Generic](./pages/Generic.md)
+- [type Remove or Change](./pages/typeRemoveOrChange.md)
