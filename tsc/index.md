@@ -6,3 +6,4 @@
 - [10tips for generic](./pages/10tipsForGeneric.ts)
 - [Generic](./pages/Generic.md)
 - [type Remove or Change](./pages/typeRemoveOrChange.md)
+- [Building LOOSE AUTOCOMPLETE with typeScript](./pages/looseAutoComplete.md)
