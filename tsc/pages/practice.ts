@@ -1,5 +1,5 @@
-type Letters = "a" | "b" | "c";
-
-type RemoveC<T> = T extends "c" ? never : T;
-
-type TypeWithoutC = RemoveC<Letters>;
+const sendEvent = <Type extends Event["type"]>(
+  ...args: Extract<Event, { type: Type }> extends { payload: infer TPayload }
+    ? [TypeError, TPayload]
+    : [Type]
+) => {};
