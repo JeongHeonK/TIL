@@ -13,3 +13,4 @@
 
 - [Overlapping SubProblems](./extra/OverlappingSubProblems.md)
 - [Optimized Substructure](./extra/OptimizedSubstructure.md)
+- [memoization](./extra/Memoization.md)
