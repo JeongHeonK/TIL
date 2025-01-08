@@ -8,3 +8,4 @@
 - [type Remove or Change](./pages/typeRemoveOrChange.md)
 - [Building LOOSE AUTOCOMPLETE with typeScript](./pages/looseAutoComplete.md)
 - [Dynamic function arguments with GENERICS](./pages/dynamicfunctionWithGenerics.md)
+- [noUncheckedIndexedAccess](./pages/noUncheckedIndexedAccess.md)
