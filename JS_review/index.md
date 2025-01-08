@@ -4,6 +4,7 @@
 - [Mixing Data & Functions With Objects](./object/MinxingDataFunction.md)
 - [Class](./object/class.md)
 - [Instance](./object/instance.md)
+- [Getter & Setter](./object/Getter&Setter.md)
 
 ---
 
