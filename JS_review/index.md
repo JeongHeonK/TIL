@@ -15,3 +15,4 @@
 - [Optimized Substructure](./extra/OptimizedSubstructure.md)
 - [memoization](./extra/Memoization.md)
 - [Kadane's algorithm](./extra/Kadane'sAlgorithm.md)
+- [Graph DFS](./extra/GraphDFS.md)
