@@ -1,25 +1,22 @@
-class BankAccount {
-  constructor(
-    public balance: number = 0,
-    public accountHolder: string,
-    public accountNumber: number
-  ) {
-    if (accountNumber < 0) throw new Error("invalid holder number");
+class Graph {
+  constructor(protected node: any) {}
 
-    if (accountHolder.trim().length <= 0) throw new Error("invalid holder");
+  DFSR(start) {
+    const result: any[] = [];
+    const visited = {};
 
-    if (balance < 0) throw new Error("invalid balance");
-  }
+    (function dfs(vertex) {
+      if (!vertex) return;
 
-  deposit(amt: number) {
-    if (amt < 0) throw new Error("마이너스 어떻게 입금함?");
+      visited[vertex] = true;
+      result.push(vertex);
+      this.adjacencyList[vertex].forEach((elem) => {
+        if (!visited[elem]) {
+          dfs(elem);
+        }
+      });
+    })(start);
 
-    return this.balance + amt;
-  }
-
-  withdraw(amt: number) {
-    if (this.balance - amt < 0) throw new Error("돈 없어요");
-
-    return `amt withdrew your balance: ${this.balance}`;
+    return result;
   }
 }

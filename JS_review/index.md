@@ -4,6 +4,7 @@
 - [Mixing Data & Functions With Objects](./object/MinxingDataFunction.md)
 - [Class](./object/class.md)
 - [Instance](./object/instance.md)
+- [Getter & Setter](./object/Getter&Setter.md)
 
 ---
 
@@ -15,3 +16,4 @@
 - [Optimized Substructure](./extra/OptimizedSubstructure.md)
 - [memoization](./extra/Memoization.md)
 - [Kadane's algorithm](./extra/Kadane'sAlgorithm.md)
+- [Graph DFS](./extra/GraphDFS.md)
