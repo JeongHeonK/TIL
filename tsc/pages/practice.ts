@@ -1,22 +1,9 @@
-class Graph {
-  constructor(protected node: any) {}
+const MyComponent = (props: { enabled: boolean }) => {
+  return null;
+};
 
-  DFSW(start) {
-    const stack: any[] = [];
-    stack.push(start);
-    const result: any[] = [];
-    const visited = {};
+type PropsFrom<TComponent> = TComponent extends (...args: infer Props) => void
+  ? Props
+  : never;
 
-    while (stack.length > 0) {
-      const current = stack.pop();
-      visited[current] = true;
-      this.vertexList[current].forEach((elem) => {
-        if (!visited[elem]) {
-          stack.push(elem);
-        }
-      });
-    }
-
-    return result;
-  }
-}
+type Props = PropsFrom<typeof MyComponent>;

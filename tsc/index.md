@@ -11,3 +11,4 @@
 - [noUncheckedIndexedAccess](./pages/noUncheckedIndexedAccess.md)
 - [Decode search params](./pages/decodeSearchParams.md)
 - [Using EXTENDS to constrain generics](./pages/usingExtneds.md)
+- [Extracting React Props using CONDITIONAL TYPES](./pages/ExtractingReactProps.md)
