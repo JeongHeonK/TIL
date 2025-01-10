@@ -5,6 +5,7 @@
 - [Class](./object/class.md)
 - [Instance](./object/instance.md)
 - [Getter & Setter](./object/Getter&Setter.md)
+- [Static Initialization Blocks](./object/StaticInitializationBlocks.md)
 
 ---
 
