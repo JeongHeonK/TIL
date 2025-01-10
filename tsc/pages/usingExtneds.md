@@ -1,3 +1,6 @@
+### Using EXTENDS to constrain generics
+
+```js
 export const getDeepValue = <
   Obj,
   FirstKey extends keyof Obj,
@@ -8,7 +11,7 @@ export const getDeepValue = <
   secondKey: SecondKey
 ): Obj[FirstKey][SecondKey] => {
   return {} as any;
-};
+}
 
 const obj = {
   foo: {
@@ -22,3 +25,5 @@ const obj = {
 };
 
 const result = getDeepValue(obj, "bar", "c");
+// 자동완성 가능
+```

@@ -10,3 +10,4 @@
 - [Dynamic function arguments with GENERICS](./pages/dynamicfunctionWithGenerics.md)
 - [noUncheckedIndexedAccess](./pages/noUncheckedIndexedAccess.md)
 - [Decode search params](./pages/decodeSearchParams.md)
+- [Using EXTENDS to constrain generics](./pages/usingExtneds.md)
