@@ -1,4 +1,6 @@
-#### js 하고 싶어짐
+### js 하고 싶어짐
+
+#### class
 
 - [Object 복습](./object/js_object.md)
 - [Mixing Data & Functions With Objects](./object/MinxingDataFunction.md)
@@ -18,3 +20,4 @@
 - [memoization](./extra/Memoization.md)
 - [Kadane's algorithm](./extra/Kadane'sAlgorithm.md)
 - [Graph DFS](./extra/GraphDFS.md)
+- [가중치 그래프](./extra/weightedGraph.md)
