@@ -1,13 +1,14 @@
-export const myObj = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
+interface TableProps<TItem> {
+  items: TItem[];
+  renderItem: (item: TItem) => React.ReactNode;
+}
 
-const objectKys = <Obj extends object>(obj: Obj): (keyof Obj)[] => {
-  return Object.keys(obj) as (keyof Obj)[];
-};
+export function Table<TItem>(props: TableProps<TItem>) {
+  return null;
+}
 
-const key = objectKys(myObj).map((key) => {
-  return myObj[key];
-});
+const Comp = () => {
+  return (
+    <Table items={[{ id: "1" }]} renderItem={(item) => <div>{item.id}</div>} />
+  );
+};
