@@ -14,3 +14,4 @@
 - [Extracting React Props using CONDITIONAL TYPES](./pages/ExtractingReactProps.md)
 - [Improving OBJECT.KEYS in TS](./pages/ObjectKeys.md)
 - [Component with Generic](./pages/ComponentWithGeneric.md)
+- [Generic Slots](./pages/GenericSlots.md)
