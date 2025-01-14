@@ -1,3 +1,31 @@
+### 가중치 그래프 코드
+
+1. 우선 순위 큐 생성
+
+```js
+class PriorityQueue {
+  constructor() {
+    this.value = [];
+  }
+
+  sort() {
+    this.value.sort((a, b) => a.priority - b.priority);
+  }
+
+  enqueue(val, priority) {
+    this.value.push({ val, priority });
+    this.sort();
+  }
+
+  dequeue() {
+    return this.value.shift();
+  }
+}
+```
+
+- O(N \* log(N))
+
+```js
 class PriorityQueue {
   constructor() {
     this.values = [];
@@ -74,3 +102,6 @@ class WeightedGraph {
     }
   }
 }
+```
+
+ㅋㅋㅋㅋㅋㅋ🫠🫠🫠🫠
