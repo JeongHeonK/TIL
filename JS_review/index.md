@@ -12,6 +12,7 @@
 #### this
 
 - [this 기본](./this/this.md)
+- [call, apply, bind](./this/callApplyBind.md)
 
 ---
 
