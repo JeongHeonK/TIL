@@ -1,9 +1,12 @@
-export const makeKeyRemover =
-  <Key extends string>(keys: Key[]) =>
-  <Obj>(obj: Obj): Omit<Obj, Key> => {
-    return {} as any;
-  };
+type CheckArgType<T> = T extends object ? "invalid" : T;
 
-const keyRemover = makeKeyRemover(["a", "b"]);
+export const deepEqualCompare = <Arg>(
+  a: CheckArgType<Arg>,
+  b: CheckArgType<Arg>
+): boolean => {
+  if (Array.isArray(a) || Array.isArray(b)) throw new Error("invalid");
 
-const newObject = keyRemover({ a: 1, b: 2, c: 3 });
+  return a === b;
+};
+
+deepEqualCompare(1, 1);
