@@ -1,14 +1,12 @@
-interface TableProps<TItem> {
-  items: TItem[];
-  renderItem: (item: TItem) => React.ReactNode;
-}
+type CheckArgType<T> = T extends object ? "invalid" : T;
 
-export function Table<TItem>(props: TableProps<TItem>) {
-  return null;
-}
+export const deepEqualCompare = <Arg>(
+  a: CheckArgType<Arg>,
+  b: CheckArgType<Arg>
+): boolean => {
+  if (Array.isArray(a) || Array.isArray(b)) throw new Error("invalid");
 
-const Comp = () => {
-  return (
-    <Table items={[{ id: "1" }]} renderItem={(item) => <div>{item.id}</div>} />
-  );
+  return a === b;
 };
+
+deepEqualCompare(1, 1);
