@@ -27,3 +27,20 @@ obj2.b = 2;
 ```
 
 같음, arr도 마찬가지
+
+---
+
+#### new 없이 호출한다면?
+
+```js
+function User(name, id) {
+  this.name = name;
+  this.id = id;
+}
+
+const user1 = User("Some", "some@some.com");
+```
+
+- 이 경우 일반함수처럼 실행됨.
+- return 값은 없으니 undefined
+- (브라우저라는 가정하에) this 는 윈도우 객체를 뜻하므로, `window.name`과 `window.id`에 할당됨
