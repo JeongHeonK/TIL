@@ -1,23 +1,4 @@
-class PriorityQueue {
-  constructor() {
-    this.values = [];
-  }
-
-  sort() {
-    this.values.sort((a, b) => a.priority - b.priority);
-  }
-
-  enqueue(val, priority) {
-    this.values.push({ val, priority });
-    this.sort();
-  }
-
-  dequeue() {
-    return this.values.shift();
-  }
-}
-
-class WeightedGraph {
+class Graph {
   constructor() {
     this.adjacencyList = {};
   }
@@ -26,51 +7,28 @@ class WeightedGraph {
     if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
   }
 
-  addEdge(vertex1, vertex2, weight) {
-    this.adjacencyList[vertex1].push({ node: vertex2, weight });
-    this.adjacencyList[vertex2].push({ node: vertex1, weight });
+  addEdge(vertex1, vertex2) {
+    this.adjacencyList[vertex2].push(vertex1);
+    this.adjacencyList[vertex1].push(vertex2);
   }
 
-  dijkstra(start, finish) {
-    const nodes = new PriorityQueue();
-    const distances = {};
-    const previous = {};
-    const path = [];
-    let smallest;
+  removeEdge(vertex1, vertex2) {
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+      (v) => v !== vertex2
+    );
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+      (v) => v !== vertex1
+    );
+  }
 
-    for (const vertex in this.adjacencyList) {
-      if (vertex === start) {
-        distances[vertex] = 0;
-        nodes.enqueue(vertex, 0);
-      } else {
-        distances[vertex] = Infinity;
-        nodes.enqueue(vertex, Infinity);
-      }
-      previous[vertex] = null;
+  deleteVertex(vertex) {
+    if (!this.adjacencyList[vertex]) return;
+
+    while (this.adjacencyList[vertex].length) {
+      const current = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, current);
     }
 
-    while (nodes.values.length) {
-      smallest = nodes.dequeue().val;
-      if (smallest === finish) {
-        while (previous[smallest]) {
-          path.unshift(smallest);
-          smallest = previous[smallest];
-        }
-        path.unshift(start);
-        break;
-      }
-
-      if (smallest || distances[smallest] !== Infinity) {
-        for (const nextNode of this.adjacencyList[smallest]) {
-          let candidate = distances[smallest] + nextNode.weight;
-          let nextNeighbor = nextNode.node;
-          if (candidate < distances[nextNeighbor]) {
-            distances[nextNeighbor] = candidate;
-            previous[nextNeighbor] = smallest;
-            nodes.enqueue(nextNeighbor, candidate);
-          }
-        }
-      }
-    }
+    delete this.adjacencyList[vertex];
   }
 }

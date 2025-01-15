@@ -10,3 +10,5 @@ export const deepEqualCompare = <Arg>(
 };
 
 deepEqualCompare(1, 1);
+
+const arr = ["a", "b", "c", "d"] as const;

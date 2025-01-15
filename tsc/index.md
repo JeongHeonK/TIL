@@ -16,3 +16,4 @@
 - [Component with Generic](./pages/ComponentWithGeneric.md)
 - [Generic Slots](./pages/GenericSlots.md)
 - [타입레벨에서 체크하기](./pages/DeepPartial.md)
+- [const 사용](./pages/const.md)
