@@ -14,6 +14,10 @@
 - [this 기본](./this/this.md)
 - [call, apply, bind](./this/callApplyBind.md)
 
+#### prototype
+
+- [new 생성자](./prototype/new.md)
+
 ---
 
 #### 알고리즘 관련
