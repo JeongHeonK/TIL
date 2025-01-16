@@ -18,6 +18,7 @@
 
 - [new 생성자](./prototype/new.md)
 - [생성자함수 문제점](./prototype/functionIssue.md)
+- [생성자함수 문제점 해결 - prototype](./prototype/functionIssueSolution.md)
 - [Prototypes](./prototype/prototype.md)
 
 ---
