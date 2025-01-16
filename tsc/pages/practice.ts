@@ -1,14 +1,6 @@
-type CheckArgType<T> = T extends object ? "invalid" : T;
+interface UserRoleConfig {
+  user: ["view", "create", "update"];
+  superAdmin: ["view", "create", "update", "delete"];
+}
 
-export const deepEqualCompare = <Arg>(
-  a: CheckArgType<Arg>,
-  b: CheckArgType<Arg>
-): boolean => {
-  if (Array.isArray(a) || Array.isArray(b)) throw new Error("invalid");
-
-  return a === b;
-};
-
-deepEqualCompare(1, 1);
-
-const arr = ["a", "b", "c", "d"] as const;
+type Role = UserRoleConfig[keyof UserRoleConfig][number];
