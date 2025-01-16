@@ -17,6 +17,7 @@
 #### prototype
 
 - [new 생성자](./prototype/new.md)
+- [Prototypes](./prototype/prototype.md)
 
 ---
 

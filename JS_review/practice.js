@@ -1,34 +1,24 @@
-class Graph {
-  constructor() {
-    this.adjacencyList = {};
-  }
+let user = {
+  firstName: "john",
+  lastName: "Smith",
 
-  addVertex(vertex) {
-    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
-  }
+  set fullName(value) {
+    [this.firstName, this.lastName] = value.split(" ");
+  },
 
-  addEdge(vertex1, vertex2) {
-    this.adjacencyList[vertex2].push(vertex1);
-    this.adjacencyList[vertex1].push(vertex2);
-  }
+  get fullName() {
+    return this.firstName.concat(" ", this.lastName);
+  },
+};
 
-  removeEdge(vertex1, vertex2) {
-    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
-      (v) => v !== vertex2
-    );
-    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
-      (v) => v !== vertex1
-    );
-  }
+let admin = {
+  __proto__: user,
+  isAdmin: true,
+};
 
-  deleteVertex(vertex) {
-    if (!this.adjacencyList[vertex]) return;
+console.log(admin.fullName); // john Smith
 
-    while (this.adjacencyList[vertex].length) {
-      const current = this.adjacencyList[vertex].pop();
-      this.removeEdge(vertex, current);
-    }
+admin.fullName = "james hogan";
 
-    delete this.adjacencyList[vertex];
-  }
-}
+console.log(admin.fullName); // james hogan
+console.log(user.fullName); // john Smith
