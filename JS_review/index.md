@@ -17,6 +17,9 @@
 #### prototype
 
 - [new 생성자](./prototype/new.md)
+- [생성자함수 문제점](./prototype/functionIssue.md)
+- [생성자함수 문제점 해결 - prototype](./prototype/functionIssueSolution.md)
+- [Prototypes](./prototype/prototype.md)
 
 ---
 
@@ -33,3 +36,4 @@
 - [가중치 그래프 의사코드](./extra/weightedGraphPseudoCode.md)
 - [가중치 그래프 코그](./extra/weightedGraphCode.md)
 - [graph](./extra/graph.md)
+- [동적 프로그래밍](./extra/DynamicProgramming.md)
