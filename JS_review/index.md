@@ -17,6 +17,7 @@
 #### prototype
 
 - [new 생성자](./prototype/new.md)
+- [생성자함수 문제점](./prototype/functionIssue.md)
 - [Prototypes](./prototype/prototype.md)
 
 ---
