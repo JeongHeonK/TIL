@@ -17,19 +17,34 @@ const fib = (n) => {
 
 ```js
 const fib = (n) => {
+  if (n <= 2) return 1;
+
   const tab = [0, 1, 1];
 
-  const helper = (n) => {
-    if (tab[n] === undefined) {
-      tab[n] = helper(n - 1) + helper(n - 2);
-      return tab[n];
-    } else {
-      return tab[n];
-    }
-  };
+  for (let i = 4; i <= n; i++) {
+    tab[i] = tab[i - 1] + tab[i - 2];
+  }
 
-  return helper(n);
+  return tab[n];
 };
 ```
 
-- 대충 tab으로 만든거
+- memo
+
+```js
+function fib(n, memo = []) {
+  if (memo(n) !== undefined) return memo(n);
+
+  if (n <= 2) {
+    memo[n] = 1;
+    return 1;
+  }
+
+  const res = fib(n - 1, memo) + fib(n - 2, memo);
+  memo[n] = res;
+
+  return res;
+}
+```
+
+- 시간복잡도 O(2^n) -> O(n)
