@@ -21,6 +21,7 @@
 - [생성자함수 문제점 해결 - prototype](./prototype/functionIssueSolution.md)
 - [Prototypes](./prototype/prototype.md)
 - [class 사용](./prototype/class.md)
+- [Prototype method](./prototype/prototypeMethod.md)
 
 ---
 
