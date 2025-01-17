@@ -33,3 +33,21 @@ const fib = (n) => {
 ```
 
 - 대충 tab으로 만든거
+
+- memo
+
+```js
+function fib(n, memo = []) {
+  if (memo(n) !== undefined) return memo(n);
+
+  if (n <= 2) {
+    memo[n] = 1;
+    return 1;
+  }
+
+  const res = fib(n - 1, memo) + fib(n - 2, memo);
+  memo[n] = res;
+
+  return res;
+}
+```
