@@ -26,7 +26,6 @@
 #### Asynchronous
 
 - [call back](./Asynchronous/callback.md)
-- [Promises](./Asynchronous/promises.md)
 
 ---
 
