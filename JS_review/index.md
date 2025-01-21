@@ -27,6 +27,10 @@
 
 - [call back](./Asynchronous/callback.md)
 - [promises](./Asynchronous/promises.md)
+- [Async/Await](./Asynchronous/AsyncAwait.md)
+- [Async Pattern](./Asynchronous/AsyncPattern.md)
+- [Promise Method](./Asynchronous/PromiseMethod.md)
+- [Promisify](./Asynchronous/Promisify.md)
 
 ---
 
@@ -44,3 +48,7 @@
 - [가중치 그래프 코그](./extra/weightedGraphCode.md)
 - [graph](./extra/graph.md)
 - [동적 프로그래밍](./extra/DynamicProgramming.md)
+
+---
+
+- [순열 조합](./extra/CombinationPermutation.md)

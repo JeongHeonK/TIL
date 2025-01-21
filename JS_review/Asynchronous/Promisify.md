@@ -1,3 +1,32 @@
+### promisify
+
+```js
+function wait(delay) {}
+
+async function demo() {
+  console.log("hi");
+  await wait(1000);
+  console.log("there");
+}
+```
+
+- 내답
+
+```js
+function wait(delay) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), delay);
+  });
+}
+```
+
+---
+
+#### 실습
+
+- 그지같은 callback hell 해결하기
+
+```js
 import fs from "fs";
 
 fs.readFile("./passage1.txt", "utf-8", (err, data) => {
@@ -24,7 +53,11 @@ fs.readFile("./passage1.txt", "utf-8", (err, data) => {
     });
   }
 });
+```
 
+- Promisify 사용
+
+```js
 function readFile(dir) {
   return new Promise((resolve, reject) => {
     fs.readFile("./passage1.txt", "utf-8", (err, data) => {
@@ -51,3 +84,4 @@ async function getFiles() {
 }
 
 getFiles();
+```
