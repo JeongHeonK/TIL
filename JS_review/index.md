@@ -29,6 +29,7 @@
 - [promises](./Asynchronous/promises.md)
 - [Async/Await](./Asynchronous/AsyncAwait.md)
 - [Async Pattern](./Asynchronous/AsyncPattern.md)
+- [Promise Method](./Asynchronous/PromiseMethod.md)
 
 ---
 
