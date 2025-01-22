@@ -32,6 +32,10 @@
 - [Promise Method](./Asynchronous/PromiseMethod.md)
 - [Promisify](./Asynchronous/Promisify.md)
 
+#### new Features
+
+- [new Features](./newFeatures/newFeatures.md)
+
 ---
 
 #### 알고리즘 관련
