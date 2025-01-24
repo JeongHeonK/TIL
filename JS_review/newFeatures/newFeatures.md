@@ -56,4 +56,3 @@ const Comp = ({ user }) => {
 
 - race와 비슷 다만, 여기서는 가장 빠른 fulfilled 상태의 응답을 Return
 - race는 rejected fulfilled 상관없이 가장 빠른 거 찾음
-  ㅛㅐ
