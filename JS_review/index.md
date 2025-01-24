@@ -36,6 +36,10 @@
 
 - [new Features](./newFeatures/newFeatures.md)
 
+### tricky part
+
+- [tricky part](./treakyPart/treakyPart.md)
+
 ---
 
 #### 알고리즘 관련

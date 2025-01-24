@@ -20,3 +20,9 @@
 - [Index access types](./pages/indexAccessType.md)
 - [Remove prefix](./pages/RemovePrefix.md)
 - [react-ts cheat-sheet](https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example)
+
+---
+
+#### type challenge
+
+- [pick](./challenge/basic.md)
