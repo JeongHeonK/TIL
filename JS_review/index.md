@@ -40,6 +40,7 @@
 
 - [tricky part](./treakyPart/treakyPart.md)
 - [generator](./treakyPart/generator.md)
+- [Array.from](./treakyPart/arrayFrom.md)
 
 ---
 
