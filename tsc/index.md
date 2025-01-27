@@ -25,4 +25,6 @@
 
 #### type challenge
 
-- [pick](./challenge/basic.md)
+- basic
+- [1~3](./challenge/basic1~3.md)
+- [4~6](./challenge/basic4~6s.md)
