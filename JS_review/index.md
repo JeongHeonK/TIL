@@ -41,6 +41,7 @@
 - [tricky part](./treakyPart/treakyPart.md)
 - [generator](./treakyPart/generator.md)
 - [Array.from](./treakyPart/arrayFrom.md)
+- [Scope](./treakyPart/scope.md)
 
 ---
 

@@ -1,9 +1,7 @@
-type ExampleType = Promise<string>;
+type Includes<T extends any[], U> = {
+  [Key in T[number]]: true;
+}[U] extends true
+  ? true
+  : false;
 
-type MyAwaited<T extends Promise<any>> = T extends Promise<infer U>
-  ? U extends Promise<any>
-    ? U
-    : never
-  : never;
-
-type Result = MyAwaited<ExampleType>; // string
+type isPillarMen = Includes<["Kars", "Esidisi", "Wamuu", "Santana"], 3>; // expected to be `false`
