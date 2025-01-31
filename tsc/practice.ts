@@ -1,7 +1,9 @@
-const tuple = ["tesla", "model 3", "model X", "model Y"] as const;
+type ExampleType = Promise<string>;
 
-export type TupleToObject<T extends readonly any[]> = {
-  [key in T[number]]: key;
-};
+type MyAwaited<T extends Promise<any>> = T extends Promise<infer U>
+  ? U extends Promise<any>
+    ? U
+    : never
+  : never;
 
-type result = TupleToObject<typeof tuple>; // expected { 'tesla': 'tesla', 'model 3': 'model 3', 'model X': 'model X', 'model Y': 'model Y'}
+type Result = MyAwaited<ExampleType>; // string
