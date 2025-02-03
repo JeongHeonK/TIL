@@ -42,6 +42,7 @@
 - [generator](./treakyPart/generator.md)
 - [Array.from](./treakyPart/arrayFrom.md)
 - [Scope](./treakyPart/scope.md)
+- [Closure](./treakyPart/closure.md)
 
 ---
 
