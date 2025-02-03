@@ -41,6 +41,8 @@ const getPermutations = (arr, selectingNum) => {
 
     result.push(...attached);
   });
+
+  return result;
 };
 ```
 
