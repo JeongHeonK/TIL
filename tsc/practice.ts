@@ -1,7 +1,9 @@
-type Includes<T extends any[], U> = {
-  [Key in T[number]]: true;
-}[U] extends true
-  ? true
-  : false;
+type MyParameters<T extends (...rest: any[]) => any> = T extends (
+  ...rest: infer R
+) => any
+  ? R
+  : never;
 
-type isPillarMen = Includes<["Kars", "Esidisi", "Wamuu", "Santana"], 3>; // expected to be `false`
+const foo = (arg1: string, arg2: number): void => {};
+
+type FunctionParamsType = MyParameters<typeof foo>; // [arg1: string, arg2: number]
