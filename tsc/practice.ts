@@ -1,12 +1,15 @@
-const fn = (v: boolean) => {
-  if (v) return 1;
-  else return 2;
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+}
+
+type MyOmit<T, K extends keyof T> = {
+  [Key in keyof T as Key extends K ? never : Key]: T[Key];
 };
 
-type MyReturnType<T extends (...args: never[]) => unknown> = T extends (
-  ...args: any[]
-) => infer R
-  ? R
-  : never;
+type TodoPreview = MyOmit<Todo, "description" | "title">;
 
-type a = MyReturnType<typeof fn>; // should be "1 | 2"
+const todo: TodoPreview = {
+  completed: false,
+};
