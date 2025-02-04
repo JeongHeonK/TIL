@@ -1,10 +1,9 @@
-function createCounterBtn(id) {
-  const btn = document.getElementById(id);
-  let count = 0;
-
-  btn.addEventListener("click", function () {
-    count++;
-    console.log(count);
-    btn.innerText = `Clicked ${count} time`;
-  });
+function showNotification(message, duration) {
+  const notification = document.createElement("div");
+  notification.innerText = message;
+  notification.setAttribute("class", "notification");
+  document.body.append(notification);
+  setTimeout(() => {
+    notification.remove();
+  }, duration);
 }
