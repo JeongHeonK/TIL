@@ -47,6 +47,7 @@
 #### Timer
 
 - [setTimeout](./Timer/setTimeout.md)
+- [setInterval](./Timer/setInterval.md)
 
 ---
 

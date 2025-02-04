@@ -1,3 +1,6 @@
+### setInterval
+
+```js
 function counter(limit) {
   let counter = 0;
   const indicatorDiv = document.querySelector("#indicator");
@@ -15,3 +18,4 @@ function counter(limit) {
     }
   }, 1000);
 }
+```
