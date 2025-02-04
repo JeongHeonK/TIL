@@ -36,13 +36,19 @@
 
 - [new Features](./newFeatures/newFeatures.md)
 
-### tricky part
+#### tricky part
 
 - [tricky part](./treakyPart/treakyPart.md)
 - [generator](./treakyPart/generator.md)
 - [Array.from](./treakyPart/arrayFrom.md)
 - [Scope](./treakyPart/scope.md)
 - [Closure](./treakyPart/closure.md)
+
+#### Timer
+
+- [setTimeout](./Timer/setTimeout.md)
+- [setInterval](./Timer/setInterval.md)
+- [debouncing](./Timer/debouncing.md)
 
 ---
 

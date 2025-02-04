@@ -30,3 +30,8 @@
 - [4~7](./challenge/basic4~7.md)
 - [8~10](./challenge/basic8~10.md)
 - [11~13](./challenge/basic11~13.md)
+
+---
+
+- medium
+- [1~3](./challenge/medium1~3.md)
