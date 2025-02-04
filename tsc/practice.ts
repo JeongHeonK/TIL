@@ -4,12 +4,14 @@ interface Todo {
   completed: boolean;
 }
 
-type MyOmit<T, K extends keyof T> = {
-  [Key in keyof T as Key extends K ? never : Key]: T[Key];
-};
+type MyReadonly2<T, K extends keyof T> = Omit<T, K> & Readonly<Pick<T, K>>;
 
-type TodoPreview = MyOmit<Todo, "description" | "title">;
-
-const todo: TodoPreview = {
+const todo: MyReadonly2<Todo, "title" | "description"> = {
+  title: "Hey",
+  description: "foobar",
   completed: false,
 };
+
+todo.title = "Hello"; // Error: cannot reassign a readonly property
+todo.description = "barFoo"; // Error: cannot reassign a readonly property
+todo.completed = true; // OK
