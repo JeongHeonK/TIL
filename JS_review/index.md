@@ -48,6 +48,7 @@
 
 - [setTimeout](./Timer/setTimeout.md)
 - [setInterval](./Timer/setInterval.md)
+- [debouncing](./Timer/debouncing.md)
 
 ---
 
