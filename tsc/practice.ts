@@ -1,17 +1,23 @@
-interface Todo {
-  title: string;
-  description: string;
-  completed: boolean;
-}
-
-type MyReadonly2<T, K extends keyof T> = Omit<T, K> & Readonly<Pick<T, K>>;
-
-const todo: MyReadonly2<Todo, "title" | "description"> = {
-  title: "Hey",
-  description: "foobar",
-  completed: false,
+type Chainable<T = {}> = {
+  option<U extends string, V>(
+    key: U,
+    value: V
+  ): Chainable<T & { [key in U]: V }>;
+  get(): T;
 };
 
-todo.title = "Hello"; // Error: cannot reassign a readonly property
-todo.description = "barFoo"; // Error: cannot reassign a readonly property
-todo.completed = true; // OK
+declare const config: Chainable;
+const result = config
+  .option("foo", 123)
+  .option("name", "type-challenges")
+  .option("bar", { value: "Hello World" })
+  .get();
+
+// expect the type of result to be:
+interface Result {
+  foo: number;
+  name: string;
+  bar: {
+    value: string;
+  };
+}
