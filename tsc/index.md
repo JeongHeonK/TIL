@@ -35,3 +35,4 @@
 
 - medium
 - [1~3](./challenge/medium1~3.md)
+- [4~6](./challenge/medium4~6.md)
