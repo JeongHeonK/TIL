@@ -26,11 +26,11 @@ const search = document.getElementById("search");
 const debounce = (fn, duration) => {
   let timerId;
 
-  return function (e) {
+  return function (...args) {
     if (timerId) clearTimeout(timerId);
 
     timerId = setTimeout(() => {
-      fn(e);
+      fn(...args);
     }, duration * 1000);
   };
 };
@@ -51,7 +51,7 @@ search.addEventListener(
       resultDiv.innerText = "error occurred";
       document.body.append(resultDiv);
     }
-  }, 0.5)
+  }, 1)
 );
 ```
 
