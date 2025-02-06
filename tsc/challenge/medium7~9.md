@@ -11,3 +11,23 @@ type Last<T extends readonly unknown[]> = T extends [...infer Rest, infer R]
 type tail1 = Last<arr1>; // expected to be 'c'
 type tail2 = Last<arr2>; // expected to be 1
 ```
+
+- spread 연산자가 ts에서 이렇게 쓰인다라는 거 배움.
+- js의 Rest parameter랑 헷갈림
+- 마지막에만 쓸 수 있는 줄...
+
+### Pop
+
+```ts
+type arr1 = ["a", "b", "c", "d"];
+type arr2 = [3, 2, 1];
+
+type Pop<T extends readonly unknown[]> = T extends [...infer Rest, infer R]
+  ? Rest
+  : never;
+
+type re1 = Pop<arr1>; // expected to be ['a', 'b', 'c']
+type re2 = Pop<arr2>; // expected to be [3, 2]
+```
+
+- 이전 Last 풀면서 이것저것 테스트 하나다 우연히 찾음
