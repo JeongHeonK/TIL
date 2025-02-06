@@ -1,23 +1,16 @@
-type Chainable<T = {}> = {
-  option<U extends string, V>(
-    key: U,
-    value: V
-  ): Chainable<T & { [key in U]: V }>;
-  get(): T;
+const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise<string>((resolve, reject) => {
+  setTimeout(resolve, 100, "foo");
+});
+
+const PromiseAll = <T extends readonly unknown[]>(
+  arr: T
+): Promise<{
+  [K in keyof T]: T[K] extends Promise<infer R> ? R : T[K];
+}> => {
+  return Promise.all(arr.map((item) => Promise.resolve(item))) as any;
 };
 
-declare const config: Chainable;
-const result = config
-  .option("foo", 123)
-  .option("name", "type-challenges")
-  .option("bar", { value: "Hello World" })
-  .get();
-
-// expect the type of result to be:
-interface Result {
-  foo: number;
-  name: string;
-  bar: {
-    value: string;
-  };
-}
+// expected to be `Promise<[number, 42, string]>`
+const p = PromiseAll([promise1, promise2, promise3] as const);

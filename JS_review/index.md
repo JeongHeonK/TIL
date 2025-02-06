@@ -50,6 +50,7 @@
 - [setInterval](./Timer/setInterval.md)
 - [debouncing](./Timer/debouncing.md)
 - [Throttling](./Timer/Throttling.md)
+- [RaF](./Timer/Raf.md)
 
 ---
 
@@ -71,3 +72,5 @@
 ---
 
 - [순열 조합](./extra/CombinationPermutation.md)
+
+---
