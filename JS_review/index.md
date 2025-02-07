@@ -52,6 +52,11 @@
 - [Throttling](./Timer/Throttling.md)
 - [RaF](./Timer/Raf.md)
 
+#### Functional Programming
+
+- [일급함수](./FP/FirstClassFunction.md)
+- [순수함수](./FP/pureFunction.md)
+
 ---
 
 #### 알고리즘 관련

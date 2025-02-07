@@ -37,3 +37,4 @@
 - [1~3](./challenge/medium1~3.md)
 - [4~6](./challenge/medium4~6.md)
 - [7~9](./challenge/medium7~9.md)
+- [10~12](./challenge/medium10~12.md)
