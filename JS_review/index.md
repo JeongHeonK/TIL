@@ -55,6 +55,7 @@
 #### Functional Programming
 
 - [일급함수](./FP/FirstClassFunction.md)
+- [순수함수](./FP/pureFunction.md)
 
 ---
 
