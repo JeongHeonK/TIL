@@ -56,6 +56,8 @@
 
 - [일급함수](./FP/FirstClassFunction.md)
 - [순수함수](./FP/pureFunction.md)
+- [HOF](./FP/HOF.md)
+- [불변성](./FP/immutability.md)
 
 ---
 
