@@ -59,6 +59,7 @@
 - [HOF](./FP/HOF.md)
 - [불변성](./FP/immutability.md)
 - [compose](./FP/compose.md)
+- [curry](./FP/curry.md)
 
 ---
 
