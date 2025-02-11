@@ -58,6 +58,7 @@
 - [순수함수](./FP/pureFunction.md)
 - [HOF](./FP/HOF.md)
 - [불변성](./FP/immutability.md)
+- [compose](./FP/compose.md)
 
 ---
 
