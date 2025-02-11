@@ -1,3 +1,6 @@
+### 함수형 연습
+
+```js
 class DiceGame {
   constructor(rollBtnId, resultDisplayId) {
     this.rollBtn = document.querySelector(`#${rollBtnId}`);
@@ -54,3 +57,8 @@ const createDiceGame = (btnId, displayId) => {
 };
 
 createDiceGame("btn", "result");
+```
+
+- bind를 쓰냐, 함수를 반환하는가는 취향 차이
+- 근데 요즘은 함수 반환할거 같음
+- bind, apply, call사용을 지야하니..
