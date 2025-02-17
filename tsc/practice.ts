@@ -1,10 +1,10 @@
-type Fn = (a: number, b: string) => number;
+type Flatten<S extends any[], T extends any[] = []> = S extends [
+  infer X,
+  ...infer Y,
+]
+  ? X extends any[]
+    ? Flatten<[...X, ...Y], T>
+    : Flatten<[...Y], [...T, X]>
+  : T;
 
-type AppendArgument<T extends (...args: any[]) => unknown, U> = T extends (
-  ...args: infer R
-) => infer S
-  ? (...args: [...R, U]) => S
-  : never;
-
-type Result = AppendArgument<Fn, boolean>;
-// expected be (a: number, b: string, x: boolean) => number
+type flatten = Flatten<[1, 2, [3, 4], [[[5]]]]>; // [1, 2, 3, 4, 5]
