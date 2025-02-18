@@ -1,10 +1,13 @@
-type Flatten<S extends any[], T extends any[] = []> = S extends [
-  infer X,
-  ...infer Y,
-]
-  ? X extends any[]
-    ? Flatten<[...X, ...Y], T>
-    : Flatten<[...Y], [...T, X]>
-  : T;
+type Test = { id: "1" };
 
-type flatten = Flatten<[1, 2, [3, 4], [[[5]]]]>; // [1, 2, 3, 4, 5]
+type AppendToObject<
+  T,
+  K extends string | number,
+  Value extends any,
+> = T extends object
+  ? {
+      [Key in keyof T | K]: Key extends keyof T ? T[Key] : Value;
+    }
+  : never;
+
+type Result = AppendToObject<Test, "value", 4>; // expected to be { id: '1', value: 4 }
