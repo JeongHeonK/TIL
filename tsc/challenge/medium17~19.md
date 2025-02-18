@@ -42,3 +42,25 @@ type flatten = Flatten<[1, 2, [3, 4], [[[5]]]]>; // [1, 2, 3, 4, 5]
 - `[1, 2, 3, 4, 5]`
 
 - 재귀함수보다 어려움
+
+---
+
+### AppendToObject
+
+```ts
+type Test = { id: "1" };
+
+type AppendToObject<
+  T,
+  K extends string | number,
+  Value extends any,
+> = T extends object
+  ? {
+      [Key in keyof T | K]: Key extends keyof T ? T[Key] : Value;
+    }
+  : never;
+
+type Result = AppendToObject<Test, "value", 4>; // expected to be { id: '1', value: 4 }
+```
+
+- object의 value값도 extends로 판단 가능

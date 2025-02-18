@@ -40,4 +40,4 @@
 - [10~12](./challenge/medium10~12.md)
 - [13~14](./challenge/medium13~14.md)
 - [15~16](./challenge/medium15~16.md)
-- [17~18](./challenge/medium17~18.md)
+- [17~19](./challenge/medium17~19.md)
