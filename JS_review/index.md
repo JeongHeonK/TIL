@@ -66,6 +66,10 @@
 
 - [fetch](./fetch/fetch.md)
 
+#### WebStorage
+
+- [localStorage](./WebStorage/localStorage.md)
+
 ---
 
 #### 알고리즘 관련
