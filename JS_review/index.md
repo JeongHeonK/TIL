@@ -69,6 +69,7 @@
 #### WebStorage
 
 - [localStorage](./WebStorage/localStorage.md)
+- [sessionStorage](./WebStorage/sessionStorage.md)
 
 ---
 
