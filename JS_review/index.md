@@ -69,6 +69,8 @@
 #### WebStorage
 
 - [localStorage](./WebStorage/localStorage.md)
+- [sessionStorage](./WebStorage/sessionStorage.md)
+- [indexedDB](./WebStorage/indexedDB.md)
 
 ---
 
