@@ -96,7 +96,7 @@ const someFunc = () => {
   func();
 };
 
-const App () => {
+const App = () => {
 
   // .. 여기서 someFunc 불러와도됨.
 }
