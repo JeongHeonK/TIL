@@ -21,7 +21,7 @@ const App = () => {
 
 그리고 transition 상태하에 있는 경우를 판단할 때 `isPending`을 사용한다.
 
-반드시 동기적인 코드를 사용해야 한다.
+React 18에서는 반드시 동기적인 코드를 사용해야 한다.
 
 ```jsx
 const HandleState = (newState: string) => {
@@ -34,3 +34,32 @@ const HandleState = (newState: string) => {
 ```
 
 이러면 startTransition이 동작하지 않음.
+
+#### React 19 변경사항
+
+React 19부터 `startTransition`에 async 함수를 전달할 수 있다.
+
+```jsx
+const [isPending, startTransition] = useTransition();
+
+const handleSubmit = () => {
+  startTransition(async () => {
+    const data = await fetchData();
+    setState(data);
+  });
+};
+```
+
+단, `await` 이후의 상태 업데이트는 별도의 `startTransition`으로 감싸야 transition으로 처리된다.
+
+```jsx
+startTransition(async () => {
+  const data = await fetchData();
+  // await 이후의 setState는 별도 startTransition 필요
+  startTransition(() => {
+    setState(data);
+  });
+});
+```
+
+이는 JavaScript의 async context 한계 때문이며, 향후 AsyncContext가 지원되면 해소될 예정이다.

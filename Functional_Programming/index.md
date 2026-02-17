@@ -33,3 +33,5 @@
 - [Lodash](./pages/Lodash.md)
 - [Ramda](./pages/Ramda.md)
 - [Recursive Function](./pages/RecursiveFunction.md)
+
+> JavaScript 기초 관점의 함수형 프로그래밍은 [JS_review/FP](../JS_review/FP/) 참조

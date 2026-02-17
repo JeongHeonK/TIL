@@ -43,3 +43,7 @@ function curry(fn) {
 ```
 
 - 메서드로 호출될 수 있기에 bind해둠.
+
+---
+
+> 참고: [Functional Programming - Currying](../../Functional_Programming/pages/Currying.md) | [Dissecting Currying](../../Functional_Programming/pages/Dissection_Currying.md)

@@ -4,7 +4,7 @@
 - 불변 상태 모델을 기반으로 한다.
 
 ```jsx
-import create from "zustand";
+import { create } from "zustand";
 
 export const useStore = create(() => ({
   count: 0,

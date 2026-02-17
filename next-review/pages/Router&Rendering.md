@@ -153,3 +153,31 @@ export const config = {
 - `config`: 미들웨어 설정 가능.
 
 ---
+
+### Route Handler 보안 주의사항
+
+- Route Handler에서 독립적인 비동기 작업이 있을 때, 순차 실행 대신 병렬로 실행하면 응답 시간을 크게 줄일 수 있다.
+
+```jsx
+// Anti-pattern: config가 auth를 기다림
+export async function GET(request) {
+  const session = await auth();
+  const config = await fetchConfig();
+  const data = await fetchData(session.user.id);
+  return Response.json({ data, config });
+}
+
+// 올바른 패턴: auth와 config를 동시에 시작
+export async function GET(request) {
+  const sessionPromise = auth();
+  const configPromise = fetchConfig();
+  const session = await sessionPromise;
+  const [config, data] = await Promise.all([
+    configPromise,
+    fetchData(session.user.id),
+  ]);
+  return Response.json({ data, config });
+}
+```
+
+---

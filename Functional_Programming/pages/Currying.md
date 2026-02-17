@@ -114,3 +114,7 @@ const result = newFunction(3); // [12, 50]
 - 새로운 함수를 만들어 내는것은 좋은데, 이걸 실무에 어떻게 쓰는지, 쓸 수 있는지 감이 하나도 안 잡힌다.
 - 직접 구현 보다는 lodash의 curry를 쓰는게 나을 거 같음.
 - 객체지향이 선녀로 보인다.
+
+---
+
+> 참고: [JS Review - curry](../../JS_review/FP/curry.md)

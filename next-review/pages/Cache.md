@@ -72,6 +72,8 @@ fetch("url", {
 
   ```
 
+  > **참고**: Next.js 15에서 `unstable_noStore`는 deprecated되었다. 대신 `import { connection } from "next/server"`를 사용하고, 컴포넌트 내에서 `await connection()`을 호출한다.
+
 ---
 
 ### Full Route Cache
@@ -142,3 +144,59 @@ function someUpdateFunc() {
   // 위 함수 사용시 tags에 msg지정한 함수 cache 초기화 됨.
 }
 ```
+
+> **참고**: `unstable_cache`는 Next.js 15에서 `use cache` 지시문으로 대체되었다. 새 프로젝트에서는 `use cache`를 사용하는 것이 권장된다.
+
+---
+
+### React.cache() 사용 시 주의사항
+
+- `React.cache()`는 `Object.is`로 얕은 비교를 하므로, 인라인 객체를 인자로 전달하면 항상 cache miss가 발생한다.
+
+```jsx
+const getUser = cache(async (params) => {
+  return await db.user.findUnique({ where: { id: params.uid } });
+});
+
+// Anti-pattern: 매번 새 객체 → cache miss
+getUser({ uid: 1 });
+getUser({ uid: 1 }); // 다시 쿼리 실행
+
+// 올바른 패턴: 원시값을 인자로 사용
+const getUser = cache(async (uid) => {
+  return await db.user.findUnique({ where: { id: uid } });
+});
+
+getUser(1);
+getUser(1); // cache hit
+```
+
+- Next.js의 `fetch`는 자동으로 요청 중복 제거가 적용되므로 `React.cache()` 래핑이 불필요하다.
+- 그러나 DB 쿼리, 인증 확인, 파일시스템 작업 등 fetch가 아닌 비동기 작업에는 `React.cache()`가 필수적이다.
+
+---
+
+### Cross-Request LRU 캐싱
+
+- `React.cache()`는 단일 요청 내에서만 작동한다. 여러 요청에 걸쳐 데이터를 공유하려면 LRU 캐시를 사용한다.
+
+```jsx
+import { LRUCache } from "lru-cache";
+
+const cache = new LRUCache({
+  max: 1000,
+  ttl: 5 * 60 * 1000, // 5분
+});
+
+export async function getUser(id) {
+  const cached = cache.get(id);
+  if (cached) return cached;
+
+  const user = await db.user.findUnique({ where: { id } });
+  cache.set(id, user);
+  return user;
+}
+```
+
+- Vercel Fluid Compute 환경에서는 동일 인스턴스를 여러 요청이 공유하므로 LRU 캐시가 특히 효과적이다.
+- 전통적인 serverless 환경에서는 Redis 같은 외부 캐시를 고려해야 한다.

@@ -76,3 +76,7 @@ const updateHenry = pipe(
 - 실습보다는 curry 함수 자체가 신기함.
 - 즉시 실행함수를 이용해 전달된 인수를 클로저로 기억하는 새로운 함수를 return 하는 방식
 - 재귀함수에서 helper function 구현시 count인수를 추가해서 종료조건을 구현한 적이 있었는데, 이 방법 응용하면 필요없는 인수 전달할 필요 없을 거 같음.
+
+---
+
+> 참고: [JS Review - curry](../../JS_review/FP/curry.md)

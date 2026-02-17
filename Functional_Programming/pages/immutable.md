@@ -62,3 +62,7 @@ function payrollCalcSafe(employees) {
   return copyDeeply(result);
 }
 ```
+
+---
+
+> 참고: [JS Review - immutability](../../JS_review/FP/immutability.md)

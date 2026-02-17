@@ -92,3 +92,32 @@ const Component = () => {
 ```
 
 - 아톰이 분리돼 있다면 별도의 전역 상태를 갖는 것과 거의 같다.
+
+---
+
+### 파생 상태 구독으로 리렌더링 최소화
+
+- 연속적인 값(숫자 등)을 직접 구독하면 값이 바뀔 때마다 리렌더링이 발생한다.
+- 컴포넌트가 실제로 필요한 것이 파생된 boolean이라면, 해당 boolean만 구독하도록 한다.
+
+```jsx
+// Anti-pattern: 매 픽셀마다 리렌더링
+function Sidebar() {
+  const width = useWindowWidth();
+  const isMobile = width < 768;
+  return <nav className={isMobile ? "mobile" : "desktop"} />;
+}
+
+// 올바른 패턴: boolean 전환 시에만 리렌더링
+function Sidebar() {
+  const isMobile = useMediaQuery("(max-width: 767px)");
+  return <nav className={isMobile ? "mobile" : "desktop"} />;
+}
+```
+
+---
+
+### useRef를 활용한 비렌더링 값 관리
+
+- 자주 변경되지만 UI에 직접 반영할 필요 없는 값(마우스 위치, 타이머 등)은 `useRef`에 저장하면 불필요한 리렌더링을 방지할 수 있다.
+- DOM을 직접 조작해야 하는 경우에도 useRef가 적합하다.

@@ -32,3 +32,7 @@
 - 고려 사항
   - 접근성이 좋은 데이터 구성 방법
   - 데이터를 이용해 중요한 것을 발견하는 원칙
+
+---
+
+> 참고: [JS Review - 일급 함수](../../JS_review/FP/FirstClassFunction.md) | [JS Review - HOF](../../JS_review/FP/HOF.md)
