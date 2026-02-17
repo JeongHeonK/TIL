@@ -154,7 +154,7 @@ export const config = {
 
 ---
 
-### Route Handler 보안 주의사항
+### Route Handler 성능 최적화
 
 - Route Handler에서 독립적인 비동기 작업이 있을 때, 순차 실행 대신 병렬로 실행하면 응답 시간을 크게 줄일 수 있다.
 
