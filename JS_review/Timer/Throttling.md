@@ -61,7 +61,7 @@ const throttle = (fn, wait) => {
           fn(...args);
           lastTime = Date.now();
         }
-      }, Math.max(wait - (Data.now() - lastTime), 0));
+      }, Math.max(wait - (Date.now() - lastTime), 0));
     }
   };
 };
