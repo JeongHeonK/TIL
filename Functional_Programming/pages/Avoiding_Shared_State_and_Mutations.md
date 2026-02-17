@@ -168,3 +168,7 @@ recordData(updateTries(getTries(cloneObj(users), "henry")), "tries");
 - 보통 전개연산자를 많이 썼으나 얕은 복사이기에 문제가 생김.
 - 함수형 코딩 책에서는 오히려 얕은 복사를 권장함.
 - 데이터 구조나 필요에 따라서 다른 것 같음.
+
+---
+
+> 참고: [JS Review - immutability](../../JS_review/FP/immutability.md)

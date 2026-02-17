@@ -48,8 +48,8 @@
 
 - [setTimeout](./Timer/setTimeout.md)
 - [setInterval](./Timer/setInterval.md)
-- [debouncing](./Timer/debouncing.md)
-- [Throttling](./Timer/Throttling.md)
+- [debouncing](./Timer/debouncing.md) (React hooks 예제 포함)
+- [Throttling](./Timer/Throttling.md) (React hooks 예제 포함)
 - [RaF](./Timer/Raf.md)
 
 #### Functional Programming
@@ -61,6 +61,8 @@
 - [compose](./FP/compose.md)
 - [curry](./FP/curry.md)
 - [FP 연슴](./FP/practice.md)
+
+> 심화 함수형 프로그래밍은 [Functional_Programming](../Functional_Programming/index.md) 참조
 
 #### Fetch
 

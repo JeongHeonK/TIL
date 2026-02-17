@@ -39,3 +39,7 @@ const scoreSum = removeZeroScores.reduce((sum, val) => sum + val, 0);
 
 const leftOverCount = removeZeroScores.reduce((cnt) => cnt + 1, 0);
 ```
+
+---
+
+> 참고: [JS Review - compose](../../JS_review/FP/compose.md)

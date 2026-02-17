@@ -1,9 +1,6 @@
 ### React
 
-- [memo 주의](./pages/React/memo.md)
 - [Redux](./pages/React/redux.md)
-- [useEffect와 useLayoutEffect](./pages/React/useLayout.md)
-- [useCallback과 useMemo의 차이](./pages/React/useCallback&useMemo.md)
 
 ---
 
@@ -62,22 +59,19 @@
 
 #### Memoization
 
-- [Memoization](./pages/React/design-pattern/Memoization.md)
 - [Comparing values](./pages/React/design-pattern/ComparingValues.md)
 - [useMemo & useCallback](./pages/React/design-pattern/useMemo&useCallback.md)
 - [memo](./pages/React/design-pattern/memo.md)
 
 #### Reconciliation
 
-- [Reconciliation Intro](./pages/React/design-pattern/ReconciliationIntro.md)
+- [Reconciliation](./pages/React/design-pattern/Reconciliation.md)
 - [문제점](./pages/React/design-pattern/ReconciliationIssue.md)
-- [Diffing](./pages/React/design-pattern/Diffing.md)
 - [map()을 사용할 시, key에 index를 주지 않는 이유](./pages/React/design-pattern/keyInMap.md)
 
 #### Context api
 
 - [Context](./pages/React/design-pattern/Context.md)
-- [Wasted re-renders](./pages/React/design-pattern/WastedReRenders.md)
 - [Splitting context with useReducer](./pages/React/design-pattern/ContextWithReducer.md)
 - [Building a Selector](./pages/React/design-pattern/BuildingSelector.md)
 
@@ -86,7 +80,7 @@
 - [Ref](./pages/React/design-pattern/Ref.md)
 - [Ref for accessing Dom](./pages/React/design-pattern/RefDom.md)
 - [Ref as Prop](./pages/React/design-pattern/RefProp.md)
-- [useImperativeHandler](./pages//React/design-pattern//useImperativeHandle.md)
+- [useImperativeHandler](./pages/React/design-pattern/useImperativeHandle.md)
 
 #### Closures
 
@@ -100,20 +94,19 @@
 - [Event Listeners](./pages/React/design-pattern/EventListeners.md)
 - [useLayoutEffect](./pages/React/design-pattern/useLayoutEffect.md)
 - [useId](./pages/React/design-pattern/useId.md)
-- [useCallback as Ref](./pages//React/design-pattern/useCallbackAsRef.md)
+- [useCallback as Ref](./pages/React/design-pattern/useCallbackAsRef.md)
 - [useDeferredValue](./pages/React/design-pattern/useDeferredValue.md)
 - [useTransition](./pages/React/design-pattern/useTransition.md)
 
 #### Clean Code tip
 
 - [Using Element Prop](./pages/React/design-pattern/UsingElementProp.md)
-- [Optimizing Context](./pages/React/design-pattern/OptimizingContext.md)
 - [Less useEffect](./pages/React/design-pattern/LessUseEffect.md)
 
 #### Scalable Project Architecture
 
 - [General Architecture](./pages/React/design-pattern/GeneralArchitecture.md)
-- [Route Components](./pages//React/design-pattern/RouteComponents.md)
+- [Route Components](./pages/React/design-pattern/RouteComponents.md)
 
 #### API Layer and Async Operation
 
@@ -121,7 +114,7 @@
 fetching하는 걸 한 페이지에서 모두 처리하게 할 수 없을까? <br />
 
 - [Building an Api Layer](./pages/React/design-pattern/BuildingApiLayer.md)
-- [API state](./pages//React/design-pattern/APIstate.md)
+- [API state](./pages/React/design-pattern/APIstate.md)
 - [Avoiding flickering Loaders](./pages/React/design-pattern/AvoidingFlickeringLoaders.md)
 - [Abstracting API state](./pages/React/design-pattern/AbstractingAPIstate.md)
 
@@ -137,11 +130,8 @@ fetching하는 걸 한 페이지에서 모두 처리하게 할 수 없을까? <b
 #### Performance Optimization
 
 - [Code-Splitting and Lazy-Loading](./pages/React/design-pattern/CodeSplittingAndLazyLoading.md)
-- [useCallback hook to preserve referential integrity](./pages/React/design-pattern/useCallbackHooktoPreserve.md)
 - [State Collocation](./pages/React/design-pattern/StateCollocation.md)
 - [Preventing re-renders by lifting components up](./pages/React/design-pattern/LifitingComponentsUp.md)
-- [Throttling](./pages/React/design-pattern/Throttling.md)
-- [Debounce](./pages/React/design-pattern/Debounce.md)
 
 #### extra
 
@@ -165,7 +155,6 @@ RN 기반으로 작업하면 결국 react 깊게 알아야 해서 정리🫠🫠
 - [오픈소스 확인](./pages/React/open-source.md)
 - [renderWithHook](./pages/React/renderWithHooks.md)
 - [useState](./pages/React/useState.md)
-- [reconciler](./pages/React/reconciler.md)
 
 ---
 

@@ -1,4 +1,30 @@
-### memo
+### Memoization
+
+- React에서 memoization을 통해 해결하려는 문제점
+- `useMemo()`와 `useCallback()`의 내부 원리와 차이점.
+- 왜 props를 memoization 하는 것은 나쁜 방법인가?
+- memo의 사용법과 필요성, 그리고 효율적인 사용방법
+- children에 대한 올바른 접근 방법
+
+---
+
+### memo 기본 사용법
+
+- 부모 컴포넌트가 리랜더링될 시, 전달되는 prop이 일치한다면 리렌더링하지 않는다.
+
+```jsx
+import { memo } from "react";
+
+const SomeComp = memo(function SomeComp(prop) {});
+```
+
+- context api 사용할 때 rerendering 발생
+- 부모로부터 전달되는 prop이 레퍼런스 값(배열, 객체)일 때 리랜더링 됨.
+- prop이 레퍼런스 값일 경우 useMemo를 사용해서 prop도 캐시에 저장해줘야 함.
+
+---
+
+### memo 상세
 
 - 부모컴포넌트가 리랜더링되면 포함된 자식요소도 모두 리렌더링된다.
 - 그러나 Memo를 사용할 경우 컴포넌트 그 자체를 memoization 하고, 전달된는 prop의 값이 같다면 리랜더링 하지 않는다.
@@ -17,10 +43,9 @@ const Parent = () => {
 };
 ```
 
-memoization
+memoization을 적용한 올바른 패턴
 
 ```jsx
-// Anti-pattern
 const MyComp = ({ info, changeHandler }) => {};
 const MemoizedMyComp = React.memo(MyComp);
 
@@ -105,3 +130,65 @@ const Comp = () => {
 - memo를 안 사용하는 것이 최적이 아닐까 싶을 정도로 깨지는 상황이 많다.
 - 공통점은 prop이 객체로 전달된다는 점이다.
 - 생각도 못한 취약점이다. 특히 children의 경우 react의 element와 fiber node개념까지 알아야 하는 내용이라 사용시 정말 주의 해야겠다.
+
+---
+
+### memo 컴포넌트의 default prop 주의
+
+- memo로 감싼 컴포넌트에 optional prop의 기본값이 비원시값(함수, 배열, 객체)일 경우, 매 렌더링마다 새로운 참조가 생성되어 memoization이 깨진다.
+- 기본값을 컴포넌트 외부 상수로 추출해야 한다.
+
+```jsx
+// Anti-pattern: 매 렌더링마다 새로운 함수 참조 생성
+const UserAvatar = memo(function UserAvatar({ onClick = () => {} }) {
+  // ...
+});
+
+// 올바른 패턴: 안정적인 기본값
+const NOOP = () => {};
+
+const UserAvatar = memo(function UserAvatar({ onClick = NOOP }) {
+  // ...
+});
+```
+
+---
+
+### memo 대신 컴포넌트 추출로 최적화
+
+- useMemo로 JSX를 감싸는 대신, 비용이 큰 작업을 memo 컴포넌트로 분리하면 early return이 가능해진다.
+
+```jsx
+// Anti-pattern: loading 중에도 computeAvatarId 실행
+function Profile({ user, loading }) {
+  const avatar = useMemo(() => {
+    const id = computeAvatarId(user);
+    return <Avatar id={id} />;
+  }, [user]);
+
+  if (loading) return <Skeleton />;
+  return <div>{avatar}</div>;
+}
+
+// 올바른 패턴: loading이면 연산 자체를 건너뜀
+const UserAvatar = memo(function UserAvatar({ user }) {
+  const id = useMemo(() => computeAvatarId(user), [user]);
+  return <Avatar id={id} />;
+});
+
+function Profile({ user, loading }) {
+  if (loading) return <Skeleton />;
+  return (
+    <div>
+      <UserAvatar user={user} />
+    </div>
+  );
+}
+```
+
+---
+
+### React Compiler 참고
+
+- React Compiler가 활성화된 프로젝트에서는 `memo()`, `useMemo()`, `useCallback()`을 수동으로 작성할 필요가 없다.
+- 컴파일러가 자동으로 리렌더링을 최적화해준다.

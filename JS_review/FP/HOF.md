@@ -49,3 +49,7 @@ export default function withAuthentication(WrappedComponent) {
 - 여러 컴포넌트에서 로그인 상태를 조회하는 로직이 필요할 때 사용.
 - 요즘은 custom hook으로도 더 사용하는 것 같음.
 - HOC로 사용하나 주변 개발자가 못 알아먹으면 망하기 때문
+
+---
+
+> 참고: [Functional Programming - 기초](../../Functional_Programming/pages/basic.md)

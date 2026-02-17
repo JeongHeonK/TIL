@@ -109,3 +109,60 @@ export async function generateMetadata() {
   };
 }
 ```
+
+---
+
+### next/dynamic을 활용한 무거운 컴포넌트 지연 로드
+
+- 초기 렌더링에 필요하지 않은 무거운 컴포넌트(에디터, 차트, 지도 등)는 `next/dynamic`으로 분리한다.
+- 초기 번들 크기를 줄여 TTI(Time to Interactive)와 LCP를 개선한다.
+
+```jsx
+import dynamic from "next/dynamic";
+
+const Chart = dynamic(() => import("@/components/Chart"), {
+  ssr: false,
+  loading: () => <ChartSkeleton />,
+});
+```
+
+---
+
+### CSS content-visibility로 긴 리스트 최적화
+
+- `content-visibility: auto`를 적용하면 화면 밖 요소의 렌더링을 지연시켜 초기 렌더링 속도를 크게 개선한다.
+
+```css
+.list-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 80px;
+}
+```
+
+1000개의 항목이 있을 때, 브라우저가 화면 밖의 ~990개 항목의 layout/paint를 건너뛰어 약 10배 빠른 초기 렌더링이 가능하다.
+
+---
+
+### 비핵심 서드파티 라이브러리 지연 로드
+
+- Analytics, 에러 트래킹 같은 라이브러리는 hydration 이후에 로드하여 초기 번들에서 제외한다.
+
+```jsx
+import dynamic from "next/dynamic";
+
+const Analytics = dynamic(
+  () => import("@vercel/analytics/react").then((m) => m.Analytics),
+  { ssr: false }
+);
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  );
+}
+```

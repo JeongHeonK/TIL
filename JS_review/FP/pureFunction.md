@@ -23,3 +23,7 @@ const pushElement = (arr, elem) => [...arr, elem];
 const newArr = pushElement(arr, "bye");
 // 보통 얕은 복사 사용
 ```
+
+---
+
+> 참고: [Functional Programming - Avoiding Side Effects and Using Pure Function](../../Functional_Programming/pages/Avoiding_Sided_Effects_and_Using_Pure_Function.md)

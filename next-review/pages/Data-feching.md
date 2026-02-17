@@ -96,3 +96,125 @@ export default async function SomeComp() {
 
 - `const [optimisticState, addOptimistic] = useOptimistic(state, updateFn)`
 - `addOptimistic`을 실행하면 `updateFn`이 실행된다.
+
+---
+
+### Server Action 보안: 반드시 인증/인가 확인
+
+- Server Action(`"use server"`)은 public 엔드포인트로 노출된다. API route와 동일한 수준의 보안을 적용해야 한다.
+- 미들웨어나 레이아웃의 인증에만 의존하지 말고, **각 Server Action 내부에서** 인증과 인가를 확인해야 한다.
+
+```jsx
+"use server";
+
+import { verifySession } from "@/lib/auth";
+
+export async function deletePost(postId) {
+  // 1. 인증 확인
+  const session = await verifySession();
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
+
+  // 2. 인가 확인
+  const post = await getPost(postId);
+  if (post.authorId !== session.user.id) {
+    throw new Error("Forbidden");
+  }
+
+  // 3. 실제 작업 수행
+  await db.post.delete({ where: { id: postId } });
+}
+```
+
+---
+
+### 서버 컴포넌트에서 Waterfall 제거
+
+- 독립적인 데이터 요청이 순차적으로 실행되면 불필요한 대기가 발생한다.
+- `Promise.all()`이나 컴포넌트 구조 변경으로 병렬화할 수 있다.
+
+```jsx
+// Anti-pattern: 순차 실행 → 3번의 round trip
+const user = await fetchUser();
+const posts = await fetchPosts();
+const comments = await fetchComments();
+
+// 올바른 패턴: 병렬 실행 → 1번의 round trip
+const [user, posts, comments] = await Promise.all([
+  fetchUser(),
+  fetchPosts(),
+  fetchComments(),
+]);
+```
+
+또는 각 데이터를 독립 컴포넌트로 분리하면 React가 자동으로 병렬 실행한다.
+
+```jsx
+// 각 컴포넌트가 독립적으로 fetch → 자동 병렬화
+export default function Page() {
+  return (
+    <div>
+      <Header />
+      <Sidebar />
+      <MainContent />
+    </div>
+  );
+}
+```
+
+---
+
+### Suspense를 활용한 스트리밍
+
+- 전체 페이지가 데이터를 기다리는 대신, Suspense 경계로 감싸면 나머지 UI를 즉시 보여줄 수 있다.
+
+```jsx
+function Page() {
+  return (
+    <div>
+      <Header />
+      <Suspense fallback={<Skeleton />}>
+        <SlowDataComponent />
+      </Suspense>
+      <Footer />
+    </div>
+  );
+}
+```
+
+---
+
+### RSC 경계에서의 직렬화 최소화
+
+- Server Component에서 Client Component로 데이터를 전달할 때, 클라이언트에서 실제 사용하는 필드만 전달해야 한다.
+- 50개 필드가 있는 객체 전체를 넘기면 불필요한 직렬화 비용이 발생한다.
+
+```jsx
+// Anti-pattern: 50개 필드 전체 직렬화
+<Profile user={user} />
+
+// 올바른 패턴: 사용하는 필드만 전달
+<Profile name={user.name} avatar={user.avatar} />
+```
+
+---
+
+### after()로 비차단 작업 처리
+
+- 로깅, 분석, 알림 등 응답을 차단할 필요 없는 작업은 `after()`를 사용하면 응답 전송 후 실행된다.
+
+```jsx
+import { after } from "next/server";
+
+export async function POST(request) {
+  await updateDatabase(request);
+
+  // 응답 전송 후 비동기적으로 실행
+  after(async () => {
+    await logUserAction({ userAgent: request.headers.get("user-agent") });
+  });
+
+  return Response.json({ status: "success" });
+}
+```

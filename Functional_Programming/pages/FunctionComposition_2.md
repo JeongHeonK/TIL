@@ -124,3 +124,7 @@ const sum = getTotalSum(scores);
 
 const average = pipe(bootSingleScores, rmBothHighLow, getAverage)(scores);
 ```
+
+---
+
+> 참고: [JS Review - compose](../../JS_review/FP/compose.md)

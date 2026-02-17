@@ -20,3 +20,7 @@ const pushElem = (arr, num) => [...arr, num];
 
 const updatedArr = pushElem(arr, 4);
 ```
+
+---
+
+> 참고: [Functional Programming - immutable](../../Functional_Programming/pages/immutable.md) | [Avoiding Shared State and Mutations](../../Functional_Programming/pages/Avoiding_Shared_State_and_Mutations.md)

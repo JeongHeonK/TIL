@@ -270,3 +270,7 @@ const getUser = <T extends Proto>(array: T[], name: string) => {
   );
 };
 ```
+
+---
+
+> 참고: [JS Review - Pure Function](../../JS_review/FP/pureFunction.md)

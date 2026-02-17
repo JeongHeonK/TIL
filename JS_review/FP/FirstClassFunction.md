@@ -22,3 +22,7 @@ const newArr = mapFunc([1, 2, 3], (num) => {
   num + 1;
 });
 ```
+
+---
+
+> 참고: [Functional Programming - 기초](../../Functional_Programming/pages/basic.md)
