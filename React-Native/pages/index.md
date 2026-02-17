@@ -80,7 +80,7 @@
 - [Ref](./pages/React/design-pattern/Ref.md)
 - [Ref for accessing Dom](./pages/React/design-pattern/RefDom.md)
 - [Ref as Prop](./pages/React/design-pattern/RefProp.md)
-- [useImperativeHandler](./pages//React/design-pattern//useImperativeHandle.md)
+- [useImperativeHandler](./pages/React/design-pattern/useImperativeHandle.md)
 
 #### Closures
 
@@ -94,7 +94,7 @@
 - [Event Listeners](./pages/React/design-pattern/EventListeners.md)
 - [useLayoutEffect](./pages/React/design-pattern/useLayoutEffect.md)
 - [useId](./pages/React/design-pattern/useId.md)
-- [useCallback as Ref](./pages//React/design-pattern/useCallbackAsRef.md)
+- [useCallback as Ref](./pages/React/design-pattern/useCallbackAsRef.md)
 - [useDeferredValue](./pages/React/design-pattern/useDeferredValue.md)
 - [useTransition](./pages/React/design-pattern/useTransition.md)
 
@@ -106,7 +106,7 @@
 #### Scalable Project Architecture
 
 - [General Architecture](./pages/React/design-pattern/GeneralArchitecture.md)
-- [Route Components](./pages//React/design-pattern/RouteComponents.md)
+- [Route Components](./pages/React/design-pattern/RouteComponents.md)
 
 #### API Layer and Async Operation
 
@@ -114,7 +114,7 @@
 fetching하는 걸 한 페이지에서 모두 처리하게 할 수 없을까? <br />
 
 - [Building an Api Layer](./pages/React/design-pattern/BuildingApiLayer.md)
-- [API state](./pages//React/design-pattern/APIstate.md)
+- [API state](./pages/React/design-pattern/APIstate.md)
 - [Avoiding flickering Loaders](./pages/React/design-pattern/AvoidingFlickeringLoaders.md)
 - [Abstracting API state](./pages/React/design-pattern/AbstractingAPIstate.md)
 
